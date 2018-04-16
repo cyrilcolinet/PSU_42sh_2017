@@ -19,9 +19,9 @@ OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	+=	-Wall -Wextra
 
-CFLAGS	+=	-I./include -g3 --coverage
+CFLAGS	+=	-I./include -g3
 
-LDFLAG	=	-L./lib/my -lmy -lcriterion -lgcov
+LDFLAG	=	-L./lib/my -lmy
 
 all	:	$(NAME)
 
