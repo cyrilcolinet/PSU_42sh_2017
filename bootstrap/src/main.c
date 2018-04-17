@@ -80,6 +80,9 @@ int bootstrap(char **av)
 			my_putstr("\n");
 		}
 	}
+	for (int i = 0; i < 3; i++)
+		my_freetab(arg[i]);
+	free(arg);
 	return (0);
 }
 
