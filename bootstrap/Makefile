@@ -19,7 +19,7 @@ OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	+=	-Wall -Wextra
 
-CFLAGS	+=	-I./include -g3
+CFLAGS	+=	-I./include -g3 -L./lib -lmy
 
 LDFLAG	=	-lcriterion -lgcov --coverage
 
@@ -29,7 +29,7 @@ lib :
 		make -C lib
 
 $(NAME)	:	$(OBJ)
-		cc -o $(NAME) $(OBJ) $(LDFLAG)
+		cc -o $(NAME) $(OBJ) $(CFLAGS)
 
 tests_run:	lib $(OBJ_UT)
 		cc -o $(NAME_UT) $(OBJ_UT) $(LDFLAG)
