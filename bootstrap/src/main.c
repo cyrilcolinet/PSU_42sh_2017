@@ -66,11 +66,13 @@ void execution_command(char **arg, char **env)
 	pid_t wait_status = 0;
 
 	if (child == 0) {
+		for (int aa = 0; arg[aa]; aa++)
+			printf(" ===========++++> %s\n", arg[aa]);
 		execve(arg[0], arg, env);
 	} else {
 		wait_status = wait(&status);
 	}
-	kill(wait_status, SIGKILL);
+//	kill(wait_status, SIGKILL);
 }
 
 int bootstrap(char **av, char **env)
