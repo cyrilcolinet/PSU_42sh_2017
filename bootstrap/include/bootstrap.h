@@ -5,10 +5,12 @@
 ** bootstrap
 */
 
-#ifndef BOOTSTRAP
-#define BOOTSTRAP
+# ifndef BOOTSTRAP
+# define BOOTSTRAP
 
 # include <stdlib.h>
 # include <unistd.h>
 
-#endif
+# include "my.h"
+
+# endif
