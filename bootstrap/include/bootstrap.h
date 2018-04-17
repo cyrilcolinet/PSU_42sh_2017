@@ -8,4 +8,7 @@
 #ifndef BOOTSTRAP
 #define BOOTSTRAP
 
+# include <stdlib.h>
+# include <unistd.h>
+
 #endif
