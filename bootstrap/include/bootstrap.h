@@ -10,6 +10,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <signal.h>
+# include <fcntl.h>
+# include <stdbool.h>
+# include <time.h>
+# include <sys/wait.h>
 
 # include "my.h"
 

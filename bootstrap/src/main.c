@@ -59,7 +59,21 @@
 /* 	} */
 /* } */
 
-int bootstrap(char **av)
+void execution_command(char **arg, char **env)
+{
+	pid_t child = fork();
+	int status = 0;
+	pid_t wait_status = 0;
+
+	if (child == 0) {
+		execve(arg[0], arg, env);
+	} else {
+		wait_status = wait(&status);
+	}
+	kill(wait_status, SIGKILL);
+}
+
+int bootstrap(char **av, char **env)
 {
 	char ***arg;
 
@@ -79,6 +93,7 @@ int bootstrap(char **av)
 			my_putstr(arg[i][j]);
 			my_putstr("\n");
 		}
+		execution_command(arg[i], env);
 	}
 	for (int i = 0; i < 3; i++)
 		my_freetab(arg[i]);
@@ -98,6 +113,6 @@ int main(int ac, char **av, char **env)
 		return (84);
 	}
 
-	res =bootstrap(av);
+	res = bootstrap(av, env);
 	return (res);
 }
