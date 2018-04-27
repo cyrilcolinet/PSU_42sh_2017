@@ -13,7 +13,7 @@ CFLAGS	+=	-I./include/
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	mysh
+NAME	=	42sh
 
 all:	$(NAME)
 
