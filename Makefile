@@ -2,45 +2,33 @@
 ## EPITECH PROJECT, 2017
 ## Makefile
 ## File description:
-## Makefile
+## Made by developers
 ##
 
-NAME	=
+SRC	=	$(wildcard src/*.c)
 
-NAME_UT	=	units
+CFLAGS	+=	-Wextra -Wall -g3 #-Werror
 
-SRC	=
-
-SRC_UT	=
-
-OBJ_UT	=	$(SRC_UT:.c=.o)
+CFLAGS	+=	-I./include/
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	+=	-Wall -Wextra
+NAME	=	mysh
 
-CFLAGS	+=	-I./include -g3
+all:	$(NAME)
 
-LDFLAG	=	-L./lib/my -lmy
+$(NAME):	$(OBJ)
+	make -C lib/my
+	gcc $(OBJ) -o $(NAME) -Llib/my -lmy
 
-all	:	$(NAME)
+clean:
+	make -C lib/my clean
+	rm -f $(OBJ)
 
-$(NAME)	:	$(OBJ)
-		make -C lib/my
-		cc -o $(NAME) $(OBJ) $(LDFLAG)
+fclean:	clean
+	make -C lib/my fclean
+	rm -f $(NAME)
 
-tests_run:	$(OBJ_UT)
-		make -C lib/my
-		cc -o $(NAME_UT) $(OBJ_UT) $(LDFLAG)
-		./units
+re:	fclean all
 
-clean	:
-		make -C lib/my clean
-		rm -f $(NAME)
-		rm -f $(NAME_UT)
-
-fclean	:	clean
-		make -C lib/my fclean
-		rm -f $(OBJ)
-
-re	:	fclean all
+.PHONY: all clean fclean re
