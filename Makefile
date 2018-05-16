@@ -37,24 +37,19 @@ SRC_FILES		= 	main/42.c \
 				redirection/left_redirection.c \
 				redirection/pipe_exec.c \
 				exec/my_exec.c \
-				prompt/prompt_line.c \
+				exec/check_access.c \
 				utils/my_list_to_array.c \
 				utils/my_list_size.c \
 				utils/is_alone.c \
-				exec/check_access.c \
 				sig/wstatus_handler.c \
 				sig/error_messages.c \
-				exec/my_exec.c \
 				prompt/prompt_line.c \
-				utils/my_list_to_array.c \
-				utils/my_list_size.c \
-				exec/check_access.c \
-				sig/wstatus_handler.c \
-				sig/error_messages.c \
 				utils/clear_space.c \
 				utils/clear_str.c \
-				utils/get_next_line.c \
-				utils/is_alone.c
+				utils/get_next_line.c 	\
+				globbings/checker.c 		\
+				globbings/globbings.c 		\
+				globbings/interval.c
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
