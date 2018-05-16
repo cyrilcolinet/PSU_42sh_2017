@@ -22,6 +22,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include "globbing.h"
 #include "my.h"
 
 #define EXIT_SUCCESS 0
