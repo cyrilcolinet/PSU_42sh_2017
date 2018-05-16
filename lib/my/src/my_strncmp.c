@@ -5,7 +5,9 @@
 ** task06
 */
 
-int my_strncmp(char const *str1, char const *str2, int n)
+#include "my.h"
+
+int my_strncmp(char *str1, char *str2, int n)
 {
 	while (n && *str1 && (*str1 == *str2)) {
 		++str1;
