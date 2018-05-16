@@ -67,29 +67,29 @@ typedef struct env_s {
 	int exit_code;
 } env_t;
 
-void call_builtins(int func, char **av, env_t *env);
 int is_builtin(char *str, char **builtins);
+void call_builtins(int func, char **av, env_t *env);
 void exec_btree(char *, env_t *);
 
 /* ENV */
 
-char *get_env_var(char **av_env, char *var_cmp, int size);
-int name_exist(env_t *env, char *name);
-void add_line(listenv_t **list, char *line);
 listenv_t *init_listenv(char **av_env);
-void free_listenv(env_t *);
+syspath_t *init_syspath(char *syspath);
 env_t init_env(char **);
+int name_exist(env_t *env, char *name);
 int my_unsetenv(env_t *env, char *name);
 int my_setenv(env_t *env, char *name, char *value, int overwrite);
 int my_env(env_t *env);
-void my_setenv_cmd(env_t *env, char **av);
-void my_unsetenv_cmd(env_t *env, char **av);
 int add_env(env_t *env, char *name, char *value);
 int change_env(env_t *env, char *name, char *value);
-void free_syspath(env_t *);
-syspath_t *init_syspath(char *syspath);
-void free_env(env_t *env);
 int posix_bug(char *, env_t *);
+char *get_env_var(char **av_env, char *var_cmp, int size);
+void add_line(listenv_t **list, char *line);
+void free_listenv(env_t *);
+void my_setenv_cmd(env_t *env, char **av);
+void my_unsetenv_cmd(env_t *env, char **av);
+void free_syspath(env_t *);
+void free_env(env_t *env);
 void update_path(env_t *env);
 void update_env(env_t *env);
 
@@ -130,18 +130,18 @@ void exec_all_pipe(p_pipe_t *, env_t *);
 
 /* SIG */
 
-void cd_err(char *);
 int exec_err(char *, pid_t);
+void cd_err(char *);
 void print_status(int);
 void wstatus_handler(int , char *, pid_t , env_t *);
 
 /* UTILS */
 
+int my_list_size(env_t *);
+int is_alone(char *);
 char *clear_str(char *);
 char *clear_space(char *);
-int my_list_size(env_t *);
 char **my_list_to_array(env_t *);
-int is_alone(char *);
 char *my_strconfigure(unsigned int );
 char *get_next_line(int);
 
