@@ -5,7 +5,6 @@
 ** 42
 */
 
-#include <42.h>
 #include "42.h"
 
 static int	get_redirection_type(char *av, int *canal)
