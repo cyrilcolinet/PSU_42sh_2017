@@ -6,16 +6,15 @@
 */
 
 #include "42.h"
-#include "globbing.h"
 
 int	is_interval(char *cmd)
 {
 	int	i = 0;
 
-	for (i; cmd[i] && cmd[i] != '-'; i++);
+	for (; cmd[i] && cmd[i] != '-'; i++);
 	if (cmd[i] == '\0')
 		return -1;
-	for (i; cmd[i] && cmd[i] != ']'; i++);
+	for (; cmd[i] && cmd[i] != ']'; i++);
 	if (cmd[i] == '\0')
 		return -1;
 	return 1;
@@ -32,6 +31,7 @@ char	get_next_letter(char *cmd, int offset)
 		if (cmd[i] != 32 && cmd[i] != '-')
 			return cmd[i];
 	}
+	return '\0';
 }
 
 char	*search_interval(char *cmd)
@@ -39,7 +39,7 @@ char	*search_interval(char *cmd)
 	char	*interval = malloc(sizeof(char) * 2);
 	int	i = 0;
 
-	for (i; cmd[i] && cmd[i] != '['; i++);
+	for (; cmd[i] && cmd[i] != '['; i++);
 	if (cmd[i] == '\0')
 		return NULL;
 	cmd = &cmd[i];

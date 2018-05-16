@@ -6,7 +6,6 @@
 */
 
 #include "42.h"
-#include "globbing.h"
 
 char	contain_globbing(char ltr)
 {
