@@ -15,55 +15,55 @@ SRC_DIR 		= 	src/
 
 TEST_DIR		= 	tests/
 
-SRC_FILES		= 	main/42.c \
-				parser/parser.c \
-				parser/parser_pipe.c \
-				env/init_env.c \
-				env/env.c \
-				env/set_env.c \
-				env/unsetenv.c \
-				env/init_listenv.c \
-				env/init_syspath.c \
-				env/free_env.c \
-				env/update_env.c \
-				builtin/my_chdir.c \
-				builtin/my_chdir_err.c \
-				builtin/my_exit.c \
-				builtin/is_builtin.c \
-				builtin/call_builtin.c \
-				builtin/my_setenv_cmd.c \
-				builtin/my_unsetenv_cmd.c \
-				redirection/right_redirection.c \
-				redirection/left_redirection.c \
-				redirection/pipe_exec.c \
-				exec/my_exec.c \
-				exec/check_access.c \
-				utils/my_list_to_array.c \
-				utils/my_list_size.c \
-				utils/is_alone.c \
-				sig/wstatus_handler.c \
-				sig/error_messages.c \
-				prompt/prompt_line.c \
-				utils/clear_space.c \
-				utils/clear_str.c \
-				utils/get_next_line.c 	\
-				globbings/checker.c 		\
-				globbings/globbings.c 		\
+SRC_FILES		= 	main/42.c 				\
+				parser/parser.c 			\
+				parser/parser_pipe.c 			\
+				env/init_env.c 				\
+				env/env.c 				\
+				env/set_env.c 				\
+				env/unsetenv.c 				\
+				env/init_listenv.c 			\
+				env/init_syspath.c 			\
+				env/free_env.c 				\
+				env/update_env.c 			\
+				builtin/my_chdir.c 			\
+				builtin/my_chdir_err.c 			\
+				builtin/my_exit.c 			\
+				builtin/is_builtin.c 			\
+				builtin/call_builtin.c 			\
+				builtin/my_setenv_cmd.c 		\
+				builtin/my_unsetenv_cmd.c 		\
+				redirection/right_redirection.c 	\
+				redirection/left_redirection.c 		\
+				redirection/pipe_exec.c 		\
+				exec/my_exec.c 				\
+				exec/check_access.c 			\
+				utils/my_list_to_array.c 		\
+				utils/my_list_size.c 			\
+				utils/is_alone.c 			\
+				sig/wstatus_handler.c 			\
+				sig/error_messages.c 			\
+				prompt/prompt_line.c 			\
+				utils/clear_space.c 			\
+				utils/clear_str.c 			\
+				utils/get_next_line.c 			\
+				globbings/checker.c 			\
+				globbings/globbings.c 			\
 				globbings/interval.c
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 TESTS_FILES		=	$(filter-out main.c, $(SRC_FILES))
 
-TESTS_FILES		+=	tests/test_builtin.c \
-				tests/test_builtin2.c \
-				tests/test_setenv.c \
-				tests/test_unsetenv.c \
-				tests/test_path.c \
-				tests/test_call.c \
-				tests/test_access.c \
-				tests/test_exec.c \
-				tests/test_prompt.c \
+TESTS_FILES		+=	tests/test_builtin.c 			\
+				tests/test_builtin2.c 			\
+				tests/test_setenv.c 			\
+				tests/test_unsetenv.c 			\
+				tests/test_path.c 			\
+				tests/test_call.c 			\
+				tests/test_access.c 			\
+				tests/test_exec.c 			\
+				tests/test_prompt.c 			\
 				tests/test_error.c
 
 INCLUDE			= 	include/
