@@ -8,7 +8,7 @@
 #include "42.h"
 #include "globbing.h"
 
-void exec_btree(char *line_cmd, env_t *env)
+void 	exec_btree(char *line_cmd, env_t *env)
 {
 	parser_t	*b_tree = parser(line_cmd);
 
@@ -21,13 +21,13 @@ void exec_btree(char *line_cmd, env_t *env)
 	}
 }
 
-int main(int ac, char **av, char **av_env)
+int 	main(int ac, char **av, char **av_env)
 {
-	env_t env = init_env(av_env);
-	char *buffer;
-
+	env_t 		env = init_env(av_env);
+	char 		*buffer = NULL;
 	(void)av;
 	(void)ac;
+
 	if (av_env == NULL)
 		return 84;
 	prompt(env);
