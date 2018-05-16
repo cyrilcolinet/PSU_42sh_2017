@@ -5,8 +5,8 @@
 ** minishell
 */
 
-#include <minishell.h>
-#include "minishell.h"
+#include <42.h>
+#include "42.h"
 
 int		get_redirection_type(char *av, int *canal)
 {

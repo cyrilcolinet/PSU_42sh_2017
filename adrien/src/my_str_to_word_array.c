@@ -5,7 +5,7 @@
 ** Made by developers
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int		my_size_word(char const *str, int i, char c)
 {

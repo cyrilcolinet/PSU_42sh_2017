@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void update_path(env_t *env)
 {

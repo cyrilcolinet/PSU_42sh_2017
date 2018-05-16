@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int delete_env_name(listenv_t **head, char *name)
 {

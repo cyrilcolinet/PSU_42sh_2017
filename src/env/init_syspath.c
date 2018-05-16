@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void add_syspath(syspath_t **list, char *n_path)
 {

@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void print_stderr(char *msg, int termsig)
 {

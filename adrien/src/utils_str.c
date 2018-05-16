@@ -5,7 +5,7 @@
 ** Made by developers
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int		my_strstr(char *s1, char *s2)
 {

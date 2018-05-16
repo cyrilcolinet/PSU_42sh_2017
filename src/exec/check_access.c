@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void command_not_found(char *cmd, char *tmp_cmd)
 {

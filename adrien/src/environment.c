@@ -5,7 +5,7 @@
 ** Made by developers
 */
 
-#include "minishell.h"
+#include "42.h"
 
 char		**my_copy_env(char **env, int extension)
 {

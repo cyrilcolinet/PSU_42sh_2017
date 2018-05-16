@@ -5,7 +5,7 @@
 ** env
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void free_env(env_t *env)
 {

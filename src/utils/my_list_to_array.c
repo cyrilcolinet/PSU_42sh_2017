@@ -5,7 +5,7 @@
 ** util
 */
 
-#include "minishell.h"
+#include "42.h"
 
 char **my_list_to_array(env_t *env)
 {

@@ -5,7 +5,7 @@
 ** parser
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int		is_simple_cmd(char *cmd)
 {

@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 char *get_env_var(char **av_env, char *var_cmp, int size)
 {

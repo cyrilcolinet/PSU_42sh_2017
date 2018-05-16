@@ -5,7 +5,7 @@
 ** pipe parser
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void		add_pipe_in_list(p_pipe_t **list, char *p_cmd)
 {

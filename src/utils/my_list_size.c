@@ -5,7 +5,7 @@
 ** utils
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int my_list_size(env_t *env)
 {

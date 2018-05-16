@@ -5,7 +5,7 @@
 ** minishell
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void		dup_child(int stdout_holder, int pipe_fd[2],
 				int *fd_transfer, int is_next)

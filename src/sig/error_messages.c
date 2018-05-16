@@ -5,7 +5,7 @@
 ** messages
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void cd_err(char *cmd)
 {
