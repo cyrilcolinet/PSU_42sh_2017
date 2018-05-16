@@ -7,19 +7,24 @@
 
 #include "42.h"
 
+char	*get_file_in_path(void)
+{
+	return NULL;
+}
+
 char	*perform_globbing(char *cmd, char type)
 {
 	char	*interval = search_interval(cmd);
 	char	*extension = search_extension(cmd, type);
+	char	*path = search_path(cmd, type);
 	char	*globbing = NULL;
 
-	(void)extension;
-	(void)globbing;
 	printf("globbing with type: %c ", type);
 	if (interval)
 		printf("[ %d - %d ]", interval[0], interval[1]);
+	printf("extension: %s, path: %s\n", extension, path);
 	printf("\n");
-	return NULL;
+	return get_file_in_path();
 }
 
 char	*apply_globbing(char *cmd)
