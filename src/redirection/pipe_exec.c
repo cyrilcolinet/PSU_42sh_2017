@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2018
 ** my_exec
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-void		dup_child(int stdout_holder, int pipe_fd[2],
+static void		dup_child(int stdout_holder, int pipe_fd[2],
 				int *fd_transfer, int is_next)
 {
 	stdout_holder = dup(1);

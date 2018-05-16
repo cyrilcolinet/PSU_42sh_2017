@@ -7,7 +7,7 @@
 
 #include "42.h"
 
-void update_env_pwd(env_t *env, char *cwd)
+static void update_env_pwd(env_t *env, char *cwd)
 {
 	listenv_t *listenv_tmp = env->listenv;
 
@@ -26,7 +26,7 @@ void update_env_pwd(env_t *env, char *cwd)
 	env->pwd_path = my_strcat_malloc(NULL, cwd);
 }
 
-int my_cd_prev(env_t *env)
+static int my_cd_prev(env_t *env)
 {
 	int ret_ch = 0;
 	char cwd[256];
@@ -44,7 +44,7 @@ int my_cd_prev(env_t *env)
 	return 0;
 }
 
-int my_cd_root(env_t *env)
+static int my_cd_root(env_t *env)
 {
 	int ret_ch = 0;
 	char *root = my_strcat_malloc("/home/", env->usr_name);
@@ -57,7 +57,7 @@ int my_cd_root(env_t *env)
 	return ret_ch;
 }
 
-int error_handler(char **cd_arg, int ret_ch, env_t *env)
+static int error_handler(char **cd_arg, int ret_ch, env_t *env)
 {
 	int len = my_array_size(cd_arg);
 

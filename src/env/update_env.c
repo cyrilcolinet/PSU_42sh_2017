@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** update_env
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"

@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell
+** 42
 ** File description:
 ** pipe parser
 */
 
 #include "42.h"
 
-void		add_pipe_in_list(p_pipe_t **list, char *p_cmd)
+static void	add_pipe_in_list(p_pipe_t **list, char *p_cmd)
 {
 	p_pipe_t	*tmp = *list;
 	p_pipe_t	*node = malloc(sizeof(*node));

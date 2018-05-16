@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** listenv
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
@@ -39,7 +39,7 @@ listenv_t *init_listenv(char **av_env)
 	return list;
 }
 
-void free_line(env_t *env)
+static void free_line(env_t *env)
 {
 	listenv_t *tmp = env->listenv;
 

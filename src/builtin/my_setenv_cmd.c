@@ -7,7 +7,7 @@
 
 #include "42.h"
 
-void extra_args(int nb_arg, char **av, env_t *env)
+static void extra_args(int nb_arg, char **av, env_t *env)
 {
 	if (nb_arg == 2) {
 		if (posix_bug(av[1], env) == 0)

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** init env
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"

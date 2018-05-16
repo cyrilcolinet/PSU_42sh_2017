@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2018
 ** w_status
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-void print_stderr(char *msg, int termsig)
+static void print_stderr(char *msg, int termsig)
 {
 	int err = 0;
 
@@ -20,7 +20,7 @@ void print_stderr(char *msg, int termsig)
 		my_putchar('\n');
 }
 
-void print_compatible(int termsig, char *bin_cmd)
+static void print_compatible(int termsig, char *bin_cmd)
 {
 	if (termsig == SIGILL) {
 		write(1, bin_cmd, my_strlen(bin_cmd));

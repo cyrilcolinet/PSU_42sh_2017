@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2018
 ** my_exec
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-int		is_left_redir(char **av)
+static int	is_left_redir(char **av)
 {
 	int	i = 0;
 
@@ -21,7 +21,7 @@ int		is_left_redir(char **av)
 	return -1;
 }
 
-int		perform_left_redir(char **av, int type)
+static int	perform_left_redir(char **av, int type)
 {
 	int		i = 0;
 	int		fd;

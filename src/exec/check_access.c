@@ -2,19 +2,19 @@
 ** EPITECH PROJECT, 2018
 ** check_access
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-void command_not_found(char *cmd, char *tmp_cmd)
+static void command_not_found(char *cmd, char *tmp_cmd)
 {
 	(void)tmp_cmd;
 	my_putstr_err(&cmd[1]);
 	my_putstr_err(": Command not found.\n");
 }
 
-char *my_access(env_t *env, char *cmd)
+static char *my_access(env_t *env, char *cmd)
 {
 	syspath_t *temp = env->syspath;
 	char *bin_access = NULL;

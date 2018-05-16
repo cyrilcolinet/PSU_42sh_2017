@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2018
 ** syspath
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-void add_syspath(syspath_t **list, char *n_path)
+static void add_syspath(syspath_t **list, char *n_path)
 {
 	syspath_t *node = malloc(sizeof(*node));
 
@@ -19,7 +19,7 @@ void add_syspath(syspath_t **list, char *n_path)
 	*list = node;
 }
 
-void fill_list(syspath_t **list, char *buffer, char *syspath)
+static void fill_list(syspath_t **list, char *buffer, char *syspath)
 {
 	int i = 0;
 	int k = 0;
@@ -51,7 +51,7 @@ syspath_t *init_syspath(char *syspath)
 	return list;
 }
 
-void free_pathname(env_t *env)
+static void free_pathname(env_t *env)
 {
 	syspath_t *tmp = env->syspath;
 

@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2018
 ** unset
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-int delete_env_name(listenv_t **head, char *name)
+static int delete_env_name(listenv_t **head, char *name)
 {
 	int len = my_strlen(name);
 	listenv_t *listenv_tmp = *head;

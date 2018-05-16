@@ -2,40 +2,71 @@
 ## EPITECH PROJECT, 2017
 ## libmy
 ## File description:
-## library my
+## Makefile libmy
 ##
 
-SRC	=	my_put_nbr.c \
-		my_getnbr.c \
-		my_putchar.c \
-		my_strlen.c \
-		my_strcat_malloc.c \
-		my_putstr.c \
-		my_putstr_err.c \
-		my_strncmp.c \
-		my_strcpy.c \
-		my_str_to_word_array2.c \
-		my_str_isalpha.c \
-		my_strcmp.c \
-		my_array_size.c \
-		clear_str.c \
-		my_memset.c
+## Compilation variables
 
-OBJ	=	$(SRC:.c=.o)
+.PHONY				: all, clean, fclean, re
 
-CFLAGS	=	-I./
+NAME 				= libmy.a
 
-LIB_NAME=	libmy.a
+SRCNAMES			= my_atoi.c 					\
+					my_calloc.c 					\
+					my_countwords.c 				\
+					my_freetab.c 					\
+					my_put_nbr.c 					\
+					my_putchar.c 					\
+					my_putstr.c 					\
+					my_str_isnum.c 					\
+					my_strcat.c 					\
+					my_strcmp.c 					\
+					my_strconfigure.c 				\
+					my_strequ.c 					\
+					my_strlen.c 					\
+					my_strtok.c 					\
+					my_strendswith.c 				\
+					my_strjoin_char.c 				\
+					my_strjoin_clear.c 				\
+					my_strjoin.c 					\
+					my_strdup.c 					\
+					my_strcpy.c 					\
+					my_strcat.c 					\
+					my_strstartswith.c
 
-all:	$(LIB_NAME)
+SRC 				= $(addprefix src/, $(SRCNAMES))
 
-$(LIB_NAME):
-	gcc -c $(SRC) -I./
-	ar rc $(LIB_NAME) *.o
+CFLAGS 				= -Wall -Wextra -I./include
+
+CC					= gcc
+
+AR 					= ar rcs
+
+CP 					= cp
+
+RM 					= rm -f
+
+INCLUDE 			= ./include
+
+REMOTE_INCLUDE 		= ../../include/
+
+INCLUDE_FILE		= my.h
+
+LIB_OBJ 			= $(SRC:.c=.o)
+
+all:				$(NAME)
+					$(CP) $(NAME) ../$(NAME)
+					$(CP) $(INCLUDE)/$(INCLUDE_FILE) $(REMOTE_INCLUDE)
+
+$(NAME):			$(LIB_OBJ)
+					$(AR) $(NAME) $(LIB_OBJ)
+
 clean:
-	rm -f $(OBJ)
+					$(RM) $(LIB_OBJ)
 
-fclean: clean
-	rm -f $(LIB_NAME)
+fclean: 			clean
+					$(RM) ../$(NAME)
+					$(RM) $(NAME)
+					$(RM) $(REMOTE_INCLUDE)$(INCLUDE_FILE)
 
-re:	fclean all
+re: 				fclean all

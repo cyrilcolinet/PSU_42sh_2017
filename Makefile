@@ -1,98 +1,148 @@
 ##
-## EPITECH PROJECT, 2017
-## Makefile
+## EPITECH PROJECT, 2018
+## CPE_corewar_2017
 ## File description:
-## Makefile
+## Corewar Folder Makefile
 ##
 
-NAME	=	42sh
+## VARIABLES
 
-NAME_UT	=	units
+NAME			= 	42sh
 
-SRC_PARSER	=	src/parser/parser.c \
-			src/parser/parser_pipe.c
+UNITS 			= 	units
 
-SRC_ENV	=	src/env/init_env.c \
-		src/env/env.c \
-		src/env/set_env.c \
-		src/env/unsetenv.c \
-		src/env/init_listenv.c \
-		src/env/init_syspath.c \
-		src/env/free_env.c \
-		src/env/update_env.c
+SRC_DIR 		= 	src/
 
-SRC_BUI	=	src/builtin/my_chdir.c \
-		src/builtin/my_chdir_err.c \
-		src/builtin/my_exit.c \
-		src/builtin/is_builtin.c \
-		src/builtin/call_builtin.c \
-		src/builtin/my_setenv_cmd.c \
-		src/builtin/my_unsetenv_cmd.c \
-		src/redirection/right_redirection.c \
-		src/redirection/left_redirection.c \
-		src/redirection/pipe_exec.c
+TEST_DIR		= 	tests/
 
-SRC	=	src/exec/my_exec.c \
-		src/prompt/prompt_line.c \
-		src/main/42.c \
-		src/utils/my_list_to_array.c \
-		src/utils/my_list_size.c \
-		src/utils/is_alone.c \
-		src/exec/check_access.c \
-		src/sig/wstatus_handler.c \
-		src/sig/error_messages.c
+SRC_FILES		= 	main/42.c \
+				parser/parser.c \
+				parser/parser_pipe.c \
+				env/init_env.c \
+				env/env.c \
+				env/set_env.c \
+				env/unsetenv.c \
+				env/init_listenv.c \
+				env/init_syspath.c \
+				env/free_env.c \
+				env/update_env.c \
+				builtin/my_chdir.c \
+				builtin/my_chdir_err.c \
+				builtin/my_exit.c \
+				builtin/is_builtin.c \
+				builtin/call_builtin.c \
+				builtin/my_setenv_cmd.c \
+				builtin/my_unsetenv_cmd.c \
+				redirection/right_redirection.c \
+				redirection/left_redirection.c \
+				redirection/pipe_exec.c \
+				exec/my_exec.c \
+				prompt/prompt_line.c \
+				utils/my_list_to_array.c \
+				utils/my_list_size.c \
+				utils/is_alone.c \
+				exec/check_access.c \
+				sig/wstatus_handler.c \
+				sig/error_messages.c \
+				exec/my_exec.c \
+				prompt/prompt_line.c \
+				utils/my_list_to_array.c \
+				utils/my_list_size.c \
+				exec/check_access.c \
+				sig/wstatus_handler.c \
+				sig/error_messages.c \
+				src/utils/clear_space.c \
+				src/utils/clear_str.c \
+				src/utils/my_strconfigure.c \
+				src/utils/my_get_next_line.c \
+				src/utils/is_alone.c
 
-SRC_UT	=	src/exec/my_exec.c \
-		src/prompt/prompt_line.c \
-		src/utils/my_list_to_array.c \
-		src/utils/my_list_size.c \
-		src/exec/check_access.c \
-		src/sig/wstatus_handler.c \
-		src/sig/error_messages.c \
-		tests/test_builtin.c \
-		tests/test_builtin2.c \
-		tests/test_setenv.c \
-		tests/test_unsetenv.c \
-		tests/test_path.c \
-		tests/test_call.c \
-		tests/test_access.c \
-		tests/test_exec.c \
-		tests/test_prompt.c \
-		tests/test_error.c \
-		src/utils/is_alone.c
+SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
-OBJ	=	$(SRC:.c=.o) $(SRC_ENV:.c=.o) \
-		$(SRC_BUI:.c=.o) $(SRC_PARSER:.c=.o)
+TESTS_FILES		=	$(filter-out main.c, $(SRC_FILES))
 
-CFLAGS	+=	-Wall -Wextra
+TESTS_FILES		+=	tests/test_builtin.c \
+				tests/test_builtin2.c \
+				tests/test_setenv.c \
+				tests/test_unsetenv.c \
+				tests/test_path.c \
+				tests/test_call.c \
+				tests/test_access.c \
+				tests/test_exec.c \
+				tests/test_prompt.c \
+				tests/test_error.c
 
-CFLAGS	+=	-I./include
+INCLUDE			= 	include/
 
-LDFLAG	=	-L./lib/my -lmy -L./lib/gnl/ -lgnl
+LIBRARY_DIR		= 	lib/
 
-all	:	$(NAME)
+CC			=	gcc
 
-$(NAME)	:	$(OBJ)
-		make -C lib/my
-		make -C lib/gnl
-		cc -o $(NAME) $(OBJ) $(LDFLAG)
+CFLAGS			= 	-Wall -Wextra -I $(INCLUDE)
 
-tests_run:
-		make -C lib/my
-		make -C lib/gnl
-		gcc -o $(NAME_UT) $(SRC_UT) $(SRC_ENV) $(SRC_BUI) \
-		-Wall -Wextra -I./include -L./lib/my -lmy --coverage \
-		-lgcov -lcriterion -fprofile-arcs -ftest-coverage
-		./units
+LFLAGS			= 	-L $(LIBRARY_DIR) -lmy
 
-clean	:
-		make -C lib/my clean
-		rm -f $(NAME)
-		rm -f $(NAME_UT)
+UNITS_LFLAGS		= 	$(LFLAGS) -lgcov -lcriterion
 
-fclean	:	clean
-		make -C lib/my fclean
-		make -C lib/gnl fclean
-		rm -f $(OBJ)
+## BUILD VARIABLES
 
-re	:	fclean all
+BUILD_DIR		= 	build/
+
+BUILD_TESTS_DIR		= 	tests/build/
+
+BUILD_OBJ		= 	$(addprefix $(BUILD_DIR), $(SRC_FILES:.c=.o))
+
+BUILD_TESTS_OBJ		= 	$(addprefix $(BUILD_TESTS_DIR), $(TESTS_FILES:.c=.o))
+
+BUILD_SD		= 	$(shell find $(SRC_DIR) -mindepth 1 -type d -printf '%p\n' | sed -e 's/^src\///')
+
+## RULES
+
+all:			library $(BUILD_DIR) $(NAME)
+
+library:
+			$(info [INFO] Compile library)
+			make -C $(LIBRARY_DIR)
+
+$(BUILD_DIR):
+			mkdir -p $(BUILD_DIR)
+			$(foreach SUB_DIR, $(BUILD_SD), $(shell mkdir -p $(BUILD_DIR)$(SUB_DIR)))
+
+$(BUILD_DIR)%.o:	$(SRC_DIR)%.c
+			$(CC) $(CFLAGS)   -c -o $@ $<
+
+$(NAME):		$(BUILD_OBJ)
+			@$(CC) $(CFLAGS)   -o $(NAME) $(BUILD_OBJ) $(LFLAGS)
+
+tests_run:		fclean library $(UNITS)
+			find $(BUILD_TESTS_DIR) -name '*.gc*' -exec mv -t ./ {} +
+			./$(UNITS)
+
+$(UNITS):		$(BUILD_TESTS_DIR) $(BUILD_TESTS_OBJ)
+			$(CC) $(CFLAGS)   -o $(UNITS) $(BUILD_TESTS_OBJ) --coverage $(UNITS_LFLAGS)
+
+$(BUILD_TESTS_DIR):
+			mkdir -p $(BUILD_TESTS_DIR)$(TEST_DIR)
+			$(foreach SUB_DIR, $(BUILD_SD), $(shell mkdir -p $(BUILD_TESTS_DIR)$(SUB_DIR)))
+
+$(BUILD_TESTS_DIR)%.o:	$(SRC_DIR)%.c
+			$(CC) $(CFLAGS) --coverage   -c -o $@ $<
+
+$(BUILD_TESTS_DIR)%.o:	$(TEST_DIR)%.c
+			$(CC) $(CFLAGS) --coverage   -c -o $@ $<
+
+clean:
+			rm -rf $(BUILD_DIR)
+			rm -rf $(BUILD_TESTS_DIR)
+			find -name '*.gc*' -delete -or -name 'vgcore.*' -delete -o -name '*.o' -delete
+			make clean -C $(LIBRARY_DIR)
+
+fclean:			clean
+			rm -rf $(NAME)
+			rm -rf $(UNITS)
+			make fclean -C $(LIBRARY_DIR)
+
+re:			fclean all
+
+# Just in case those files exist in the root dir
+.PHONY			: all library clean fclean re tests_run

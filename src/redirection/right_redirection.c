@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2018
 ** my_exec
 ** File description:
-** minishell
+** 42
 */
 
 #include <42.h>
 #include "42.h"
 
-int		get_redirection_type(char *av, int *canal)
+static int	get_redirection_type(char *av, int *canal)
 {
 	redirection_t	tab[] = {
 		{">", 1}, {">>", 2}, {"2>", 1}, {"2>>", 2}, {">&2", 1},
@@ -25,7 +25,7 @@ int		get_redirection_type(char *av, int *canal)
 	return -1;
 }
 
-int		is_right_redir(char **av, int *canal)
+static int	is_right_redir(char **av, int *canal)
 {
 	int		i = 0;
 	int		return_value;
@@ -39,7 +39,7 @@ int		is_right_redir(char **av, int *canal)
 	return -1;
 }
 
-int		perform_right_redir(char **av, int type, int canal_value)
+static int	perform_right_redir(char **av, int type, int canal_value)
 {
 	int	i = 0;
 	int	fd;
@@ -65,7 +65,7 @@ int		perform_right_redir(char **av, int type, int canal_value)
 	return fd;
 }
 
-void		right_redirection(char *bin_cmd, char **av, int *fd_flag)
+void	right_redirection(char *bin_cmd, char **av, int *fd_flag)
 {
 	int	type = 0;
 	int	flag;

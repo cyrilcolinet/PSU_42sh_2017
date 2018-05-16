@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** unsetenv cmd
 ** File description:
-** minishel
+** 42
 */
 
 #include "42.h"

@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell
+** 42
 ** File description:
 ** parser
 */
 
 #include "42.h"
 
-int		is_simple_cmd(char *cmd)
+static int		is_simple_cmd(char *cmd)
 {
 	int	i = 0;
 
@@ -19,7 +19,7 @@ int		is_simple_cmd(char *cmd)
 	return 1;
 }
 
-void		append_cmd(parser_t **parser, char *cmd)
+static void		append_cmd(parser_t **parser, char *cmd)
 {
 	parser_t	*node = NULL;
 	parser_t	*tmp = *parser;
@@ -41,7 +41,7 @@ void		append_cmd(parser_t **parser, char *cmd)
 	}
 }
 
-char		*epure_command_line(char *cmd)
+static char		*epure_command_line(char *cmd)
 {
 	int	i = 0;
 

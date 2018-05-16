@@ -5,6 +5,10 @@
 ** include
 */
 
+#ifndef READ_SIZE
+#define READ_SIZE (100)
+#endif
+
 #ifndef SHELL_H
 #define SHELL_H
 
@@ -19,7 +23,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "my.h"
-#include "gnl.h"
 
 #define EXIT_SUCCESS 0
 
@@ -64,53 +67,82 @@ typedef struct env_s {
 	int exit_code;
 } env_t;
 
-env_t init_env(char **);
-void exit_success(char **, env_t *);
-int my_cd(char **cd_arg, env_t *env);
-int is_builtin(char *str, char **builtins);
 void call_builtins(int func, char **av, env_t *env);
+int is_builtin(char *str, char **builtins);
+void exec_btree(char *, env_t *);
+
+/* ENV */
+
+char *get_env_var(char **av_env, char *var_cmp, int size);
+int name_exist(env_t *env, char *name);
+void add_line(listenv_t **list, char *line);
+listenv_t *init_listenv(char **av_env);
+void free_listenv(env_t *);
+env_t init_env(char **);
 int my_unsetenv(env_t *env, char *name);
 int my_setenv(env_t *env, char *name, char *value, int overwrite);
 int my_env(env_t *env);
-void prompt(env_t env);
-int exec_prog(char **av, env_t *env, int cmd_access);
-void exec_cmdline(char *line, env_t *env);
-char **my_list_to_array(env_t *env);
-void add_line(listenv_t **list, char *line);
-int name_exist(env_t *env, char *name);
-int my_list_size(env_t *env);
-char *get_path(env_t *env, char *cmd, int *cmd_access);
-void wstatus_handler(int wstatus, char *bin_cmd, pid_t pid, env_t *);
 void my_setenv_cmd(env_t *env, char **av);
 void my_unsetenv_cmd(env_t *env, char **av);
-syspath_t *init_syspath(char *syspath);
-listenv_t *init_listenv(char **av_env);
-void free_env(env_t *env);
-void free_listenv(env_t *);
-void free_syspath(env_t *);
-int change_env(env_t *env, char *name, char *value);
 int add_env(env_t *env, char *name, char *value);
-void my_putstr_err(char *);
+int change_env(env_t *env, char *name, char *value);
+void free_syspath(env_t *);
+syspath_t *init_syspath(char *syspath);
+void free_env(env_t *env);
 int posix_bug(char *, env_t *);
-char **clear_array(char **array);
-char *get_cdir(env_t);
-void print_status(int);
-void print_core_advanced(int);
-void print_core_extra(int);
-void cd_err(char *);
-int is_file(char *);
-int exec_err(char *, pid_t);
-void kill_segfault(pid_t, int);
 void update_path(env_t *env);
 void update_env(env_t *env);
-char *get_env_var(char **av_env, char *var_cmp, int size);
-int is_alone(char *);
+
+/* CD */
+
+int my_cd(char **cd_arg, env_t *env);
+int is_file(char *);
+
+/* EXEC */
+
+int exec_prog(char **av, env_t *env, int cmd_access);
+char *get_path(env_t *env, char *cmd, int *cmd_access);
+void exec_cmdline(char *line, env_t *env);
+
+/* EXIT */
+
+void exit_success(char **, env_t *);
+
+/* PARSER */
+
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
-void exec_btree(char *, env_t *);
+
+/* PROMPT */
+
+char *get_cdir(env_t);
+void prompt(env_t);
+
+/* REDIRECTION */
+
 void right_redirection(char *, char **, int *);
 void left_redirection(char *, char **, int *);
+
+/* PIPE */
+
 void exec_pipe(char **, int *, env_t *, int);
 void exec_all_pipe(p_pipe_t *, env_t *);
+
+/* SIG */
+
+void cd_err(char *);
+int exec_err(char *, pid_t);
+void print_status(int);
+void wstatus_handler(int , char *, pid_t , env_t *);
+
+/* UTILS */
+
+char *clear_str(char *);
+char *clear_space(char *);
+int my_list_size(env_t *);
+char **my_list_to_array(env_t *);
+int is_alone(char *);
+char *my_strconfigure(unsigned int );
+char *get_next_line(int);
 
 #endif

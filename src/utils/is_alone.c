@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** alone
 ** File description:
-** minishell
+** 42
 */
 
 int is_alone(char *syspath)

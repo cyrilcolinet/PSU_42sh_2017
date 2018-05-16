@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2018
 ** my_exec
 ** File description:
-** minishell
+** 42
 */
 
 #include "42.h"
 
-void free_array(char **array)
+static void free_array(char **array)
 {
 	int i = 0;
 
@@ -18,7 +18,7 @@ void free_array(char **array)
 	free(array);
 }
 
-void free_protect(char *bin_cmd, env_t *env, int cmd_access)
+static void free_protect(char *bin_cmd, env_t *env, int cmd_access)
 {
 	if (env->str_env)
 		free_array(env->str_env);
@@ -28,7 +28,7 @@ void free_protect(char *bin_cmd, env_t *env, int cmd_access)
 		free(bin_cmd);
 }
 
-void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
+static void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
 {
 	int	ret = 0;
 
