@@ -15,7 +15,7 @@ void exit_success(char **av, env_t *env)
 	if (len == 2) {
 		if (env)
 			free(env);
-		status = my_getnbr(av[1]);
+		status = my_atoi(av[1]);
 		exit(status);
 	} else if (len == 1) {
 		if (env)
