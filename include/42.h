@@ -5,32 +5,32 @@
 ** include
 */
 
-#ifndef READ_SIZE
-#define READ_SIZE (100)
-#endif
+# ifndef READ_SIZE
+# define READ_SIZE (100)
+# endif
 
-#ifndef SHELL_H
-#define SHELL_H
+# ifndef SHELL_H
+# define SHELL_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <stdio.h>
-#include <signal.h>
-#include <string.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include "globbing.h"
-#include "my.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <stdio.h>
+# include <signal.h>
+# include <string.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include "globbing.h"
+# include "my.h"
 
-#define EXIT_SUCCESS 0
+# define EXIT_SUCCESS 0
 
-#define S_PWD "PWD="
-#define S_USR "USER="
-#define S_BINPATH "PATH="
-#define S_OLDPWD "OLDPWD="
+# define S_PWD "PWD="
+# define S_USR "USER="
+# define S_BINPATH "PATH="
+# define S_OLDPWD "OLDPWD="
 
 typedef struct {
 	char	*string;
@@ -47,6 +47,11 @@ typedef struct parser_s {
 	p_pipe_t	*pipe_in_cmd;
 	struct parser_s	*next;
 } parser_t;
+
+typedef struct hist_s {
+	char 		*cmd;
+	struct hist_s	*next;
+} hist_t;
 
 typedef struct listenv_s {
 	char *line;
