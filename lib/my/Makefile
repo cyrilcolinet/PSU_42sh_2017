@@ -35,7 +35,7 @@ SRCNAMES			= 	my_atoi.c 			\
 					my_array_size.c			\
 					my_putstr_err.c			\
 					my_strstartswith.c 		\
-					my_strcmp.c
+					my_strncmp.c
 
 SRC 				= 	$(addprefix src/, $(SRCNAMES))
 
