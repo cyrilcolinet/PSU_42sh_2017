@@ -51,11 +51,10 @@ SRC_FILES		= 	main/42.c \
 				exec/check_access.c \
 				sig/wstatus_handler.c \
 				sig/error_messages.c \
-				src/utils/clear_space.c \
-				src/utils/clear_str.c \
-				src/utils/my_strconfigure.c \
-				src/utils/my_get_next_line.c \
-				src/utils/is_alone.c
+				utils/clear_space.c \
+				utils/clear_str.c \
+				utils/get_next_line.c \
+				utils/is_alone.c
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 

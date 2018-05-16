@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** clear_space
 ** File description:
-** minishell2
+** 42
 */
 
-#include "minishell2.h"
+#include "42.h"
 
 static int get_nbr_space(char *s)
 {

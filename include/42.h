@@ -142,7 +142,6 @@ int is_alone(char *);
 char *clear_str(char *);
 char *clear_space(char *);
 char **my_list_to_array(env_t *);
-char *my_strconfigure(unsigned int );
 char *get_next_line(int);
 
 #endif

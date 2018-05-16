@@ -52,7 +52,7 @@ static char		*epure_command_line(char *cmd)
 
 parser_t	*parser(char *av)
 {
-	char		**tab = my_str_to_word_array(av, ';');
+	char		**tab = my_strtok(av, ';');
 	parser_t	*parser = NULL;
 
 	for (int i = 0; tab && tab[i]; i++) {

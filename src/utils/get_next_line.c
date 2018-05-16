@@ -5,7 +5,7 @@
 ** get_next_line functions
 */
 
-#include "minishell2.h"
+#include "42.h"
 
 static char *my_realloc2(char *ptr, unsigned int size)
 {

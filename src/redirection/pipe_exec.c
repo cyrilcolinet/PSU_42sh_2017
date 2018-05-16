@@ -51,7 +51,7 @@ void		exec_all_pipe(p_pipe_t *pipe, env_t *env)
 	int		next;
 
 	while (tmp) {
-		tab_left = my_str_to_word_array(tmp->pipe_cmd, ' ');
+		tab_left = my_strtok(tmp->pipe_cmd, ' ');
 		next = (tmp->next == NULL) ? 0 : 1;
 		exec_pipe(tab_left, &fd_transfer, env, next);
 		tmp = tmp->next;

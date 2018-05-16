@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** clear_str
 ** File description:
-** minishell2
+** 42
 */
 
-#include "minishell2.h"
+#include "42.h"
 
 static char *change_tab_space(char *s)
 {

@@ -12,27 +12,29 @@
 NAME 				= libmy.a
 
 SRCNAMES			= my_atoi.c 					\
-					my_calloc.c 					\
-					my_countwords.c 				\
-					my_freetab.c 					\
-					my_put_nbr.c 					\
-					my_putchar.c 					\
-					my_putstr.c 					\
-					my_str_isnum.c 					\
-					my_strcat.c 					\
-					my_strcmp.c 					\
-					my_strconfigure.c 				\
-					my_strequ.c 					\
-					my_strlen.c 					\
-					my_strtok.c 					\
-					my_strendswith.c 				\
-					my_strjoin_char.c 				\
-					my_strjoin_clear.c 				\
-					my_strjoin.c 					\
-					my_strdup.c 					\
-					my_strcpy.c 					\
-					my_strcat.c 					\
-					my_strstartswith.c
+				my_countwords.c 				\
+				my_freetab.c 					\
+				my_put_nbr.c 					\
+				my_putchar.c 					\
+				my_putstr.c 					\
+				my_str_isnum.c 					\
+				my_strcat.c 					\
+				my_strcmp.c 					\
+				my_strconfigure.c 				\
+				my_strequ.c 					\
+				my_strlen.c 					\
+				my_strtok.c 					\
+				my_strendswith.c 				\
+				my_strjoin_char.c 				\
+				my_strjoin_clear.c 				\
+				my_strjoin.c 					\
+				my_strdup.c 					\
+				my_strcpy.c 					\
+				my_strcat.c 					\
+				my_strcat_malloc.c 				\
+				my_array_size.c					\
+				my_putstr_err.c					\
+				my_strstartswith.c
 
 SRC 				= $(addprefix src/, $(SRCNAMES))
 
