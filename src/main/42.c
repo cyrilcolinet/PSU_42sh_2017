@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell
+** 42
 ** File description:
 ** main
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void exec_btree(char *line_cmd, env_t *env)
 {

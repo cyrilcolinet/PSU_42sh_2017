@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** env cmd
 ** File description:
-** minishell
+** 42
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void extra_args(int nb_arg, char **av, env_t *env)
 {

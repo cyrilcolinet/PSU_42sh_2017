@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** exit
 ** File description:
-** minishell
+** 42
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void exit_success(char **av, env_t *env)
 {

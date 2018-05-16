@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** builtin
 ** File description:
-** minishell
+** 42
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int is_builtin(char *str, char **builtins)
 {

@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** chdir
 ** File description:
-** minishell
+** 42
 */
 
-#include "minishell.h"
+#include "42.h"
 
 void update_env_pwd(env_t *env, char *cwd)
 {

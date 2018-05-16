@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** tty
 ** File description:
-** check minishell
+** check 42
 */
 
-#include "minishell.h"
+#include "42.h"
 
 int check_tty(int fd)
 {

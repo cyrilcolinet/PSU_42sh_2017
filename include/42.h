@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell
+** 42
 ** File description:
 ** include
 */
 
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#ifndef 42_H
+#define 42_H
 
 #include <unistd.h>
 #include <stdlib.h>
