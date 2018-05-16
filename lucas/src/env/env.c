@@ -1,0 +1,22 @@
+/*
+** EPITECH PROJECT, 2018
+** env
+** File description:
+** minishell
+*/
+
+#include "minishell.h"
+
+int my_env(env_t *env)
+{
+	int i = 0;
+	listenv_t *temp = env->listenv;
+
+	while (temp) {
+		my_putstr(temp->line);
+		temp = temp->next;
+		my_putchar('\n');
+		i++;
+	}
+	return 0;
+}

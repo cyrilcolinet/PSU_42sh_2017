@@ -1,0 +1,82 @@
+/*
+** EPITECH PROJECT, 2018
+** my_exec
+** File description:
+** minishell
+*/
+
+#include "minishell.h"
+
+void free_array(char **array)
+{
+	int i = 0;
+
+	while (array && array[i]) {
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void free_protect(char *bin_cmd, env_t *env, int cmd_access)
+{
+	if (env->str_env)
+		free_array(env->str_env);
+	if (cmd_access == 1)
+		return;
+	if (bin_cmd)
+		free(bin_cmd);
+}
+
+void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
+{
+	int	ret = 0;
+
+	right_redirection(bin_cmd, av, redir);
+	left_redirection(bin_cmd, av, redir);
+	ret = execve(bin_cmd, av, env->str_env);
+	if (ret == -1)
+		exec_err(bin_cmd, getpid());
+}
+
+int exec_prog(char **av, env_t *env, int cmd_access)
+{
+	pid_t pid;
+	int status = 0;
+	char *bin_cmd = NULL;
+	int redir = 0;
+
+	env->str_env = my_list_to_array(env);
+	env->exit_code = 0;
+	bin_cmd = get_path(env, av[0], &cmd_access);
+	if (bin_cmd == NULL)
+		return -1;
+	pid = fork();
+	if (pid == 0) {
+		exec_child(bin_cmd, av, &redir, env);
+	} else {
+		waitpid(pid, &status, WUNTRACED | WCONTINUED);
+		wstatus_handler(status, bin_cmd, getpid(), env);
+	}
+	free_protect(bin_cmd, env, cmd_access);
+	if (redir != 0)
+		close(redir);
+	return 0;
+}
+
+void exec_cmdline(char *line, env_t *env)
+{
+	char **av = my_str_to_word_array(line, ' ');
+	char *builtins[] = {"cd", "setenv", "unsetenv", "env", "exit", NULL};
+	int func_built = -1;
+	int cmd_access = 0;
+
+	if (av[0] == NULL)
+		return;
+	func_built = is_builtin(av[0], builtins);
+	if (func_built >= 0)
+		call_builtins(func_built, av, env);
+	else
+		exec_prog(av, env, cmd_access);
+	free_array(av);
+}
