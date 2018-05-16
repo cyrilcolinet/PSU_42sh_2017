@@ -34,7 +34,7 @@ SRC_BUI	=	src/builtin/my_chdir.c \
 
 SRC	=	src/exec/my_exec.c \
 		src/prompt/prompt_line.c \
-		src/main/minishell.c \
+		src/main/42.c \
 		src/utils/my_list_to_array.c \
 		src/utils/my_list_size.c \
 		src/utils/is_alone.c \
