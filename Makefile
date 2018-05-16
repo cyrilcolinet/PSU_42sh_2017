@@ -143,6 +143,3 @@ fclean:			clean
 			make fclean -C $(LIBRARY_DIR)
 
 re:			fclean all
-
-# Just in case those files exist in the root dir
-.PHONY			: all library clean fclean re tests_run

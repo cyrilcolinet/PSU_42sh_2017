@@ -5,6 +5,7 @@
 ** main
 */
 
+#include <42.h>
 #include "42.h"
 
 void exec_btree(char *line_cmd, env_t *env)
@@ -13,6 +14,7 @@ void exec_btree(char *line_cmd, env_t *env)
 
 	while (b_tree) {
 		if (b_tree->pipe_in_cmd == NULL) {
+			apply_globbing(b_tree->full_cmd);
 			exec_cmdline(b_tree->full_cmd, env);
 		}
 		b_tree = b_tree->next;
