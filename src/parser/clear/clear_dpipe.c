@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** clear_redirect_dleft
+** clear_dpipe
 ** File description:
 ** 42
 */
@@ -57,13 +57,13 @@ static char *modif_str(char *s, int i)
 	return (str);
 }
 
-static bool is_redirect_dleft(char *s, int i)
+static bool is_dpipe(char *s, int i)
 {
-	if (s[i] != '<')
+	if (s[i] != '|')
 		return (false);
-	if (i > 0 && s[i - 1] == '<')
+	if (i > 0 && s[i - 1] == '|')
 		return (false);
-	if (s[i + 1] != '\0' && s[i + 1] == '<')
+	if (s[i + 1] != '\0' && s[i + 1] == '|')
 		return (false);
 	if ((i > 0 && s[i - 1] == ' ')
 	&& (s[i + 1] != '\0' && s[i + 1] == ' '))
@@ -71,7 +71,7 @@ static bool is_redirect_dleft(char *s, int i)
 	return (true);
 }
 
-char *clear_redirect_dleft(char *s)
+char *clear_dpipe(char *s)
 {
 	int quote = 1;
 	int dquote = 1;
@@ -86,7 +86,7 @@ char *clear_redirect_dleft(char *s)
 		if (s[i] == 34)
 			dquote *= -1;
 		if (quote != -1 && dquote != -1
-		&& is_redirect_dleft(s, i)) {
+		&& is_dpipe(s, i)) {
 			s = modif_str(s, i);
 		}
 	}
