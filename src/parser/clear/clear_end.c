@@ -48,4 +48,3 @@ char *clear_end(char *s)
 	}
 	return (s);
 }
-
