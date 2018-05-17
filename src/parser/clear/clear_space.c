@@ -7,6 +7,13 @@
 
 #include "42.h"
 
+static int count_space(char *s, int i)
+{
+	while (s[i] == ' ' && s[i] != '\0')
+		i++;
+	return (i);
+}
+
 static int get_nbr_space(char *s)
 {
 	int nb = 0;
@@ -14,8 +21,7 @@ static int get_nbr_space(char *s)
 	for (int i = 0; s[i] != '\0'; i++) {
 		if (s[i] == ' ') {
 			nb++;
-			while (s[i] == ' ')
-				i++;
+			i = count_space(s, i);
 		}
 	}
 	return (nb);
@@ -31,13 +37,6 @@ static int get_nbr_car(char *s)
 		}
 	}
 	return (nb);
-}
-
-static int count_space(char *s, int i)
-{
-	while (s[i] == ' ' && s[i] != '\0')
-		i++;
-	return (i);
 }
 
 char *clear_space(char *s)

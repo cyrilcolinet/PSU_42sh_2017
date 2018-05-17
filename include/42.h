@@ -116,6 +116,10 @@ void exit_success(char **, env_t *);
 
 /* PARSER */
 
+char *clear_str(char *);
+char *clear_begin(char *);
+char *clear_end(char *);
+char *clear_space(char *);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
@@ -145,8 +149,6 @@ void wstatus_handler(int , char *, pid_t , env_t *);
 
 int my_list_size(env_t *);
 int is_alone(char *);
-char *clear_str(char *);
-char *clear_space(char *);
 char **my_list_to_array(env_t *);
 char *get_next_line(int);
 

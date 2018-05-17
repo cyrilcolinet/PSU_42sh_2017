@@ -16,8 +16,10 @@ SRC_DIR 		= 	src/
 TEST_DIR		= 	tests/
 
 SRC_FILES		= 	main/42.c 				\
-				parser/clear/clear_space.c		\
 				parser/clear/clear_str.c		\
+				parser/clear/clear_begin.c		\
+				parser/clear/clear_end.c		\
+				parser/clear/clear_space.c		\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
 				env/init_env.c 				\
