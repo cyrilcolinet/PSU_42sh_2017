@@ -119,7 +119,7 @@ void exit_success(char **, env_t *);
 char *clear_str(char *);
 char *clear_begin(char *);
 char *clear_end(char *);
-char *clear_space(char *);
+char *clear_space(char *, int);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 

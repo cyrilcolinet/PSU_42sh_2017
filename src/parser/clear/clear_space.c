@@ -7,57 +7,20 @@
 
 #include "42.h"
 
-static int count_space(char *s, int i)
-{
-	while (s[i] == ' ' && s[i] != '\0')
-		i++;
-	return (i);
-}
-
-static int get_nbr_space(char *s)
-{
-	int nb = 0;
-
-	for (int i = 0; s[i] != '\0'; i++) {
-		if (s[i] == ' ') {
-			nb++;
-			i = count_space(s, i);
-		}
-	}
-	return (nb);
-}
-
-static int get_nbr_car(char *s)
-{
-	int nb = 0;
-
-	for (int i = 0; s[i] != '\0'; i++) {
-		if (s[i] != ' ') {
-			nb++;
-		}
-	}
-	return (nb);
-}
-
-char *clear_space(char *s)
+char *clear_space(char *s, int i)
 {
 	char *str;
-	int j = 0;
-	int nb = 0;
+	int offset = 0;
+	int len = my_strlen(s);
 
-	nb = get_nbr_space(s);
-	nb += get_nbr_car(s);
-	str = malloc(sizeof(char) * (nb + 1));
-	for (int i = 0; s[i] != '\0'; i++) {
-		if (s[i] == ' ') {
-			str[j] = s[i];
-			j++;
-			i = count_space(s, i);
+	str = malloc(sizeof(char) * (len));
+	for (int j = 0; s[j] != '\0'; j++) {
+		if (j != i) {
+			str[offset] = s[j];
+			offset++;
 		}
-		str[j] = s[i];
-		j++;
 	}
-	str[nb] = '\0';
+	str[len - 1] = '\0';
 	free(s);
 	return (str);
 }
