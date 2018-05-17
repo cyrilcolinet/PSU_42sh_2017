@@ -51,8 +51,10 @@ SRC_FILES		= 	main/42.c 				\
 				prompt/prompt_line.c 			\
 				globbings/checker.c 			\
 				globbings/globbings.c 			\
-				globbings/interval.c			\
-				globbings/extension.c
+				globbings/interval.c   		        \
+				globbings/extension.c			\
+				globbings/valid_globbing.c
+
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -75,7 +77,7 @@ LIBRARY_DIR		= 	lib/
 
 CC			=	gcc
 
-CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3
+CFLAGS			= 	-Wall -Wextra -I $(INCLUDE)
 
 LFLAGS			= 	-L $(LIBRARY_DIR) -lmy
 

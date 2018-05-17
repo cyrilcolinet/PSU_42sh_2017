@@ -7,9 +7,26 @@
 
 #include "42.h"
 
-char	*get_file_in_path(void)
+char	*get_file_in_path(char *path, char *extension, char *interval,
+								char type)
 {
-	return NULL;
+	char	*globbing = NULL;
+	DIR	*directory;
+	struct dirent *dir_prop;
+
+	directory = opendir(path);
+	dir_prop = readdir(directory);
+	while (dir_prop) {
+		if (valid_globbing_file(dir_prop->d_name, extension,
+			interval) == 1) {
+			globbing = my_strcat_malloc(globbing,
+				dir_prop->d_name);
+			globbing = my_strjoin_clear(globbing, " ", 0);
+		}
+		dir_prop = readdir(directory);
+	}
+	closedir(directory);
+	return globbing;
 }
 
 char	*perform_globbing(char *cmd, char type)
@@ -19,12 +36,16 @@ char	*perform_globbing(char *cmd, char type)
 	char	*path = search_path(cmd, type);
 	char	*globbing = NULL;
 
-	printf("globbing with type: %c ", type);
-	if (interval)
-		printf("[ %d - %d ]", interval[0], interval[1]);
-	printf("extension: %s, path: %s\n", extension, path);
-	printf("\n");
-	return get_file_in_path();
+	if (path && extension)
+		globbing = get_file_in_path(path, extension, interval, type);
+	else if (extension) {
+		globbing = get_file_in_path(CURRENT_PATH,
+			extension, interval, type);
+	}
+	free(interval);
+	free(extension);
+	free(path);
+	return globbing;
 }
 
 char	*apply_globbing(char *cmd)
@@ -37,7 +58,8 @@ char	*apply_globbing(char *cmd)
 	type = is_globbing(cmd);
 	if (type) {
 		glob_cmd = perform_globbing(cmd, type);
+		glob_cmd = my_strjoin_clear(cmd, glob_cmd, 0);
+		printf("globbings = %s\n", glob_cmd);
 	}
-	(void)glob_cmd;
-	return NULL;
+	return (!glob_cmd) ? cmd : glob_cmd;
 }
