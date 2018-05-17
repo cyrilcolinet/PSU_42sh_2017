@@ -18,9 +18,9 @@ static char *change_tab_space(char *s)
 	return (s);
 }
 
-static bool is_space(char *s, int i)
+static bool is_same_charac(char *s, int i, char c)
 {
-	if (s[i] == ' ' && s[i + 1] != ' ')
+	if (s[i] == c && s[i + 1] != c)
                 return (false);
 	return (true);
 }
@@ -38,9 +38,9 @@ char *clear_str(char *s)
 			quote *= -1;
 		if (s[i] == 34)
 			dquote *= -1;
-		printf("%d %d\n", quote, dquote);
 		if (quote != -1 && dquote != -1
-		&& s[i] == ' ' && is_space(s, i)) {
+		&& ((s[i] == ' ' && is_same_charac(s, i, ' '))
+		|| (s[i] == ';' && is_same_charac(s, i, ';')))) {
 			s = clear_space(s, i);
 			i--;
 		}

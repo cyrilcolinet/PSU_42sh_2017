@@ -120,6 +120,11 @@ char *clear_str(char *);
 char *clear_begin(char *);
 char *clear_end(char *);
 char *clear_space(char *, int);
+char *clear_separator(char *);
+char *clear_semicolon(char *);
+char *clear_pipe(char *);
+char *clear_or_and(char *);
+char *clear_redirection(char *);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 

@@ -20,6 +20,11 @@ SRC_FILES		= 	main/42.c 				\
 				parser/clear/clear_begin.c		\
 				parser/clear/clear_end.c		\
 				parser/clear/clear_space.c		\
+				parser/clear/clear_separator.c		\
+				parser/clear/clear_semicolon.c		\
+				parser/clear/clear_or_and.c		\
+				parser/clear/clear_pipe.c		\
+				parser/clear/clear_redirection.c	\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
 				env/init_env.c 				\
