@@ -52,11 +52,13 @@ static char		*epure_command_line(char *cmd)
 
 parser_t	*parser(char *av)
 {
-	char		**tab = my_strtok(av, ';');
+	char		**tab;
 	parser_t	*parser = NULL;
 
+	tab = my_strtok(av, ';');
 	for (int i = 0; tab && tab[i]; i++) {
 		append_cmd(&parser, epure_command_line(tab[i]));
 	}
+	my_freetab(tab);
 	return parser;
 }

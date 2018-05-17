@@ -5,7 +5,6 @@
 ** my_str_configure function
 */
 
-# include <stdlib.h>
 # include "my.h"
 
 char *my_strconfigure(unsigned int size)

@@ -48,6 +48,7 @@ char *clear_space(char *s)
 
 	nb = get_nbr_space(s);
 	nb += get_nbr_car(s);
+	printf("NB = %d\n", nb);
 	str = malloc(sizeof(char) * (nb + 1));
 	for (int i = 0; s[i] != '\0'; i++) {
 		if (s[i] == ' ') {
