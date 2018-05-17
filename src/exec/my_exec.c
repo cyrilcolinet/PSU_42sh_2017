@@ -7,21 +7,10 @@
 
 #include "42.h"
 
-static void free_array(char **array)
-{
-	int i = 0;
-
-	while (array && array[i]) {
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 static void free_protect(char *bin_cmd, env_t *env, int cmd_access)
 {
 	if (env->str_env)
-		free_array(env->str_env);
+		my_freetab(env->str_env);
 	if (cmd_access == 1)
 		return;
 	if (bin_cmd)
@@ -47,7 +36,6 @@ int exec_prog(char **av, env_t *env, int cmd_access)
 	int redir = 0;
 
 	env->str_env = my_list_to_array(env);
-	env->exit_code = 0;
 	bin_cmd = get_path(env, av[0], &cmd_access);
 	if (bin_cmd == NULL)
 		return -1;
@@ -76,7 +64,9 @@ void exec_cmdline(char *line, env_t *env)
 	func_built = is_builtin(av[0], builtins);
 	if (func_built >= 0)
 		call_builtins(func_built, av, env);
-	else
+	else {
+		env->exit_code = 0;
 		exec_prog(av, env, cmd_access);
-	free_array(av);
+	}
+	my_freetab(av);
 }
