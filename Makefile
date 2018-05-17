@@ -49,8 +49,9 @@ SRC_FILES		= 	main/42.c 				\
 				utils/get_next_line.c 			\
 				globbings/checker.c 			\
 				globbings/globbings.c 			\
-				globbings/interval.c            \
+				globbings/interval.c   		        \
 				globbings/extension.c
+
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
