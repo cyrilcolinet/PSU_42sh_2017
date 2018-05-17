@@ -4,62 +4,72 @@
 ** File description:
 ** globbing
 */
-
+#include <glob.h>
 #include "42.h"
 
-char	*get_file_in_path(char *path, char *extension, char *interval,
-								char type)
+int	get_nbgloff(char *cmd)
 {
-	char	*globbing = NULL;
-	DIR	*directory;
-	struct dirent *dir_prop;
+	char	**array = my_strtok(cmd, ' ');
+	int	pathc_offset = 0;
 
-	directory = opendir(path);
-	dir_prop = readdir(directory);
-	while (dir_prop) {
-		if (valid_globbing_file(dir_prop->d_name, extension,
-			interval) == 1) {
-			globbing = my_strcat_malloc(globbing,
-				dir_prop->d_name);
-			globbing = my_strjoin_clear(globbing, " ", 0);
-		}
-		dir_prop = readdir(directory);
+	for (int i = 0; array && array[i]; i++) {
+		if (array[i][0] != FLAG_START && i != 0)
+			pathc_offset++;
 	}
-	closedir(directory);
-	return globbing;
+	return pathc_offset;
 }
 
-char	*perform_globbing(char *cmd, char type)
+void	set_gloff(char *cmd, glob_t *globbuff)
 {
-	char	*interval = search_interval(cmd);
-	char	*extension = search_extension(cmd, type);
-	char	*path = search_path(cmd, type);
-	char	*globbing = NULL;
+	char	**array = my_strtok(cmd, ' ');
+	int	append_glob = 0;
+	size_t	nbgloff = (size_t)get_nbgloff(cmd);
 
-	if (path && extension)
-		globbing = get_file_in_path(path, extension, interval, type);
-	else if (extension) {
-		globbing = get_file_in_path(CURRENT_PATH,
-			extension, interval, type);
+	if (!cmd || !array)
+		return;
+	globbuff->gl_pathc = nbgloff;
+	for (int i = 0; array[i]; i++) {
+		if (array[i][0] != FLAG_START && i != 0) {
+			append_glob++;
+			glob(array[i], GLOB_DOOFFS, NULL, globbuff);
+		}  else if (array[i][0] != FLAG_START && i != 0
+			&& append_glob != 0)
+			glob(array[i], GLOB_DOOFFS | GLOB_APPEND, NULL,
+				globbuff);
 	}
-	free(interval);
-	free(extension);
-	free(path);
-	return globbing;
+	my_freetab(array);
 }
 
-char	*apply_globbing(char *cmd)
+void	set_glob_cmd(char *cmd, glob_t *glob)
 {
-	char	type;
+	char	**array = my_strtok(cmd, ' ');
 	char	*glob_cmd = NULL;
+	int	pathv_offset = 0;
 
-	if (!cmd)
-		return NULL;
-	type = is_globbing(cmd);
-	if (type) {
-		glob_cmd = perform_globbing(cmd, type);
-		glob_cmd = my_strjoin_clear(cmd, glob_cmd, 0);
-		printf("globbings = %s\n", glob_cmd);
+	if (!cmd || !array)
+		return;
+	glob_cmd = strdup(array[0]);
+	glob->gl_pathv = malloc(sizeof(char *) * 1);
+	glob->gl_pathv[0] = glob_cmd;
+	pathv_offset++;
+	for (int i = 0; array[i]; i++) {
+		if (array[i][0] == FLAG_START) {
+			glob->gl_pathv = realloc(glob->gl_pathv,
+				sizeof(char *) * 1);
+			glob->gl_pathv[pathv_offset] = array[i];
+			pathv_offset++;
+		}
+
 	}
-	return (!glob_cmd) ? cmd : glob_cmd;
+	my_freetab(array);
+}
+
+glob_t	get_globbing(char *cmd)
+{
+	glob_t	glob;
+
+	set_glob_cmd(cmd, &glob);
+	set_gloff(cmd, &glob);
+	printf("globbings: \n", );
+	return glob;
 }

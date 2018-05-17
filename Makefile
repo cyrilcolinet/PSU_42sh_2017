@@ -16,10 +16,10 @@ SRC_DIR 		= 	src/
 TEST_DIR		= 	tests/
 
 SRC_FILES		= 	main/42.c 				\
+				parser/clear/clear_space.c		\
 				parser/clear/clear_str.c		\
 				parser/clear/clear_begin.c		\
 				parser/clear/clear_end.c		\
-				parser/clear/clear_space.c		\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
 				env/init_env.c 				\
@@ -49,11 +49,8 @@ SRC_FILES		= 	main/42.c 				\
 				sig/wstatus_handler.c 			\
 				sig/error_messages.c 			\
 				prompt/prompt_line.c 			\
-				globbings/checker.c 			\
 				globbings/globbings.c 			\
-				globbings/interval.c   		        \
-				globbings/extension.c			\
-				globbings/valid_globbing.c
+				globbings/checker.c
 
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -77,7 +74,7 @@ LIBRARY_DIR		= 	lib/
 
 CC			=	gcc
 
-CFLAGS			= 	-Wall -Wextra -I $(INCLUDE)
+CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3
 
 LFLAGS			= 	-L $(LIBRARY_DIR) -lmy
 

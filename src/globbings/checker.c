@@ -4,12 +4,11 @@
 ** File description:
 ** globbing
 */
-
 #include "42.h"
 
 char	contain_globbing(char ltr)
 {
-	char	typo[] = {'*', '?', '\0'};
+	char	typo[] = {'*', '?', '[', ']', '\0'};
 
 	for (int i = 0; typo[i]; i++) {
 		if (ltr == typo[i])
@@ -28,4 +27,11 @@ char	is_globbing(char *cmd)
 			return type;
 	}
 	return '\0';
+}
+
+int	globbing_in_cmd(char *cmd)
+{
+	if (is_globbing(cmd) == '\0')
+		return -1;
+	return 1;
 }
