@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "42.h"
 
 char *clear_begin(char *s)
 {
@@ -18,12 +18,11 @@ char *clear_begin(char *s)
 	if (s[0] == ' ')
 		for (int i = 0; s[i] == ' '; i++)
 			nb++;
-	str = malloc(sizeof(char) * (my_strlen(s) - nb + 1));
+	str = my_strconfigure(my_strlen(s) - nb);
 	for (int i = nb; s[i] != '\0'; i++) {
 		str[offset] = s[i];
 		offset++;
 	}
-	str[my_strlen(s) - nb] = '\0';
 	free(s);
 	return (str);
 }
