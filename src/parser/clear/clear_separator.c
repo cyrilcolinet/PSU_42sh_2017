@@ -9,10 +9,16 @@
 
 char *clear_separator(char *s)
 {
+	s = clear_str(s);
 	s = clear_semicolon(s);
-	s = clear_redirection(s);
 	s = clear_pipe(s);
-	s = clear_or_and(s);
+	s = clear_ampersand(s);
+	s = clear_dpipe(s);
+	s = clear_dampersand(s);
+	s = clear_redirect_left(s);
+	s = clear_redirect_right(s);
+	s = clear_redirect_dleft(s);
+	s = clear_redirect_dright(s);
 
 	return (s);
 }

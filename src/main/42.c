@@ -54,8 +54,6 @@ int 	main(int ac, char **av, char **av_env)
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = get_next_line(0))) {
-		buffer = clear_str(buffer);
-		printf("CLEAR STR = =%s=\n", buffer);
 		buffer = clear_separator(buffer);
 		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
 		exec_btree(buffer, &env);

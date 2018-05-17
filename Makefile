@@ -23,9 +23,14 @@ SRC_FILES		= 	main/42.c 				\
 				parser/clear/clear_separator.c		\
 				parser/clear/clear_semicolon.c		\
 				parser/clear/clear_begin_end_semicolon.c\
-				parser/clear/clear_or_and.c		\
+				parser/clear/clear_ampersand.c		\
+				parser/clear/clear_dampersand.c		\
 				parser/clear/clear_pipe.c		\
-				parser/clear/clear_redirection.c	\
+				parser/clear/clear_dpipe.c		\
+				parser/clear/clear_redirect_left.c	\
+				parser/clear/clear_redirect_dleft.c	\
+				parser/clear/clear_redirect_right.c	\
+				parser/clear/clear_redirect_dright.c	\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
 				env/init_env.c 				\

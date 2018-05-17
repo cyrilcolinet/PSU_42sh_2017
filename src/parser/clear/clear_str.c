@@ -21,7 +21,7 @@ static char *change_tab_space(char *s)
 static bool is_same_charac(char *s, int i, char c)
 {
 	if (s[i] == c && s[i + 1] != c)
-                return (false);
+		return (false);
 	return (true);
 }
 

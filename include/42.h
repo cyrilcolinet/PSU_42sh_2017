@@ -134,8 +134,13 @@ char *clear_semicolon(char *);
 char *clear_begin_semicolon(char *);
 char *clear_end_semicolon(char *);
 char *clear_pipe(char *);
-char *clear_or_and(char *);
-char *clear_redirection(char *);
+char *clear_dpipe(char *);
+char *clear_ampersand(char *);
+char *clear_dampersand(char *);
+char *clear_redirect_right(char *);
+char *clear_redirect_left(char *);
+char *clear_redirect_dleft(char *);
+char *clear_redirect_dright(char *);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
