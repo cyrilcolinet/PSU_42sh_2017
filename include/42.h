@@ -64,7 +64,7 @@ typedef struct syspath_s {
 } syspath_t;
 
 typedef struct formatting_s {
-	glob_t	globbings;
+	bool	has_globbings;
 } formatting_t;
 
 typedef struct env_s {

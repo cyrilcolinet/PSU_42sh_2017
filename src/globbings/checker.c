@@ -35,3 +35,12 @@ int	globbing_in_cmd(char *cmd)
 		return -1;
 	return 1;
 }
+
+int	globbing_in_array(char **array)
+{
+	for (int i = 0; array && array[i]; i++) {
+		if (globbing_in_cmd(array[i]) == 1)
+			return 1;
+	}
+	return -1;
+}

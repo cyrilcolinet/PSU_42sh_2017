@@ -9,6 +9,4 @@
 
 void	free_format(formatting_t format)
 {
-	if (format.globbings.gl_pathv)
-		globfree(&format.globbings);
 }

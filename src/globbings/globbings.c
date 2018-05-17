@@ -19,56 +19,59 @@ int	get_nbgloff(char *cmd)
 	return pathc_offset;
 }
 
-void	set_gloff(char *cmd, glob_t *globbuff)
+static char	**get_patterns(char *cmd, int nbgloff)
 {
 	char	**array = my_strtok(cmd, ' ');
-	int	append_glob = 0;
-	size_t	nbgloff = (size_t)get_nbgloff(cmd);
+	char	**patterns = malloc(sizeof(char *) * (nbgloff + 1));
+	int	offset = 0;
+
 
 	if (!cmd || !array)
-		return;
-	globbuff->gl_pathc = nbgloff;
+		return NULL;
 	for (int i = 0; array[i]; i++) {
-		if (array[i][0] != FLAG_START && i != 0) {
-			append_glob++;
-			glob(array[i], GLOB_DOOFFS, NULL, globbuff);
-		}  else if (array[i][0] != FLAG_START && i != 0
-			&& append_glob != 0)
-			glob(array[i], GLOB_DOOFFS | GLOB_APPEND, NULL,
-				globbuff);
-	}
-	my_freetab(array);
-}
-
-void	set_glob_cmd(char *cmd, glob_t *glob)
-{
-	char	**array = my_strtok(cmd, ' ');
-	char	*glob_cmd = NULL;
-	int	pathv_offset = 0;
-
-	if (!cmd || !array)
-		return;
-	glob_cmd = strdup(array[0]);
-	glob->gl_pathv = malloc(sizeof(char *) * 1);
-	glob->gl_pathv[0] = glob_cmd;
-	pathv_offset++;
-	for (int i = 0; array[i]; i++) {
-		if (array[i][0] == FLAG_START) {
-			glob->gl_pathv = realloc(glob->gl_pathv,
-				sizeof(char *) * 1);
-			glob->gl_pathv[pathv_offset] = array[i];
-			pathv_offset++;
+		if (array[i][0] != FLAG_START && i != 0
+			&& is_globbing(array[i]) != '\0') {
+			patterns[offset] = strdup(array[i]);
+			offset++;
 		}
-
 	}
+	patterns[offset] = NULL;
 	my_freetab(array);
+	return patterns;
 }
 
-glob_t	get_globbing(char *cmd)
+static char	*get_glob_cmd(char *path)
 {
-	glob_t	glob;
+	glob_t	globbuf;
+	char	*new_cmd = NULL;
 
-	set_glob_cmd(cmd, &glob);
-	set_gloff(cmd, &glob);
-	return glob;
+	globbuf.gl_offs = 1;
+	glob(path, 0, NULL, &globbuf);
+	free(path);
+	for (int i = 0; i < globbuf.gl_pathc; i++) {
+		new_cmd = my_strcat_malloc(new_cmd, globbuf.gl_pathv[i]);
+		if (i + 1 != globbuf.gl_pathc)
+			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
+	}
+	return new_cmd;
+}
+
+char	**apply_globbing(char **cmd)
+{
+	char	*new_cmd = NULL;
+	char	*glob = NULL;
+
+	//TODO don"t exec command if get_glob_cmd
+	// return NULL and print error msg
+	for (int i = 0; cmd && cmd[i]; i++) {
+		if (globbing_in_cmd(cmd[i]) == 1) {
+			new_cmd = my_strcat_malloc(new_cmd,
+				!(glob = get_glob_cmd(cmd[i])) ? "" : glob);
+			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
+		} else {
+			new_cmd = my_strcat_malloc(new_cmd, cmd[i]);
+			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
+		}
+	}
+	return my_strtok(new_cmd, ' ');
 }

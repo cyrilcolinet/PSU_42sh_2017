@@ -35,7 +35,6 @@ void 	exec_btree(char *line_cmd, env_t *env)
 
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
-			env->format = get_format(tmp->full_cmd);
 			exec_cmdline(tmp->full_cmd, env);
 		}
 		tmp = tmp->next;
