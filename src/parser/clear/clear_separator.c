@@ -11,9 +11,9 @@ char *clear_separator(char *s)
 {
 	s = clear_str(s);
 	s = clear_semicolon(s);
-	s = clear_redirection(s);
 	s = clear_pipe(s);
 	s = clear_or_and(s);
+	s = clear_redirection(s);
 
 	return (s);
 }
