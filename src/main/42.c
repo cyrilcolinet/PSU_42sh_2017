@@ -45,7 +45,6 @@ void 	exec_btree(char *line_cmd, env_t *env)
 
 int 	main(int ac, char **av, char **av_env)
 {
-	env_t env = init_env(av_env);
 	env_t 		env = init_env(av_env);
 	char 		*buffer = NULL;
 	(void)av;
