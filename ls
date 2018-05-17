@@ -1,9 +1,0 @@
-42sh
-adrien
-build
-include
-lib
-ls
-Makefile
-src
-tests
