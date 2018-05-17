@@ -82,7 +82,7 @@ LIBRARY_DIR		= 	lib/
 
 CC			=	gcc
 
-CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3
+CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3 -lefence
 
 LFLAGS			= 	-L $(LIBRARY_DIR) -lmy
 
