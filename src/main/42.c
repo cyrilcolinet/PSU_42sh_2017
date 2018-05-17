@@ -6,7 +6,6 @@
 */
 
 #include "42.h"
-#include "globbing.h"
 
 static void free_struct_parser(parser_t *parser)
 {
@@ -29,7 +28,7 @@ static void free_struct_parser(parser_t *parser)
 	}
 }
 
-void exec_btree(char *line_cmd, env_t *env)
+void 	exec_btree(char *line_cmd, env_t *env)
 {
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
@@ -44,13 +43,14 @@ void exec_btree(char *line_cmd, env_t *env)
 	free_struct_parser(b_tree);
 }
 
-int main(int ac, char **av, char **av_env)
+int 	main(int ac, char **av, char **av_env)
 {
 	env_t env = init_env(av_env);
-	char *buffer = NULL;
-
+	env_t 		env = init_env(av_env);
+	char 		*buffer = NULL;
 	(void)av;
 	(void)ac;
+
 	if (av_env == NULL)
 		return 84;
 	prompt(env);

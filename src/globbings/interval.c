@@ -27,8 +27,8 @@ char	get_next_letter(char *cmd, int offset)
 		for (i = 0; cmd[i] && cmd[i] != '-'; i++);
 	if (cmd[i] == '\0')
 		return '\0';
-	for (i = 0; cmd[i]; i++) {
-		if (cmd[i] != 32 && cmd[i] != '-')
+	for (; cmd[i]; i++) {
+		if (cmd[i] != 32 && cmd[i] != '-' && cmd[i] != '[')
 			return cmd[i];
 	}
 	return '\0';
@@ -39,11 +39,10 @@ char	*search_interval(char *cmd)
 	char	*interval = malloc(sizeof(char) * 2);
 	int	i = 0;
 
-	for (; cmd[i] && cmd[i] != '['; i++);
+	for (; cmd[i] && cmd[i ] != '['; i++);
 	if (cmd[i] == '\0')
 		return NULL;
 	cmd = &cmd[i];
-	printf("get: $%s\n", cmd);
 	if (is_interval(cmd) == 1) {
 		interval[0] = get_next_letter(cmd, 0);
 		interval[1] = get_next_letter(cmd, 1);
