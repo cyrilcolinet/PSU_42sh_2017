@@ -122,6 +122,8 @@ char *clear_end(char *);
 char *clear_space(char *, int);
 char *clear_separator(char *);
 char *clear_semicolon(char *);
+char *clear_begin_semicolon(char *);
+char *clear_end_semicolon(char *);
 char *clear_pipe(char *);
 char *clear_or_and(char *);
 char *clear_redirection(char *);
