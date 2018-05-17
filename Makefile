@@ -56,10 +56,7 @@ SRC_FILES		= 	main/42.c 				\
 				sig/error_messages.c 			\
 				prompt/prompt_line.c 			\
 				globbings/checker.c 			\
-				globbings/globbings.c 			\
-				globbings/interval.c   		        \
-				globbings/extension.c			\
-				globbings/valid_globbing.c
+				globbings/globbings.c
 
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))

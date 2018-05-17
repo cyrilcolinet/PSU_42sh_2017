@@ -70,6 +70,5 @@ glob_t	get_globbing(char *cmd)
 
 	set_glob_cmd(cmd, &glob);
 	set_gloff(cmd, &glob);
-	//printf("globbings: \n", );
 	return glob;
 }
