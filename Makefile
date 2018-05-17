@@ -16,6 +16,8 @@ SRC_DIR 		= 	src/
 TEST_DIR		= 	tests/
 
 SRC_FILES		= 	main/42.c 				\
+				parser/clear/clear_space.c		\
+				parser/clear/clear_str.c		\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
 				env/init_env.c 				\
@@ -41,16 +43,15 @@ SRC_FILES		= 	main/42.c 				\
 				utils/my_list_to_array.c 		\
 				utils/my_list_size.c 			\
 				utils/is_alone.c 			\
+				utils/get_next_line.c 			\
 				sig/wstatus_handler.c 			\
 				sig/error_messages.c 			\
 				prompt/prompt_line.c 			\
-				utils/clear_space.c 			\
-				utils/clear_str.c 			\
-				utils/get_next_line.c 			\
 				globbings/checker.c 			\
 				globbings/globbings.c 			\
 				globbings/interval.c   		        \
-				globbings/extension.c
+				globbings/extension.c			\
+				globbings/valid_globbing.c
 
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))

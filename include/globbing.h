@@ -1,9 +1,14 @@
-//
-// Created by lucasg on 16/05/18.
-//
+/*
+** EPITECH PROJECT, 2018
+** 42
+** File description:
+** globbing header
+*/
 
 #ifndef PSU_42SH_2017_GLOBBING_H
 #define PSU_42SH_2017_GLOBBING_H
+
+#define CURRENT_PATH "."
 
 char	is_globbing(char *);
 char	*search_interval(char *);
