@@ -64,7 +64,7 @@ void exec_cmdline(char *line, env_t *env)
 
 	if (av[0] == NULL)
 		return;
-	//av = apply_alias(av, env);
+	av = apply_alias(av, env);
 	func_built = is_builtin(av[0], builtins);
 	if (func_built >= 0)
 		call_builtins(func_built, av, env);
