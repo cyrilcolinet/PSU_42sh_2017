@@ -49,4 +49,5 @@ void	change_cmd_inhibitors(parser_t **b_tree, char *cmd)
 		}
 		tmp = tmp->next;
 	}
+	free(inhibitor);
 }

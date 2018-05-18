@@ -22,9 +22,7 @@ static char	*get_cmd_inhibitor(parser_t *b_tree)
 
 	while (tmp) {
 		if (cmd_has_inhibitor(tmp->full_cmd) == 1) {
-			if (cmd)
-				free(cmd);
-			cmd = strdup(tmp->full_cmd);
+			cmd = tmp->full_cmd;
 		}
 		tmp = tmp->next;
 	}
@@ -43,4 +41,5 @@ void	apply_inhibitors(parser_t **b_tree)
 		return;
 	}
 	change_cmd_inhibitors(b_tree, cmd_to_inhib);
+	free(cmd_to_inhib);
 }
