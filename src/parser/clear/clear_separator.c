@@ -10,6 +10,9 @@
 char *clear_separator(char *s)
 {
 	s = clear_str(s);
+	for (int i = 0; s[i] != '\0'; i++)
+		printf("=%c=", s[i]);
+	printf("\n");
 	s = clear_semicolon(s);
 	s = clear_pipe(s);
 	s = clear_ampersand(s);

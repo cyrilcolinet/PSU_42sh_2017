@@ -60,19 +60,19 @@ static char *modif_str(char *s, int i)
 
 static bool is_redirect_dright(char *s, int i)
 {
-	if (s[i] != '<')
+	if (s[i] != '>')
 		return (false);
-	if ((i > 0 && s[i - 1] != '<')
-	&& (s[i + 1] != '\0' && s[i + 1] != '<'))
+	if ((i > 0 && s[i - 1] != '>')
+	&& (s[i + 1] != '\0' && s[i + 1] != '>'))
 		return (false);
 	if ((i == 0 && s[i + 1] != '\0' && s[i + 1] == ' ')
 	|| (s[i + 1] == '\0' && i > 0 && s[i - 1] == ' '))
 		return (false);
-	if ((i - 1 > 0 && s[i - 1] == '<' && s[i - 2] == ' ')
+	if ((i - 1 > 0 && s[i - 1] == '>' && s[i - 2] == ' ')
 	&& (s[i + 1] != '\0' && s[i + 1] == ' '))
 		return (false);
 	if ((i > 0 && s[i - 1] == ' ')
-	&& (s[i + 1] != '\0' && s[i + 1] == '<')
+	&& (s[i + 1] != '\0' && s[i + 1] == '>')
 	&& (s[i + 2] != '\0' && s[i + 2] == ' '))
 		return (false);
 	return (true);
