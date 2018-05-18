@@ -32,7 +32,12 @@ void 	exec_btree(char *line_cmd, env_t *env)
 {
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
+	parser_t	*test = b_tree;
 
+	while (test) {
+		printf("LINE =%s=\n", test->full_cmd);
+		test = test->next;
+	}
 	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {

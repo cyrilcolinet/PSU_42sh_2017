@@ -13,8 +13,6 @@ static int count_semicolon_space(char *s, int i)
 
 	for (int n = i + 1; s[n] == ';' || s[n] == ' '; n++)
 		count++;
-	if (s[i + 1] == ' ')
-		count--;
 	return (count);
 }
 
@@ -50,15 +48,15 @@ static char *modif_semicolon(char *s, int i)
 	char *str = NULL;
 	int count = count_semicolon_space(s, i);
 	int a = 0;
-	int nb = 1;
+	int nb = 2;
 
 	if (s[i - 1] != ' ')
+		nb++;
+	if (s[i + 1] != '\0' && s[i + 1] != ' ')
 		nb++;
 	str = malloc(sizeof(char) * (my_strlen(s) - count + nb));
 	str = fill_str(s, str, i, a);
 	a = count_charac(s, i, a);
-	if (s[i + 1] == ' ')
-		i++;
 	for (int j = i + 1 + count; s[j] != '\0'; j++) {
 		str[a] = s[j];
 		a++;

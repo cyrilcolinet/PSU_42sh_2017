@@ -11,8 +11,8 @@ static int		is_simple_cmd(char *cmd)
 {
 	int	i = 0;
 
-	while (cmd && cmd[i]) {
-		if (cmd[i] == '|')
+	while (cmd && cmd[i] && cmd[i + 1]) {
+		if (cmd[i] == '|' && cmd[i + 1] != '|')
 			return -1;
 		i++;
 	}
@@ -41,15 +41,6 @@ static void		append_cmd(parser_t **parser, char *cmd)
 	}
 }
 
-static char		*epure_command_line(char *cmd)
-{
-	int	i = 0;
-
-	while (cmd && cmd[i] == ' ')
-		i++;
-	return &cmd[i];
-}
-
 parser_t	*parser(char *av)
 {
 	char		**tab;
@@ -57,8 +48,9 @@ parser_t	*parser(char *av)
 
 	tab = my_strtok(av, ';');
 	for (int i = 0; tab && tab[i]; i++) {
-		append_cmd(&parser, epure_command_line(tab[i]));
+		tab[i] = clear_str(tab[i]);
+		append_cmd(&parser, tab[i]);
 	}
-	my_freetab(tab);
+	my_freetab(tab);	
 	return parser;
 }
