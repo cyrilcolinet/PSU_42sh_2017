@@ -10,7 +10,7 @@ static char	*get_inhibitor(void)
 {
 	char	*buffer = NULL;
 
-	my_putstr("\n>");
+	my_putstr(">");
 	buffer = get_next_line(0);
 	return buffer;
 }
