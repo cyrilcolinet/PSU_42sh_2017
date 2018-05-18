@@ -171,6 +171,7 @@ void wstatus_handler(int , char *, pid_t , env_t *);
 
 /* UTILS */
 
+char **my_str_to_array_42(char *, char);
 int my_list_size(env_t *);
 int is_alone(char *);
 char **my_list_to_array(env_t *);

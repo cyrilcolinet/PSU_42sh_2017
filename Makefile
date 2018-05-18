@@ -58,6 +58,7 @@ SRC_FILES		= 	main/42.c 				\
 				utils/my_list_size.c 			\
 				utils/is_alone.c 			\
 				utils/get_next_line.c 			\
+				utils/my_str_to_array_42.c		\
 				sig/wstatus_handler.c 			\
 				sig/error_messages.c 			\
 				prompt/prompt_line.c 			\
