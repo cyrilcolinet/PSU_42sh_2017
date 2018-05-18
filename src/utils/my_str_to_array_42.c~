@@ -1,0 +1,15 @@
+/*
+** EPITECH PROJECT, 2018
+** my_str_to_array_42
+** File description:
+** 42
+*/
+
+#include "42.h"
+
+char **my_str_to_array_42(char *s, char delim)
+{
+	char **tab = NULL;
+
+	return (tab);
+}
