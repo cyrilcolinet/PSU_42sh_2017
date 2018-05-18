@@ -29,6 +29,8 @@ env_t init_env(char **av_env)
 	env.usr_name = get_env_var(av_env, S_USR, 4);
 	env.pwd_path = get_env_var(av_env, S_PWD, 3);
 	env.pwdold_path = get_env_var(av_env, S_OLDPWD, 6);
+	env.bashrc_path = get_env_var(av_env, S_HOME, 4);
+	env.bashrc_path = my_strcat_malloc(env.bashrc_path, "/.bashrc");
 	env.exit_code = 0;
 	env.history = NULL;
 	return env;

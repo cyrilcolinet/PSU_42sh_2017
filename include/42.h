@@ -32,6 +32,7 @@
 # define S_USR "USER="
 # define S_BINPATH "PATH="
 # define S_OLDPWD "OLDPWD="
+#define S_HOME "HOME="
 
 typedef struct {
 	char	*string;
@@ -182,6 +183,6 @@ void	error_remove_inhibitor(char *, parser_t **);
 int	error_inhibitor(char *);
 
 /* ALIAS */
-char	**apply_alias(char **);
+char	**apply_alias(char **, env_t *);
 
 #endif
