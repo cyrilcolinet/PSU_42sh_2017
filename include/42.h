@@ -185,5 +185,8 @@ int	error_inhibitor(char *);
 
 /* ALIAS */
 char	**apply_alias(char **, env_t *);
+char	*is_cmd_alias(char *, char *);
+char	*search_alias(char *, env_t *);
+char	*get_alias_cmd(char *);
 
 #endif
