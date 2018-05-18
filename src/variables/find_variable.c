@@ -11,7 +11,6 @@ char	*find_variable(env_t *env, char *name)
 	shell_var_t	*tmp = env->shell_var;
 
 	while (tmp) {
-		printf("compare %s with %s\n", tmp->var_name, name);
 		if (my_strcmp(tmp->var_name, name) == 0)
 			return tmp->var_value;
 		tmp = tmp->next;
