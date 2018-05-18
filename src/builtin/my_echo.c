@@ -34,10 +34,20 @@ void	basic_echo(char *to_print)
 	my_putstr("\n");
 }
 
+void	echo_variable(env_t *env, char *type)
+{
+	if (my_strlen(type) <= 1)
+		return;
+	if (my_strcmp(type, "$?") == 0)
+		my_put_nbr(env->exit_code);
+	else
+		my_putstr(find_variable(env, &type[1]));
+}
+
 void	my_echo(char **cmd, env_t *env)
 {
-	if (my_array_size(cmd) > 1 && my_strcmp(cmd[1], "$?") == 0) {
-		my_put_nbr(env->exit_code);
+	if (my_array_size(cmd) > 1 && cmd[1][0] == '$') {
+		echo_variable(env, cmd[1]);
 		my_putstr("\n");
 	}  else if (my_array_size(cmd) > 1)
 		basic_echo(cmd[1]);
