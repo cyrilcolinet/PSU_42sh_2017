@@ -64,10 +64,6 @@ typedef struct syspath_s {
 	struct syspath_s *next;
 } syspath_t;
 
-typedef struct formatting_s {
-	bool	has_globbings;
-} formatting_t;
-
 typedef struct env_s {
 	listenv_t *listenv;
 	char **str_env;
@@ -77,16 +73,11 @@ typedef struct env_s {
 	char *pwdold_path;
 	int exit_code;
 	hist_t		*history;
-	formatting_t	format;
 } env_t;
 
 int is_builtin(char *str, char **builtins);
 void call_builtins(int func, char **av, env_t *env);
 void exec_btree(char *, env_t *);
-
-/* FORMAT */
-formatting_t	get_format(char *);
-void		free_format(formatting_t);
 
 /* ENV */
 
@@ -179,5 +170,8 @@ int my_list_size(env_t *);
 int is_alone(char *);
 char **my_list_to_array(env_t *);
 char *get_next_line(int);
+
+/* INHIBITORS */
+void	apply_inhibitors(parser_t **);
 
 #endif
