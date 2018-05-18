@@ -60,20 +60,14 @@ static char *modif_str(char *s, int i)
 
 static bool is_dpipe(char *s, int i)
 {
-	if (s[i] != '|')
+	if (s[i] != '|' || s[i + 1] == '\0' || s[i + 1] != '|')
 		return (false);
-	if ((i > 0 && s[i - 1] != '|')
-	&& (s[i + 1] != '\0' && s[i + 1] != '|'))
+	if (i == 0 && s[i + 2] != '\0' && s[i + 2] == ' ')
 		return (false);
-	if ((i == 0 && s[i + 1] != '\0' && s[i + 1] == ' ')
-	|| (s[i + 1] == '\0' && i > 0 && s[i - 1] == ' '))
+	if (s[i + 2] == '\0' && i > 0 && s[i - 1] == ' ')
 		return (false);
-	if ((i - 1 > 0 && s[i - 1] == '|' && s[i - 2] == ' ')
-	&& (s[i + 1] != '\0' && s[i + 1] == ' '))
-		return (false);
-	if ((i > 0 && s[i - 1] == ' ')
-	&& (s[i + 1] != '\0' && s[i + 1] == '|')
-	&& (s[i + 2] != '\0' && s[i + 2] == ' '))
+	if (i > 0 && s[i - 1] == ' ' && s[i + 2] != '\0'
+	&& s[i + 2] == ' ')
 		return (false);
 	return (true);
 }
