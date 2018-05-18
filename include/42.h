@@ -174,5 +174,7 @@ char *get_next_line(int);
 /* INHIBITORS */
 void	apply_inhibitors(parser_t **);
 void	change_cmd_inhibitors(parser_t **, char *);
+void	error_remove_inhibitor(char *, parser_t **);
+int	error_inhibitor(char *);
 
 #endif
