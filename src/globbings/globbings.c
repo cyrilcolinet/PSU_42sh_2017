@@ -44,9 +44,12 @@ static char	*get_glob_cmd(char *path)
 {
 	glob_t	globbuf;
 	char	*new_cmd = NULL;
+	int	glob_ret = 0;
 
 	globbuf.gl_offs = 1;
-	glob(path, 0, NULL, &globbuf);
+	glob_ret = glob(path, 0, NULL, &globbuf);
+	if (glob_ret == GLOB_NOMATCH)
+		return path;
 	free(path);
 	for (int i = 0; i < globbuf.gl_pathc; i++) {
 		new_cmd = my_strcat_malloc(new_cmd, globbuf.gl_pathv[i]);
@@ -61,8 +64,7 @@ char	**apply_globbing(char **cmd)
 	char	*new_cmd = NULL;
 	char	*glob = NULL;
 
-	//TODO don"t exec command if get_glob_cmd
-	// return NULL and print error msg
+	//TODO check if [] globbings are working
 	for (int i = 0; cmd && cmd[i]; i++) {
 		if (globbing_in_cmd(cmd[i]) == 1) {
 			new_cmd = my_strcat_malloc(new_cmd,
