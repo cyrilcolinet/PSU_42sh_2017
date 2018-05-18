@@ -116,6 +116,9 @@ void exec_cmdline(char *line, env_t *env);
 
 void exit_success(char **, env_t *);
 
+/* ECHO */
+void my_echo(char **, env_t *);
+
 /* PARSER */
 
 char *clear_str(char *);

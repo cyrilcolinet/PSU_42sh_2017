@@ -25,6 +25,9 @@ void call_builtins(int func, char **av, env_t *env)
 	case 4:
 		exit_success(av, env);
 		break;
+	case 5:
+		my_echo(av, env);
+		break;
 	default:
 		return;
 	}
