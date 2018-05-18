@@ -65,14 +65,15 @@ typedef struct syspath_s {
 } syspath_t;
 
 typedef struct env_s {
-	listenv_t *listenv;
-	char **str_env;
-	char *usr_name;
-	syspath_t *syspath;
-	char *pwd_path;
-	char *pwdold_path;
-	int exit_code;
+	listenv_t	*listenv;
+	char		**str_env;
+	char		*usr_name;
+	syspath_t	*syspath;
+	char		*pwd_path;
+	char		*pwdold_path;
+	int		exit_code;
 	hist_t		*history;
+	char		*bashrc_path;
 } env_t;
 
 int is_builtin(char *str, char **builtins);
@@ -179,5 +180,8 @@ void	apply_inhibitors(parser_t **);
 void	change_cmd_inhibitors(parser_t **, char *);
 void	error_remove_inhibitor(char *, parser_t **);
 int	error_inhibitor(char *);
+
+/* ALIAS */
+char	**apply_alias(char **);
 
 #endif

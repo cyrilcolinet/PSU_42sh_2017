@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** 42
 ** File description:
-** globbing
+** echo
 */
 #include "42.h"
 

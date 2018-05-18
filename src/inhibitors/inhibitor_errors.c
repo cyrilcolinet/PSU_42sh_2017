@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** 42
 ** File description:
-** globbing
+** inhib
 */
 #include "42.h"
 
