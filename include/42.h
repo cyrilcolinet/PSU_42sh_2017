@@ -22,6 +22,7 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <ncurses.h>
 # include "globbing.h"
 # include "my.h"
 
@@ -75,6 +76,7 @@ typedef struct env_s {
 	char *pwd_path;
 	char *pwdold_path;
 	int exit_code;
+	hist_t		*history;
 	formatting_t	format;
 } env_t;
 
@@ -143,6 +145,11 @@ char *clear_redirect_dleft(char *);
 char *clear_redirect_dright(char *);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
+
+/* HISTORY */
+
+void free_history(env_t *);
+void fill_history(env_t *, char *);
 
 /* PROMPT */
 
