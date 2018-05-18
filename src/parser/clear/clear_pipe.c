@@ -16,7 +16,6 @@ static char *malloc_str(char *s, int i)
 		count++;
 	if (s[i + 1] != '\0' && s[i + 1] != ' ')
 		count++;
-	printf("%d\n", my_strlen(s) + count);
 	str = malloc(sizeof(char) * (my_strlen(s) + count));
 	return (str);
 }
@@ -76,10 +75,6 @@ char *clear_pipe(char *s)
 	int quote = 1;
 	int dquote = 1;
 
-	printf("BEGIN\n");
-	for (int i = 0; s[i] != '\0'; i++ )
-		printf("=%c=", s[i]);
-	printf("\n");
 	for (int i = 0; s[i] != '\0'; i++ ) {
 		if (s[i] == 39)
 			quote *= -1;

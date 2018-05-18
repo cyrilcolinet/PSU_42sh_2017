@@ -14,9 +14,8 @@ static char *malloc_str(char *s, int i)
 
 	if (i > 0 && s[i - 1] != ' ')
 		count++;
-	if (s[i + 1] != '\0' && s[i + 1] != ' ')
+	if (s[i + 2] != '\0' && s[i + 2] != ' ')
 		count++;
-	printf("%d\n", my_strlen(s) + count);
 	str = malloc(sizeof(char) * (my_strlen(s) + count));
 	return (str);
 }
@@ -29,13 +28,15 @@ static char *fill_str(char *s, char *str, int i, int a)
 	}
 	str[a] = s[i];
 	a++;
-	if (s[i + 1] != '\0' && s[i + 1] != ' ') {
+	str[a] = s[i + 1];
+	a++;
+	if (s[i + 2] != '\0' && s[i + 2] != ' ') {
 		str[a] = ' ';
 		a++;
 	}
-	if (s[i + 1] != '\0' && s[i + 1] == ' ')
+	if (s[i + 2] != '\0' && s[i + 2] == ' ')
 		i++;
-	for (int j = i + 1; s[j] != '\0'; j++) {
+	for (int j = i + 2; s[j] != '\0'; j++) {
 		str[a] = s[j];
 		a++;
 	}
@@ -61,12 +62,18 @@ static bool is_redirect_dleft(char *s, int i)
 {
 	if (s[i] != '<')
 		return (false);
-	if (i > 0 && s[i - 1] == '<')
+	if ((i > 0 && s[i - 1] != '<')
+	&& (s[i + 1] != '\0' && s[i + 1] != '<'))
 		return (false);
-	if (s[i + 1] != '\0' && s[i + 1] == '<')
+	if ((i == 0 && s[i + 1] != '\0' && s[i + 1] == ' ')
+	|| (s[i + 1] == '\0' && i > 0 && s[i - 1] == ' '))
+		return (false);
+	if ((i - 1 > 0 && s[i - 1] == '<' && s[i - 2] == ' ')
+	&& (s[i + 1] != '\0' && s[i + 1] == ' '))
 		return (false);
 	if ((i > 0 && s[i - 1] == ' ')
-	&& (s[i + 1] != '\0' && s[i + 1] == ' '))
+	&& (s[i + 1] != '\0' && s[i + 1] == '<')
+	&& (s[i + 2] != '\0' && s[i + 2] == ' '))
 		return (false);
 	return (true);
 }
@@ -76,10 +83,6 @@ char *clear_redirect_dleft(char *s)
 	int quote = 1;
 	int dquote = 1;
 
-	printf("BEGIN\n");
-	for (int i = 0; s[i] != '\0'; i++ )
-		printf("=%c=", s[i]);
-	printf("\n");
 	for (int i = 0; s[i] != '\0'; i++ ) {
 		if (s[i] == 39)
 			quote *= -1;
