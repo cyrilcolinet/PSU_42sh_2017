@@ -48,6 +48,7 @@ SRC_FILES		= 	main/42.c 				\
 				builtin/call_builtin.c 			\
 				builtin/my_setenv_cmd.c 		\
 				builtin/my_unsetenv_cmd.c 		\
+				builtin/my_echo.c			\
 				redirection/right_redirection.c 	\
 				redirection/left_redirection.c 		\
 				redirection/pipe_exec.c 		\
