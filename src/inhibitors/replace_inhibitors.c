@@ -9,7 +9,7 @@
 static char	*get_inhibitor(void)
 {
 	char	*buffer = NULL;
-
+raguin
 	my_putstr(">");
 	buffer = get_next_line(0);
 	return buffer;
