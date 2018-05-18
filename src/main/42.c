@@ -33,9 +33,9 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
 
+	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
-			env->format = get_format(tmp->full_cmd);
 			exec_cmdline(tmp->full_cmd, env);
 		}
 		tmp = tmp->next;
@@ -58,6 +58,7 @@ int 	main(int ac, char **av, char **av_env)
 		buffer = clear_separator(buffer);
 		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
 		exec_btree(buffer, &env);
+		fill_history(&env, buffer);
 		if (my_strlen(buffer) > 0)
 			free(buffer);
 		prompt(env);

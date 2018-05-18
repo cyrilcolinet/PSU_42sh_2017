@@ -62,8 +62,10 @@ SRC_FILES		= 	main/42.c 				\
 				prompt/prompt_line.c 			\
 				globbings/checker.c 			\
 				globbings/globbings.c			\
-				formatting/destroy_formatting.c		\
-				formatting/init_formatting.c
+				inhibitors/inhibitors.c			\
+				inhibitors/replace_inhibitors.c		\
+				inhibitors/inhibitor_errors.c		\
+				history/history.c
 
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))

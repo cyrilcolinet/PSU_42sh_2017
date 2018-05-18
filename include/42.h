@@ -22,6 +22,7 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <ncurses.h>
 # include "globbing.h"
 # include "my.h"
 
@@ -63,10 +64,6 @@ typedef struct syspath_s {
 	struct syspath_s *next;
 } syspath_t;
 
-typedef struct formatting_s {
-	glob_t	globbings;
-} formatting_t;
-
 typedef struct env_s {
 	listenv_t *listenv;
 	char **str_env;
@@ -75,16 +72,12 @@ typedef struct env_s {
 	char *pwd_path;
 	char *pwdold_path;
 	int exit_code;
-	formatting_t	format;
+	hist_t		*history;
 } env_t;
 
 int is_builtin(char *str, char **builtins);
 void call_builtins(int func, char **av, env_t *env);
 void exec_btree(char *, env_t *);
-
-/* FORMAT */
-formatting_t	get_format(char *);
-void		free_format(formatting_t);
 
 /* ENV */
 
@@ -144,6 +137,11 @@ char *clear_redirect_dright(char *);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
+/* HISTORY */
+
+void free_history(env_t *);
+void fill_history(env_t *, char *);
+
 /* PROMPT */
 
 char *get_cdir(env_t);
@@ -172,5 +170,11 @@ int my_list_size(env_t *);
 int is_alone(char *);
 char **my_list_to_array(env_t *);
 char *get_next_line(int);
+
+/* INHIBITORS */
+void	apply_inhibitors(parser_t **);
+void	change_cmd_inhibitors(parser_t **, char *);
+void	error_remove_inhibitor(char *, parser_t **);
+int	error_inhibitor(char *);
 
 #endif

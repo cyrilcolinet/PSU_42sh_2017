@@ -5,6 +5,7 @@
 ** 42
 */
 
+#include <glob.h>
 #include "42.h"
 
 static void free_protect(char *bin_cmd, env_t *env, int cmd_access)
@@ -21,6 +22,7 @@ static void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
 {
 	int	ret = 0;
 
+	av = apply_globbing(av);
 	right_redirection(bin_cmd, av, redir);
 	left_redirection(bin_cmd, av, redir);
 	ret = execve(bin_cmd, av, env->str_env);

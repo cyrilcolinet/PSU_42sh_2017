@@ -7,68 +7,39 @@
 #include <glob.h>
 #include "42.h"
 
-int	get_nbgloff(char *cmd)
+static char	*get_glob_cmd(char *path)
 {
-	char	**array = my_strtok(cmd, ' ');
-	int	pathc_offset = 0;
+	glob_t	globbuf;
+	char	*new_cmd = NULL;
+	int	glob_ret = 0;
 
-	for (int i = 0; array && array[i]; i++) {
-		if (array[i][0] != FLAG_START && i != 0)
-			pathc_offset++;
+	globbuf.gl_offs = 1;
+	glob_ret = glob(path, 0, NULL, &globbuf);
+	if (glob_ret == GLOB_NOMATCH)
+		return path;
+	free(path);
+	for (int i = 0; i < (int)globbuf.gl_pathc; i++) {
+		new_cmd = my_strcat_malloc(new_cmd, globbuf.gl_pathv[i]);
+		if (i + 1 != (int)globbuf.gl_pathc)
+			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
 	}
-	return pathc_offset;
+	return new_cmd;
 }
 
-void	set_gloff(char *cmd, glob_t *globbuff)
+char	**apply_globbing(char **cmd)
 {
-	char	**array = my_strtok(cmd, ' ');
-	int	append_glob = 0;
-	size_t	nbgloff = (size_t)get_nbgloff(cmd);
+	char	*new_cmd = NULL;
+	char	*glob = NULL;
 
-	if (!cmd || !array)
-		return;
-	globbuff->gl_pathc = nbgloff;
-	for (int i = 0; array[i]; i++) {
-		if (array[i][0] != FLAG_START && i != 0) {
-			append_glob++;
-			glob(array[i], GLOB_DOOFFS, NULL, globbuff);
-		}  else if (array[i][0] != FLAG_START && i != 0
-			&& append_glob != 0)
-			glob(array[i], GLOB_DOOFFS | GLOB_APPEND, NULL,
-				globbuff);
-	}
-	my_freetab(array);
-}
-
-void	set_glob_cmd(char *cmd, glob_t *glob)
-{
-	char	**array = my_strtok(cmd, ' ');
-	char	*glob_cmd = NULL;
-	int	pathv_offset = 0;
-
-	if (!cmd || !array)
-		return;
-	glob_cmd = strdup(array[0]);
-	glob->gl_pathv = malloc(sizeof(char *) * 1);
-	glob->gl_pathv[0] = glob_cmd;
-	pathv_offset++;
-	for (int i = 0; array[i]; i++) {
-		if (array[i][0] == FLAG_START) {
-			glob->gl_pathv = realloc(glob->gl_pathv,
-				sizeof(char *) * 1);
-			glob->gl_pathv[pathv_offset] = array[i];
-			pathv_offset++;
+	for (int i = 0; cmd && cmd[i]; i++) {
+		if (globbing_in_cmd(cmd[i]) == 1) {
+			new_cmd = my_strcat_malloc(new_cmd,
+				!(glob = get_glob_cmd(cmd[i])) ? "" : glob);
+			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
+		} else {
+			new_cmd = my_strcat_malloc(new_cmd, cmd[i]);
+			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
 		}
-
 	}
-	my_freetab(array);
-}
-
-glob_t	get_globbing(char *cmd)
-{
-	glob_t	glob;
-
-	set_glob_cmd(cmd, &glob);
-	set_gloff(cmd, &glob);
-	return glob;
+	return my_strtok(new_cmd, ' ');
 }
