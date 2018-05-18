@@ -35,6 +35,7 @@ void	apply_inhibitors(parser_t **b_tree)
 {
 	char	*cmd_to_inhib = NULL;
 
+	//TODO clear inhibitor (parser)
 	cmd_to_inhib = get_cmd_inhibitor(*b_tree);
 	if (!cmd_to_inhib)
 		return;

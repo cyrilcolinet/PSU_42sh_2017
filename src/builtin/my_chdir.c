@@ -76,7 +76,7 @@ int my_cd(char **cd_arg, env_t *env)
 	int ret_ch = 0;
 	char cwd[256];
 
-	if (my_strcmp(cd_arg[1], "-") == 0)
+	if (my_array_size(cd_arg) > 1 && my_strcmp(cd_arg[1], "-") == 0)
 		ret_ch = my_cd_prev(env);
 	else if (my_array_size(cd_arg) == 1
 	|| my_strcmp(cd_arg[1], "~") == 0)
