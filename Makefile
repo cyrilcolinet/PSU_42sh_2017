@@ -63,6 +63,7 @@ SRC_FILES		= 	main/42.c 				\
 				globbings/checker.c 			\
 				globbings/globbings.c			\
 				inhibitors/inhibitors.c			\
+				inhibitors/replace_inhibitors.c		\
 				history/history.c
 
 

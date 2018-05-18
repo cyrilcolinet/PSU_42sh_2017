@@ -33,6 +33,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
 
+	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
 			exec_cmdline(tmp->full_cmd, env);
