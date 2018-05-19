@@ -33,5 +33,6 @@ env_t init_env(char **av_env)
 	env.bashrc_path = my_strcat_malloc(env.bashrc_path, "/.bashrc");
 	env.exit_code = 0;
 	env.history = NULL;
+	env.shell_var = NULL;
 	return env;
 }

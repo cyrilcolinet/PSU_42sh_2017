@@ -40,7 +40,6 @@ char	*search_alias(char *cmd, env_t *env)
 		if (my_strncmp(buff, "alias", 5) == 0)
 			alias = is_cmd_alias(buff, cmd);
 		if (alias) {
-			printf("alias found! -> %s\n", alias);
 			fclose(fp);
 			free(buff);
 			return alias;

@@ -70,8 +70,11 @@ SRC_FILES		= 	main/42.c 				\
 				inhibitors/inhibitor_errors.c		\
 				alias/alias.c				\
 				alias/search_alias.c			\
+				variables/add_variable.c		\
+				variables/parse_variable.c		\
+				variables/find_variable.c		\
+				variables/replace_variable.c		\
 				history/history.c
-
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 

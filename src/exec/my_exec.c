@@ -62,9 +62,10 @@ void exec_cmdline(char *line, env_t *env)
 	int func_built = -1;
 	int cmd_access = 0;
 
-	if (av[0] == NULL)
+	if (av[0] == NULL || is_a_variable_assign(av[0], env) == 1)
 		return;
 	av = apply_alias(av, env);
+	apply_local_variables(&av, env);
 	func_built = is_builtin(av[0], builtins);
 	if (func_built >= 0)
 		call_builtins(func_built, av, env);

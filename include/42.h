@@ -65,6 +65,12 @@ typedef struct syspath_s {
 	struct syspath_s *next;
 } syspath_t;
 
+typedef struct shell_var_s {
+	char			*var_name;
+	char			*var_value;
+	struct shell_var_s	*next;
+} shell_var_t;
+
 typedef struct env_s {
 	listenv_t	*listenv;
 	char		**str_env;
@@ -75,6 +81,7 @@ typedef struct env_s {
 	int		exit_code;
 	hist_t		*history;
 	char		*bashrc_path;
+	shell_var_t	*shell_var;
 } env_t;
 
 int is_builtin(char *str, char **builtins);
@@ -190,5 +197,14 @@ char	**apply_alias(char **, env_t *);
 char	*is_cmd_alias(char *, char *);
 char	*search_alias(char *, env_t *);
 char	*get_alias_cmd(char *);
+
+/* VARIABLES */
+char	*get_variable_value(char *);
+char	*get_variable_name(char *);
+int	valid_variable(char *);
+int	is_a_variable_assign(char *, env_t *);
+void	add_variable_in_shell(env_t *, char *);
+char	*find_variable(env_t *, char *);
+void	apply_local_variables(char ***, env_t *);
 
 #endif

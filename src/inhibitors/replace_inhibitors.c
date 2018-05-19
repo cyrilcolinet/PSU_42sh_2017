@@ -10,9 +10,18 @@ static char	*get_inhibitor(void)
 {
 	char	*buffer = NULL;
 
-	my_putstr("\n>");
+	my_putstr(">");
 	buffer = get_next_line(0);
 	return buffer;
+}
+
+static void	sub_replace_inhibitor(char *inhibitor, int *i, int *j,
+						char *new)
+{
+	for (; inhibitor && inhibitor[*j]; *j = *j + 1) {
+		new[*i] = inhibitor[*j];
+		*i = *i + 1;
+	}
 }
 
 static char	*replace_inhibitor(char *cmd, char *inhibitor)
@@ -24,10 +33,7 @@ static char	*replace_inhibitor(char *cmd, char *inhibitor)
 
 	while (i < len - 2) {
 		if (cmd[i] == '\\') {
-			for (; inhibitor && inhibitor[j]; j++) {
-				new[i] = inhibitor[j];
-				i++;
-			}
+			sub_replace_inhibitor(inhibitor, &i, &j, new);
 		} else {
 			new[i] = cmd[i];
 			i++;
