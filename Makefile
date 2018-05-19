@@ -33,6 +33,8 @@ SRC_FILES		= 	main/42.c 				\
 				parser/clear/clear_redirect_dright.c	\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
+				parser/str_to_array_42/my_str_to_array_42.c\
+				parser/str_to_array_42/count_words.c	\
 				env/init_env.c 				\
 				env/env.c 				\
 				env/set_env.c 				\
@@ -58,7 +60,6 @@ SRC_FILES		= 	main/42.c 				\
 				utils/my_list_size.c 			\
 				utils/is_alone.c 			\
 				utils/get_next_line.c 			\
-				utils/my_str_to_array_42.c		\
 				sig/wstatus_handler.c 			\
 				sig/error_messages.c 			\
 				prompt/prompt_line.c 			\

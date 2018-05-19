@@ -47,7 +47,6 @@ char *clear_end_semicolon(char *s)
 			return (s);
 		}
 	}
-	s = clear_str(s);
 	return (s);
 }
 
