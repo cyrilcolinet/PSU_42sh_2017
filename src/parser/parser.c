@@ -46,7 +46,7 @@ parser_t	*parser(char *av)
 	char		**tab;
 	parser_t	*parser = NULL;
 
-	tab = my_str_to_array_42(av, ';');
+	tab = my_strtok(av, ';');
 	for (int i = 0; tab && tab[i]; i++) {
 		tab[i] = clear_str(tab[i]);
 		append_cmd(&parser, tab[i]);

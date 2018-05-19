@@ -35,7 +35,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	parser_t	*test = b_tree;
 
 	while (test) {
-		printf("LINE =%s=\n", test->full_cmd);
+//		printf("LINE =%s=\n", test->full_cmd);
 		test = test->next;
 	}
 	apply_inhibitors(&b_tree);
@@ -61,7 +61,7 @@ int 	main(int ac, char **av, char **av_env)
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = get_next_line(0))) {
 		buffer = clear_separator(buffer);
-		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
+//		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
 		exec_btree(buffer, &env);
 		fill_history(&env, buffer);
 		if (my_strlen(buffer) > 0)
