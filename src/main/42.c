@@ -62,8 +62,10 @@ int 	main(int ac, char **av, char **av_env)
 	while ((buffer = get_next_line(0))) {
 		buffer = clear_separator(buffer);
 //		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
-		exec_btree(buffer, &env);
-		fill_history(&env, buffer);
+		if (my_strlen(buffer) > 0) {
+			exec_btree(buffer, &env);
+			fill_history(&env, buffer);
+		}
 		if (my_strlen(buffer) > 0)
 			free(buffer);
 		prompt(env);
