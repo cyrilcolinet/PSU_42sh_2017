@@ -35,7 +35,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	parser_t	*test = b_tree;
 
 	while (test) {
-//		printf("LINE =%s=\n", test->full_cmd);
+		printf("LINE =%s=\n", test->full_cmd);
 		test = test->next;
 	}
 	apply_inhibitors(&b_tree);

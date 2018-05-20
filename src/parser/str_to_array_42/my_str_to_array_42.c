@@ -29,13 +29,12 @@ static char **get_the_array(char *str, int count, char delim)
 {
 	char **new = malloc(sizeof(char *) * (count + 1));
 	int len = 0;
-	int a = 0;
 	int i = 0;
 	int j = 0;
 
 	if (new == NULL)
 		return (NULL);
-	while (str[i] != '\0') {
+	for (int a = 0 ;str[i] != '\0'; a++) {
 		while (str[i] == delim)
 			i++;
 		len = get_len(str, delim, i);
@@ -43,13 +42,8 @@ static char **get_the_array(char *str, int count, char delim)
 		if (new[a] == NULL)
 			return (NULL);
 		len += i;
-		j = 0;
-		while (i < len && str[i] != '\0') {
-			new[a][j] = str[i];
-			i++;
-			j++;
-		}
-		a++;
+		for (j = 0; i < len && str[i] != '\0'; i++)
+			new[a][j++] = str[i];
 	}
 	new[count] = NULL;
 	return (new);
