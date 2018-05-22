@@ -26,6 +26,5 @@ void	add_variable_in_shell(env_t *env, char **cmd)
 		return;
 	name = get_variable_name(cmd[1]);
 	value = get_variable_value(cmd[1]);
-	printf("add %s %s\n", name, value);
 	push_var_in_shell(&env->shell_var, name, value);
 }
