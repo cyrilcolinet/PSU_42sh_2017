@@ -34,5 +34,6 @@ env_t init_env(char **av_env)
 	env.exit_code = 0;
 	env.history = NULL;
 	env.shell_var = NULL;
+	env.shell_alias = NULL;
 	return env;
 }

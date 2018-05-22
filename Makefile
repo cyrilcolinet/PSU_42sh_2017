@@ -70,6 +70,7 @@ SRC_FILES		= 	main/42.c 				\
 				inhibitors/inhibitor_errors.c		\
 				alias/alias.c				\
 				alias/search_alias.c			\
+				alias/alias_cmd.c			\
 				variables/add_variable.c		\
 				variables/parse_variable.c		\
 				variables/find_variable.c		\

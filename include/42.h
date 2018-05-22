@@ -71,6 +71,12 @@ typedef struct shell_var_s {
 	struct shell_var_s	*next;
 } shell_var_t;
 
+typedef struct shell_alias_s {
+	char			*alias_name;
+	char			*alias_cmd;
+	struct shell_var_s	*next;
+} shell_alias_t;
+
 typedef struct env_s {
 	listenv_t	*listenv;
 	char		**str_env;
@@ -82,6 +88,7 @@ typedef struct env_s {
 	hist_t		*history;
 	char		*bashrc_path;
 	shell_var_t	*shell_var;
+	shell_alias_t	*shell_alias;
 } env_t;
 
 int is_builtin(char *str);
@@ -197,6 +204,7 @@ char	**apply_alias(char **, env_t *);
 char	*is_cmd_alias(char *, char *);
 char	*search_alias(char *, env_t *);
 char	*get_alias_cmd(char *);
+void	my_alias(env_t *, char **);
 
 /* VARIABLES */
 char	*get_variable_value(char *);
