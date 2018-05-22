@@ -96,7 +96,7 @@ env_t init_env(char **);
 int name_exist(env_t *env, char *name);
 int my_unsetenv(env_t *env, char *name);
 int my_setenv(env_t *env, char *name, char *value, int overwrite);
-int my_env(env_t *env);
+void my_env(env_t *env, char **av);
 int add_env(env_t *env, char *name, char *value);
 int change_env(env_t *env, char *name, char *value);
 int posix_bug(char *, env_t *);
@@ -112,7 +112,7 @@ void update_env(env_t *env);
 
 /* CD */
 
-int my_cd(char **cd_arg, env_t *env);
+void my_cd(env_t *, char **);
 int is_file(char *);
 
 /* EXEC */
@@ -123,10 +123,10 @@ void exec_cmdline(char *line, env_t *env);
 
 /* EXIT */
 
-void exit_success(char **, env_t *);
+void exit_success(env_t *, char **);
 
 /* ECHO */
-void my_echo(char **, env_t *);
+void my_echo(env_t *, char **);
 
 /* PARSER */
 

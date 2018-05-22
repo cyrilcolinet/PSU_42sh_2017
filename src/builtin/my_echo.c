@@ -44,7 +44,7 @@ void	echo_variable(env_t *env, char *type)
 		my_putstr(find_variable(env, &type[1]));
 }
 
-void	my_echo(char **cmd, env_t *env)
+void	my_echo(env_t *env, char **cmd)
 {
 	if (my_array_size(cmd) > 1 && cmd[1][0] == '$') {
 		echo_variable(env, cmd[1]);

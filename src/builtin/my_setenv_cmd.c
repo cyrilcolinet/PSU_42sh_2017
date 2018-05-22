@@ -16,7 +16,7 @@ static void extra_args(int nb_arg, char **av, env_t *env)
 		return;
 	}
 	if (nb_arg == 1) {
-		my_env(env);
+		my_env(env, av);
 		return;
 	}
 }

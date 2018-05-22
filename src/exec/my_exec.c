@@ -58,7 +58,7 @@ void exec_cmdline(char *line, env_t *env)
 {
 	char **av = my_strtok(line, ' ');
 	char *builtins[] = {"cd", "setenv", "unsetenv", "env", "exit",
-				"echo", NULL};
+				"echo", "alias", NULL};
 	int func_built = -1;
 	int cmd_access = 0;
 

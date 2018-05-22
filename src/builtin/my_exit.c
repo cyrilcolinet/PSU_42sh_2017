@@ -7,7 +7,7 @@
 
 #include "42.h"
 
-void exit_success(char **av, env_t *env)
+void exit_success(env_t *env, char **av)
 {
 	int status = 0;
 	int len = my_array_size(av);

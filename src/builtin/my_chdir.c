@@ -71,7 +71,7 @@ static int error_handler(char **cd_arg, int ret_ch, env_t *env)
 	return 1;
 }
 
-int my_cd(char **cd_arg, env_t *env)
+void my_cd(env_t *env, char **cd_arg)
 {
 	int ret_ch = 0;
 	char cwd[256];
@@ -86,5 +86,5 @@ int my_cd(char **cd_arg, env_t *env)
 		getcwd(cwd, sizeof(cwd));
 		update_env_pwd(env, cwd);
 	}
-	return error_handler(cd_arg, ret_ch, env);
+	error_handler(cd_arg, ret_ch, env);
 }
