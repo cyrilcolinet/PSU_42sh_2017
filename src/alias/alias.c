@@ -51,15 +51,13 @@ char	**apply_alias(char **cmd, env_t *env)
 			alias = search_alias(cmd[0], env);
 			new_cmd = my_strcat_malloc(new_cmd,
 				(alias) ? alias : cmd[0]);
-			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
 		} else {
-			new_cmd = my_strcat_malloc(new_cmd, cmd[i]);
 			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
+			new_cmd = my_strcat_malloc(new_cmd, cmd[i]);
 		}
 	}
 	free(alias);
 	my_freetab(cmd);
-	tmp = my_str_to_array_42(new_cmd, ' ');
 	free(new_cmd);
 	return (tmp);
 }
