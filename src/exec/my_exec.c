@@ -56,12 +56,14 @@ int exec_prog(char **av, env_t *env, int cmd_access)
 
 void exec_cmdline(char *line, env_t *env)
 {
-	char **av = my_strtok(line, ' ');
+	char **av = my_str_to_array_42(line, ' ');
 	int func_built = -1;
 	int cmd_access = 0;
 
-	if (av[0] == NULL || is_a_variable_assign(av[0], env) == 1)
+	if (av[0] == NULL || is_a_variable_assign(av[0], env) == 1) {
+		free(av);
 		return;
+	}
 	av = apply_alias(av, env);
 	apply_local_variables(&av, env);
 	func_built = is_builtin(av[0]);

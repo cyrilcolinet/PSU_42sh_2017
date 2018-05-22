@@ -58,5 +58,5 @@ char	**apply_alias(char **cmd, env_t *env)
 	}
 	free(alias);
 	//TODO free cmd array ?
-	return my_strtok(new_cmd, ' ');
+	return my_str_to_array_42(new_cmd, ' ');
 }

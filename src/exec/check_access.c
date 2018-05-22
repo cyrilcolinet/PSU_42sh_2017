@@ -7,11 +7,15 @@
 
 #include "42.h"
 
-static void command_not_found(char *cmd, char *tmp_cmd)
+static void command_not_found(char *cmd, char *tmp_cmd,
+		char *bin_access)
 {
 	(void)tmp_cmd;
 	my_putstr_err(&cmd[1]);
 	my_putstr_err(": Command not found.\n");
+	free(cmd);
+	free(tmp_cmd);
+	free(bin_access);
 }
 
 static char *my_access(env_t *env, char *cmd)
@@ -34,7 +38,7 @@ static char *my_access(env_t *env, char *cmd)
 		bin_access = my_strcat_malloc(temp->path, cmd);
 		temp = temp->next;
 	}
-	command_not_found(cmd, tmp_cmd);
+	command_not_found(cmd, tmp_cmd, bin_access);
 	return NULL;
 }
 
@@ -44,7 +48,7 @@ char *get_path(env_t *env, char *cmd, int *cmd_access)
 	if (env->syspath == NULL || !cmd) {
 		if (cmd) {
 			env->exit_code = 1;
-			command_not_found(&cmd[1], NULL);
+			command_not_found(&cmd[1], NULL, NULL);
 		}
 		return NULL;
 	}
