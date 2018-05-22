@@ -34,6 +34,7 @@ SRC_FILES		= 	main/42.c 				\
 				parser/parser.c 			\
 				parser/parser_pipe.c 			\
 				parser/str_to_array_42/my_str_to_array_42.c\
+				parser/str_to_array_42/my_str_to_array_pipe_42.c\
 				env/init_env.c 				\
 				env/env.c 				\
 				env/set_env.c 				\

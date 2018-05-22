@@ -30,6 +30,7 @@ p_pipe_t	*get_pipe_in_cmd(parser_t **parser, char *cmd)
 	int		i = 0;
 
 	while (tab && tab[i]) {
+		tab[i] = clear_str(tab[i]);
 		add_pipe_in_list(&list_pipe, tab[i]);
 		i++;
 	}
