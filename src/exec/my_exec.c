@@ -57,8 +57,6 @@ int exec_prog(char **av, env_t *env, int cmd_access)
 void exec_cmdline(char *line, env_t *env)
 {
 	char **av = my_strtok(line, ' ');
-	char *builtins[] = {"cd", "setenv", "unsetenv", "env", "exit",
-				"echo", "alias", NULL};
 	int func_built = -1;
 	int cmd_access = 0;
 
@@ -66,7 +64,7 @@ void exec_cmdline(char *line, env_t *env)
 		return;
 	av = apply_alias(av, env);
 	apply_local_variables(&av, env);
-	func_built = is_builtin(av[0], builtins);
+	func_built = is_builtin(av[0]);
 	if (func_built >= 0)
 		call_builtins(func_built, av, env);
 	else {

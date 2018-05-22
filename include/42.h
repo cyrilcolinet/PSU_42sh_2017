@@ -84,7 +84,7 @@ typedef struct env_s {
 	shell_var_t	*shell_var;
 } env_t;
 
-int is_builtin(char *str, char **builtins);
+int is_builtin(char *str);
 void call_builtins(int func, char **av, env_t *env);
 void exec_btree(char *, env_t *);
 
