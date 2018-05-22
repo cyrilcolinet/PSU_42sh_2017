@@ -54,6 +54,21 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	free_struct_parser(b_tree);
 }
 
+static void is_valid_buffer(char *buffer, env_t *env)
+{
+	buffer = clear_separator(buffer);
+	/* for (int i = 0; buffer[i]; i++) */
+	/* 	printf("=%c=", buffer[i]); */
+	/* printf("\n"); */
+	/* printf("CLEAR SEPARATOR STR = =%s=\n", buffer); */
+	if (error_management(buffer, env)) {
+		exec_btree(buffer, env);
+		fill_history(env, buffer);
+	}
+	free(buffer);
+}
+
+
 int 	main(int ac, char **av, char **av_env)
 {
 	env_t 		env = init_env(av_env);
@@ -68,16 +83,8 @@ int 	main(int ac, char **av, char **av_env)
 	signal(SIGINT, SIG_IGN);
 //	ctrl_catcher(NULL);
 	while ((buffer = get_next_line(0))) {
-		if (my_strlen(buffer) > 0) {
-			buffer = clear_separator(buffer);
-			/* for (int i = 0; buffer[i]; i++) */
-			/* 	printf("=%c=", buffer[i]); */
-			/* printf("\n"); */
-			/* printf("CLEAR SEPARATOR STR = =%s=\n", buffer); */
-			exec_btree(buffer, &env);
-			fill_history(&env, buffer);
-			free(buffer);
-		}
+		if (my_strlen(buffer) > 0)
+			is_valid_buffer(buffer, &env);
 		prompt(env);
 	}
 	exit_code = env.exit_code;

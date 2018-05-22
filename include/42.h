@@ -160,6 +160,10 @@ char **my_str_to_array_pipe_42(char *);
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
+/* ERROR MANAGMENT */
+
+bool error_management(char *, env_t *);
+
 /* HISTORY */
 
 void free_history(env_t *);
