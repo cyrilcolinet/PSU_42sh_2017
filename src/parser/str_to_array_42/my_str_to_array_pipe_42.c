@@ -28,8 +28,12 @@ static int str_to_array_count_words(char *str)
 			i = pass_quote(str, i, 34);
 			continue;
 		}
-		if (str[i] == '|')
+		if (str[i] == '|' && str[i + 1] != '\0'
+		&& str[i + 1] == ' ')
 			count++;
+		if (str[i] == '|' && str[i + 1] != '\0'
+		&& str[i + 1] == '|')
+			i++;
 	}
 	return (count);
 }
@@ -45,8 +49,14 @@ static int get_len(char *str, int i)
 			dquote *= -1;
 		if (str[i] == 39)
 			quote *= -1;
-		if (quote == 1 && dquote == 1 && str[i] == '|')
+		if (quote == 1 && dquote == 1 && str[i] == '|'
+		&& str[i + 1] != '\0' && str[i + 1] == ' ')
 			break;
+		if (quote == 1 && dquote == 1 && str[i] == '|'
+		&& str[i + 1] != '\0' && str[i + 1] == '|') {
+			i++;
+			len++;
+		}
 		len++;
 	}
 	return (len);
@@ -84,7 +94,7 @@ char **my_str_to_array_pipe_42(char *str)
 	if (str == NULL)
 		return (NULL);
 	count = str_to_array_count_words(str);
-	if (count == 0)
+	if (count <= 1)
 		return (NULL);
 	tab = get_the_array(str, count);
 	if (tab == NULL)

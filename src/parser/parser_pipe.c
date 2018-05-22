@@ -26,7 +26,7 @@ static void	add_pipe_in_list(p_pipe_t **list, char *p_cmd)
 p_pipe_t	*get_pipe_in_cmd(parser_t **parser, char *cmd)
 {
 	p_pipe_t	*list_pipe = NULL;
-	char		**tab = my_strtok(cmd, '|');
+	char		**tab = my_str_to_array_pipe_42(cmd);
 	int		i = 0;
 
 	while (tab && tab[i]) {
@@ -35,5 +35,6 @@ p_pipe_t	*get_pipe_in_cmd(parser_t **parser, char *cmd)
 		i++;
 	}
 	(void)parser;
+	my_freetab(tab);
 	return list_pipe;
 }

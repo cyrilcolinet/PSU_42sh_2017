@@ -32,18 +32,18 @@ void 	exec_btree(char *line_cmd, env_t *env)
 {
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
-	parser_t	*test = b_tree;
-	p_pipe_t	*testpipe = NULL;
+	/* parser_t	*test = b_tree; */
+	/* p_pipe_t	*testpipe = NULL; */
 
-	while (test) {
-		printf("LINE =%s=\n", test->full_cmd);
-		testpipe = test->pipe_in_cmd;
-		while (testpipe) {
-			printf("LINE PIPE =%s=\n", testpipe->pipe_cmd);
-			testpipe = testpipe->next;
-		}
-		test = test->next;
-	}
+	/* while (test) { */
+	/* 	printf("LINE =%s=\n", test->full_cmd); */
+	/* 	testpipe = test->pipe_in_cmd; */
+	/* 	while (testpipe) { */
+	/* 		printf("LINE PIPE =%s=\n", testpipe->pipe_cmd); */
+	/* 		testpipe = testpipe->next; */
+	/* 	} */
+	/* 	test = test->next; */
+	/* } */
 	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
@@ -69,10 +69,10 @@ int 	main(int ac, char **av, char **av_env)
 	while ((buffer = get_next_line(0))) {
 		if (my_strlen(buffer) > 0) {
 			buffer = clear_separator(buffer);
-			for (int i = 0; buffer[i]; i++)
-				printf("=%c=", buffer[i]);
-			printf("\n");
-			printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
+			/* for (int i = 0; buffer[i]; i++) */
+			/* 	printf("=%c=", buffer[i]); */
+			/* printf("\n"); */
+			/* printf("CLEAR SEPARATOR STR = =%s=\n", buffer); */
 			exec_btree(buffer, &env);
 			fill_history(&env, buffer);
 		}
