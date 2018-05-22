@@ -58,6 +58,7 @@ char	**apply_alias(char **cmd, env_t *env)
 	}
 	free(alias);
 	my_freetab(cmd);
+	tmp = my_str_to_array_42(new_cmd, ' ');
 	free(new_cmd);
 	return (tmp);
 }

@@ -50,6 +50,7 @@ static int my_cd_root(env_t *env)
 	char *root = my_strcat_malloc("/home/", env->usr_name);
 	char cwd[256];
 
+	printf("cd root\n");
 	ret_ch = chdir(root);
 	getcwd(cwd, sizeof(cwd));
 	update_env_pwd(env, cwd);
