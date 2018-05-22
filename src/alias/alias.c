@@ -6,6 +6,16 @@
 */
 #include "42.h"
 
+void	print_alias(env_t *env)
+{
+	shell_alias_t	*tmp = env->shell_alias;
+
+	while (tmp) {
+		printf("%s\t%s\n", tmp->alias_name, tmp->alias_cmd);
+		tmp = tmp->next;
+	}
+}
+
 int	cmd_is_in_alias(char *line, char *cmd)
 {
 	int	i = 0;
@@ -17,10 +27,12 @@ int	cmd_is_in_alias(char *line, char *cmd)
 	return -1;
 }
 
-char	*is_cmd_alias(char *line, char *cmd)
+char	*is_cmd_alias(char *line, char *cmd, env_t *env)
 {
 	char	*alias_cmd = NULL;
 
+	if ((alias_cmd = search_shell_alias(env, cmd)))
+		return alias_cmd;
 	line[my_strlen(line) - 1] = '\0';
 	if (cmd_is_in_alias(line, cmd) == -1)
 		return NULL;

@@ -74,7 +74,7 @@ typedef struct shell_var_s {
 typedef struct shell_alias_s {
 	char			*alias_name;
 	char			*alias_cmd;
-	struct shell_var_s	*next;
+	struct shell_alias_s	*next;
 } shell_alias_t;
 
 typedef struct env_s {
@@ -201,10 +201,12 @@ int	error_inhibitor(char *);
 
 /* ALIAS */
 char	**apply_alias(char **, env_t *);
-char	*is_cmd_alias(char *, char *);
+char	*is_cmd_alias(char *, char *, env_t *);
 char	*search_alias(char *, env_t *);
 char	*get_alias_cmd(char *);
 void	my_alias(env_t *, char **);
+void	print_alias(env_t *);
+char	*search_shell_alias(env_t *, char *);
 
 /* VARIABLES */
 char	*get_variable_value(char *);

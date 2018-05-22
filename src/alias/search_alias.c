@@ -38,7 +38,7 @@ char	*search_alias(char *cmd, env_t *env)
 
 	while ((read = getline(&buff, &len, fp)) != -1) {
 		if (my_strncmp(buff, "alias", 5) == 0)
-			alias = is_cmd_alias(buff, cmd);
+			alias = is_cmd_alias(buff, cmd, env);
 		if (alias) {
 			fclose(fp);
 			free(buff);
