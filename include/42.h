@@ -154,7 +154,6 @@ char *clear_redirect_left(char *);
 char *clear_redirect_dleft(char *);
 char *clear_redirect_dright(char *);
 char **my_str_to_array_42(char *, char);
-int str_to_array_count_words(char *, char);
 
 parser_t *parser(char*);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
