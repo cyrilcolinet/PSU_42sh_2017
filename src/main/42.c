@@ -59,10 +59,11 @@ int 	main(int ac, char **av, char **av_env)
 		return 84;
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
+	ctrl_catcher(NULL);
 	while ((buffer = get_next_line(0))) {
-		buffer = clear_separator(buffer);
-		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
+//		printf("CLEAR SEPARATOR STR = =%s=\n", buffer);
 		if (my_strlen(buffer) > 0) {
+			buffer = clear_separator(buffer);
 			exec_btree(buffer, &env);
 			fill_history(&env, buffer);
 		}
