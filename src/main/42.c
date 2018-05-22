@@ -58,6 +58,7 @@ int 	main(int ac, char **av, char **av_env)
 {
 	env_t 		env = init_env(av_env);
 	char 		*buffer = NULL;
+	int		exit_code = 0;
 	(void)av;
 	(void)ac;
 
@@ -79,6 +80,7 @@ int 	main(int ac, char **av, char **av_env)
 		}
 		prompt(env);
 	}
+	exit_code = env.exit_code;
 	free_env(&env);
-	return env.exit_code;
+	return (exit_code);
 }
