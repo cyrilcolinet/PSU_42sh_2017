@@ -216,9 +216,9 @@ char	*search_shell_alias(env_t *, char *);
 /* VARIABLES */
 char	*get_variable_value(char *);
 char	*get_variable_name(char *);
-int	valid_variable(char *);
-int	is_a_variable_assign(char *, env_t *);
-void	add_variable_in_shell(env_t *, char *);
+int	valid_variable(char **);
+int	is_a_variable_assign(char **, env_t *);
+void	add_variable_in_shell(env_t *, char **);
 char	*find_variable(env_t *, char *);
 void	apply_local_variables(char ***, env_t *);
 

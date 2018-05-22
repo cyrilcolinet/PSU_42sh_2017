@@ -60,7 +60,7 @@ void exec_cmdline(char *line, env_t *env)
 	int func_built = -1;
 	int cmd_access = 0;
 
-	if (av[0] == NULL || is_a_variable_assign(av[0], env) == 1) {
+	if (av[0] == NULL || is_a_variable_assign(av, env) == 1) {
 		free(av);
 		return;
 	}
