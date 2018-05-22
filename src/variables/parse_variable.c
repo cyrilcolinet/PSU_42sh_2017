@@ -6,7 +6,7 @@
 */
 #include "42.h"
 
-int	is_a_variable_assign(char *cmd, env_t *env)
+int	is_a_variable_assign(char **cmd, env_t *env)
 {
 	if (cmd && valid_variable(cmd) == 1) {
 		add_variable_in_shell(env, cmd);
@@ -15,16 +15,18 @@ int	is_a_variable_assign(char *cmd, env_t *env)
 	return -1;
 }
 
-int	valid_variable(char *cmd)
+int	valid_variable(char **cmd)
 {
 	int valid = 0;
 
-	if (cmd && cmd[my_strlen(cmd) - 1] == '=')
+	if (my_strcmp(cmd[0], "set") != 0 || my_array_size(cmd) > 2)
 		return -1;
-	for (int i = 0; cmd && cmd[i]; i++) {
-		if (cmd[i] == '=' && i == 0)
+	if (cmd[1] && cmd[1][my_strlen(cmd[1]) - 1] == '=')
+		return -1;
+	for (int i = 0; cmd[1] && cmd[1][i]; i++) {
+		if (cmd[1][i] == '=' && i == 0)
 			return -1;
-		if (cmd[i] == '=')
+		if (cmd[1][i] == '=')
 			valid++;
 	}
 	return (valid == 1) ? 1 : -1;
