@@ -34,7 +34,7 @@ static int get_character(int fdesc, char *str)
 
 	if (off >= reader || off == 0) {
 		off = 0;
-		reader = read(fdesc, buff, READ_SIZE);
+		reader = (int)read(fdesc, buff, READ_SIZE);
 		if (reader == 0)
 			return (0);
 	}
@@ -54,7 +54,6 @@ static char *return_freed(char *ptr, char *ret)
 {
 	if (ptr != NULL)
 		free(ptr);
-
 	return (ret);
 }
 
@@ -66,18 +65,14 @@ char *get_next_line(int fdesc)
 
 	if (reader == 0 || line == NULL || fdesc < 0)
 		return (return_freed(line, NULL));
-
 	while (line[i]) {
 		if (i % READ_SIZE == 0) {
 			line = my_realloc2(line, i + READ_SIZE + 1);
-
 			if (line == NULL)
 				return (return_freed(line, NULL));
 		}
-
 		reader = get_character(fdesc, &line[++i]);
 	}
-
 	line[++i] = 0;
 	return (line);
 }

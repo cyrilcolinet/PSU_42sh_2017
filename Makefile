@@ -62,6 +62,7 @@ SRC_FILES		= 	main/42.c 				\
 				utils/get_next_line.c 			\
 				sig/wstatus_handler.c 			\
 				sig/error_messages.c 			\
+				sig/ctrl_catcher.c			\
 				prompt/prompt_line.c 			\
 				globbings/checker.c 			\
 				globbings/globbings.c			\
@@ -98,7 +99,7 @@ LIBRARY_DIR		= 	lib/
 
 CC			=	gcc
 
-CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3
+CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3 -lncurses -lpthread
 
 LFLAGS			= 	-L $(LIBRARY_DIR) -lmy
 
