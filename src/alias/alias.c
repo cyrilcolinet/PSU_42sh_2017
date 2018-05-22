@@ -8,10 +8,12 @@
 
 int	cmd_is_in_alias(char *line, char *cmd)
 {
-	for (int i = 0; line && line[i] && line[i] != '='; i++) {
-		if (my_strncmp(&line[i], cmd, my_strlen(cmd)) == 0)
-			return 1;
-	}
+	int	i = 0;
+
+	for (; line && line[i] && line[i] != ' '; i++);
+	i++;
+	if (line && my_strncmp(&line[i], cmd, my_strlen(cmd)) == 0)
+		return 1;
 	return -1;
 }
 

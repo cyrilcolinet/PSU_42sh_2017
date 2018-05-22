@@ -15,7 +15,7 @@ void	add_shell_alias(shell_alias_t **list, char *name, char *cmd)
 		return;
 	alias->alias_name = name;
 	alias->alias_cmd = cmd;
-	alias->next = *list;
+	alias->next = (struct shell_var_s *)*list;
 	*list = alias;
 }
 
@@ -35,7 +35,6 @@ void	my_alias(env_t *env, char **cmd)
 			cmd_ptr = my_strjoin_clear(cmd_ptr, " ", 0);
 		cmd_ptr = my_strjoin_clear(cmd_ptr, cmd[i], 0);
 	}
-	printf("add alias: %s %s\n", name_ptr, cmd_ptr);
 	add_shell_alias(&env->shell_alias, name_ptr, cmd_ptr);
 
 }
