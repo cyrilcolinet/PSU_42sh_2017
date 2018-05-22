@@ -44,6 +44,7 @@ char	**apply_alias(char **cmd, env_t *env)
 {
 	char	*alias = NULL;
 	char	*new_cmd = NULL;
+	char	**tmp = NULL;
 
 	for (int i = 0; cmd && cmd[i]; i++) {
 		if (i == 0) {
@@ -57,6 +58,8 @@ char	**apply_alias(char **cmd, env_t *env)
 		}
 	}
 	free(alias);
-	//TODO free cmd array ?
-	return my_str_to_array_42(new_cmd, ' ');
+	my_freetab(cmd);
+	tmp = my_str_to_array_42(new_cmd, ' ');
+	free(new_cmd);
+	return (tmp);
 }

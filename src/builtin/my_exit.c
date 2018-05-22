@@ -13,8 +13,6 @@ void exit_success(env_t *env, char **av)
 	int len = my_array_size(av);
 
 	if (len == 2) {
-		if (env)
-			free(env);
 		status = my_atoi(av[1]);
 		exit(status);
 	} else if (len == 1) {
