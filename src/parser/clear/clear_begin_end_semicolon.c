@@ -67,5 +67,5 @@ char *clear_begin_semicolon(char *s)
 	}
 	str[i] = '\0';
 	free(s);
-	return str;
+	return (str);
 }
