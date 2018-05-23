@@ -53,7 +53,7 @@ char	**apply_alias(char **cmd, env_t *env)
 				(alias) ? alias : cmd[0]);
 		} else {
 			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
-			new_cmd = my_strcat_malloc(new_cmd, cmd[i]);
+			new_cmd = my_strjoin_clear(new_cmd, cmd[i], 0);
 		}
 	}
 	free(alias);
