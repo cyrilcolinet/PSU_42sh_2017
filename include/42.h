@@ -28,6 +28,7 @@
 # include <pthread.h>
 # include <sys/ioctl.h>
 
+# include "jobs.h"
 # include "globbing.h"
 # include "my.h"
 

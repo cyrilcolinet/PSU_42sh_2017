@@ -6,3 +6,13 @@
 */
 
 # include "42.h"
+
+int control_key_up(env_t *env, char *buffer, int i)
+{
+	return (0);
+}
+
+int control_key_down(env_t *env, char *buffer, int i)
+{
+	return (0);
+}
