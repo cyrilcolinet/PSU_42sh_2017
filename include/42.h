@@ -33,7 +33,7 @@
 # define S_USR "USER="
 # define S_BINPATH "PATH="
 # define S_OLDPWD "OLDPWD="
-#define S_HOME "HOME="
+# define S_HOME "HOME="
 
 typedef struct {
 	char	*string;
