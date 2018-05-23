@@ -17,6 +17,7 @@ void my_freetab(char **arr)
 
 	while (arr[i]) {
 		free(arr[i]);
+		arr[i] = NULL;
 		i++;
 	}
 
