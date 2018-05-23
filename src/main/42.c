@@ -61,11 +61,11 @@ static void is_valid_buffer(char *buffer, env_t *env)
 	/* 	printf("=%c=", buffer[i]); */
 	/* printf("\n"); */
 	/* printf("CLEAR SEPARATOR STR = =%s=\n", buffer); */
-//	if (error_management(buffer)) {
-	exec_btree(buffer, env);
-	fill_history(env, buffer);
-	/* } else */
-	/* 	env->exit_code = 1; */
+	if (error_management(buffer)) {
+		exec_btree(buffer, env);
+		fill_history(env, buffer);
+	} else
+		env->exit_code = 1;
 	free(buffer);
 }
 
