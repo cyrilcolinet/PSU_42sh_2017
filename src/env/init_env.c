@@ -22,10 +22,14 @@ char *get_env_var(char **av_env, char *var_cmp, int size)
 env_t init_env(char **av_env)
 {
 	env_t env;
+	char *sysenv = get_env_var(av_env, S_BINPATH, 4);
 
 	env.str_env = av_env;
 	env.listenv = init_listenv(av_env);
-	env.syspath = init_syspath(get_env_var(av_env, S_BINPATH, 4));
+	if (sysenv == NULL)
+		env.syspath = init_syspath(my_strdup("PATH="));
+	else
+		env.syspath = init_syspath(get_env_var(av_env, S_BINPATH, 4));
 	env.usr_name = get_env_var(av_env, S_USR, 4);
 	env.pwd_path = get_env_var(av_env, S_PWD, 3);
 	env.pwdold_path = get_env_var(av_env, S_OLDPWD, 6);
