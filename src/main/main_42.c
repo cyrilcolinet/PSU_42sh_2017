@@ -32,18 +32,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 {
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
-	/* parser_t	*test = b_tree; */
-	/* p_pipe_t	*testpipe = NULL; */
 
-	/* while (test) { */
-	/* 	printf("LINE =%s=\n", test->full_cmd); */
-	/* 	testpipe = test->pipe_in_cmd; */
-	/* 	while (testpipe) { */
-	/* 		printf("LINE PIPE =%s=\n", testpipe->pipe_cmd); */
-	/* 		testpipe = testpipe->next; */
-	/* 	} */
-	/* 	test = test->next; */
-	/* } */
 	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
@@ -57,10 +46,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 static void is_valid_buffer(char *buffer, env_t *env)
 {
 	buffer = clear_separator(buffer);
-	/* for (int i = 0; buffer[i]; i++) */
-	/* 	printf("=%c=", buffer[i]); */
-	/* printf("\n"); */
-	/* printf("CLEAR SEPARATOR STR = =%s=\n", buffer); */
+
 	if (error_management(buffer)) {
 		exec_btree(buffer, env);
 		fill_history(env, buffer);
