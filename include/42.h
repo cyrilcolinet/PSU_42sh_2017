@@ -162,7 +162,7 @@ p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
 /* ERROR MANAGMENT */
 
-bool error_management(char *, env_t *);
+bool error_management(char *);
 
 /* HISTORY */
 
