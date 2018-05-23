@@ -78,7 +78,7 @@ int 	main(int ac, char **av, char **av_env)
 	(void)av;
 	(void)ac;
 
-	if (av_env == NULL)
+	if (*av_env == NULL)
 		return 84;
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
