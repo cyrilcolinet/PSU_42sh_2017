@@ -41,7 +41,7 @@ char	**apply_globbing(char **cmd)
 			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
 		}
 	}
-	my_freetab(cmd);
-	
+	// TODO: my_freetab(cmd);
+
 	return my_strtok(new_cmd, ' ');
 }
