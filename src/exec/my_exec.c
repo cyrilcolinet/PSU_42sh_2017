@@ -10,12 +10,11 @@
 
 static void free_protect(char *bin_cmd, env_t *env, int cmd_access)
 {
-	if (env->str_env)
-		my_freetab(env->str_env);
 	if (cmd_access == 1)
 		return;
 	if (bin_cmd)
 		free(bin_cmd);
+	free_list_to_str(env);
 }
 
 static void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)

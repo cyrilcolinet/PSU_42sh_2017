@@ -9,11 +9,10 @@
 
 static void extra_args(int nb_arg, char **av, env_t *env)
 {
-	printf("%d\n", nb_arg);
 	if (nb_arg == 2) {
 		if (posix_bug(av[1], env) == 0)
 			return;
-		new_environment_entry(av[1], "", env->listenv);
+		change_env(env, av[1], "");
 		return;
 	}
 	if (nb_arg == 1) {

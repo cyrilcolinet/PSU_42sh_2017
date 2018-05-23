@@ -7,6 +7,13 @@
 
 #include "42.h"
 
+void free_list_to_str(env_t *env)
+{
+	if (!env->str_env)
+		return;
+	my_freetab(env->str_env);
+}
+
 char **my_list_to_array(env_t *env_s)
 {
 	char **env = NULL;
@@ -27,6 +34,6 @@ char **my_list_to_array(env_t *env_s)
 		free(data);
 		tmp = tmp->next;
 	}
-	env[count] = NULL;
-	return (env);
+	env[i] = NULL;
+	return env;
 }

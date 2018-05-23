@@ -203,6 +203,7 @@ int 	my_list_size(env_t *);
 int 	is_alone(char *);
 char 	**my_list_to_array(env_t *);
 char 	*get_next_line(int);
+void 	free_list_to_str(env_t *);
 char 	*replace_char(char *, char, char);
 char 	*path_join(char *, char *);
 char 	*join_next_values(char **);
