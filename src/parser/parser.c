@@ -51,6 +51,6 @@ parser_t	*parser(char *av)
 		tab[i] = clear_str(tab[i]);
 		append_cmd(&parser, tab[i]);
 	}
-	my_freetab(tab);	
+	my_freetab(tab);
 	return parser;
 }

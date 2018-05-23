@@ -157,7 +157,7 @@ char *clear_redirect_dright(char *);
 char **my_str_to_array_42(char *, char);
 char **my_str_to_array_pipe_42(char *);
 
-parser_t *parser(char*);
+parser_t *parser(char *);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
 /* ERROR MANAGMENT */

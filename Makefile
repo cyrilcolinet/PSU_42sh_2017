@@ -15,7 +15,7 @@ SRC_DIR 		= 	src/
 
 TEST_DIR		= 	tests/
 
-SRC_FILES		= 	main/42.c 				\
+SRC_FILES		= 	main/main_42.c 				\
 				parser/clear/clear_str.c		\
 				parser/clear/clear_begin.c		\
 				parser/clear/clear_end.c		\
