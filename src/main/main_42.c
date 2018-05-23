@@ -69,7 +69,6 @@ static void is_valid_buffer(char *buffer, env_t *env)
 	free(buffer);
 }
 
-
 int 	main_shell(char **av_env)
 {
 	env_t 		env = init_env(av_env);
@@ -78,6 +77,8 @@ int 	main_shell(char **av_env)
 
 	if (*av_env == NULL)
 		return 84;
+	if (!can_apply_keybinding(&env))
+		return (84);
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = get_next_line(0))) {

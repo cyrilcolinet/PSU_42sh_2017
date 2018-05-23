@@ -79,7 +79,9 @@ SRC_FILES		= 	main.c							\
 				variables/parse_variable.c				\
 				variables/find_variable.c				\
 				variables/replace_variable.c				\
-				history/history.c
+				history/history.c 					\
+				controls/load_keys.c 					\
+				controls/can_apply_keybinding.c
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
