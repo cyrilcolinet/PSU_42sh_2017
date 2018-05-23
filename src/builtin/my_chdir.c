@@ -11,6 +11,8 @@ static void update_env_pwd(env_t *env, char *cwd)
 {
 	char *current_pwd = env_get_variable(S_PWD, env);
 
+	printf("%s\n", current_pwd);
+
 	env->pwdold_path = current_pwd;
 	my_setenv(env, "OLDPWD", current_pwd, 0);
 	my_setenv(env, "PWD", cwd, 0);

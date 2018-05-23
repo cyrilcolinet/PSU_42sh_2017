@@ -34,11 +34,11 @@
 # define EXIT_SUCCESS 	(0)
 # endif
 
-# define S_PWD 		("PWD=")
-# define S_USR 		("USER=")
-# define S_BINPATH 	("PATH=")
-# define S_OLDPWD 	("OLDPWD=")
-# define S_HOME 	("HOME=")
+# define S_PWD 		("PWD")
+# define S_USR 		("USER")
+# define S_BINPATH 	("PATH")
+# define S_OLDPWD 	("OLDPWD")
+# define S_HOME 	("HOME")
 
 typedef struct {
 	char		*string;
