@@ -38,8 +38,8 @@
 # define S_HOME 	("HOME=")
 
 typedef struct {
-	char	*string;
-	int	type;
+	char		*string;
+	int		type;
 } redirection_t;
 
 typedef struct p_pipe_s {
@@ -59,25 +59,25 @@ typedef struct hist_s {
 } hist_t;
 
 typedef struct listenv_s {
-	char *line;
+	char 		*line;
 	struct listenv_s *next;
 } listenv_t;
 
 typedef struct syspath_s {
-	char *path;
+	char 		*path;
 	struct syspath_s *next;
 } syspath_t;
 
 typedef struct shell_var_s {
-	char			*var_name;
-	char			*var_value;
-	struct shell_var_s	*next;
+	char		*var_name;
+	char		*var_value;
+	struct shell_var_s *next;
 } shell_var_t;
 
 typedef struct shell_alias_s {
-	char			*alias_name;
-	char			*alias_cmd;
-	struct shell_alias_s	*next;
+	char		*alias_name;
+	char		*alias_cmd;
+	struct shell_alias_s *next;
 } shell_alias_t;
 
 typedef struct env_s {
@@ -94,111 +94,111 @@ typedef struct env_s {
 	shell_alias_t	*shell_alias;
 } env_t;
 
-int is_builtin(char *str);
-void call_builtins(int func, char **av, env_t *env);
-void exec_btree(char *, env_t *);
+int 	is_builtin(char *str);
+void 	call_builtins(int func, char **av, env_t *env);
+void 	exec_btree(char *, env_t *);
 
 /* ENV */
 
 listenv_t *init_listenv(char **av_env);
 syspath_t *init_syspath(char *syspath);
-env_t init_env(char **);
-int name_exist(env_t *env, char *name);
-int my_unsetenv(env_t *env, char *name);
-int my_setenv(env_t *env, char *name, char *value, int overwrite);
-void my_env(env_t *env, char **av);
-int add_env(env_t *env, char *name, char *value);
-int change_env(env_t *env, char *name, char *value);
-int posix_bug(char *, env_t *);
-char *get_env_var(char **av_env, char *var_cmp, int size);
-void add_line(listenv_t **list, char *line);
-void free_listenv(env_t *);
-void my_setenv_cmd(env_t *env, char **av);
-void my_unsetenv_cmd(env_t *env, char **av);
-void free_syspath(env_t *);
-void free_env(env_t *env);
-void update_path(env_t *env);
-void update_env(env_t *env);
+env_t 	init_env(char **);
+int 	name_exist(env_t *env, char *name);
+int 	my_unsetenv(env_t *env, char *name);
+int 	my_setenv(env_t *env, char *name, char *value, int overwrite);
+void 	my_env(env_t *env, char **av);
+int 	add_env(env_t *env, char *name, char *value);
+int 	change_env(env_t *env, char *name, char *value);
+int 	posix_bug(char *, env_t *);
+char 	*get_env_var(char **av_env, char *var_cmp, int size);
+void 	add_line(listenv_t **list, char *line);
+void 	free_listenv(env_t *);
+void 	my_setenv_cmd(env_t *env, char **av);
+void 	my_unsetenv_cmd(env_t *env, char **av);
+void 	free_syspath(env_t *);
+void 	free_env(env_t *env);
+void 	update_path(env_t *env);
+void 	update_env(env_t *env);
 
 /* CD */
 
-void my_cd(env_t *, char **);
-int is_file(char *);
+void 	my_cd(env_t *, char **);
+int 	is_file(char *);
 
 /* EXEC */
 
-int exec_prog(char **av, env_t *env, int cmd_access);
-char *get_path(env_t *env, char *cmd, int *cmd_access);
-void exec_cmdline(char *line, env_t *env);
+int 	exec_prog(char **av, env_t *env, int cmd_access);
+char 	*get_path(env_t *env, char *cmd, int *cmd_access);
+void 	exec_cmdline(char *line, env_t *env);
 
 /* EXIT */
 
-void exit_success(env_t *, char **);
+void 	exit_success(env_t *, char **);
 
 /* ECHO */
-void my_echo(env_t *, char **);
+void 	my_echo(env_t *, char **);
 
 /* PARSER */
 
-char *clear_str(char *);
-char *clear_begin(char *);
-char *clear_end(char *);
-char *clear_space(char *, int);
-char *clear_separator(char *);
-char *clear_semicolon(char *);
-char *clear_begin_semicolon(char *);
-char *clear_end_semicolon(char *);
-char *clear_pipe(char *);
-char *clear_dpipe(char *);
-char *clear_ampersand(char *);
-char *clear_dampersand(char *);
-char *clear_redirect_right(char *);
-char *clear_redirect_left(char *);
-char *clear_redirect_dleft(char *);
-char *clear_redirect_dright(char *);
-char **my_str_to_array_42(char *, char);
-char **my_str_to_array_pipe_42(char *);
+char 	*clear_str(char *);
+char 	*clear_begin(char *);
+char 	*clear_end(char *);
+char 	*clear_space(char *, int);
+char 	*clear_separator(char *);
+char 	*clear_semicolon(char *);
+char 	*clear_begin_semicolon(char *);
+char 	*clear_end_semicolon(char *);
+char 	*clear_pipe(char *);
+char 	*clear_dpipe(char *);
+char 	*clear_ampersand(char *);
+char 	*clear_dampersand(char *);
+char 	*clear_redirect_right(char *);
+char 	*clear_redirect_left(char *);
+char 	*clear_redirect_dleft(char *);
+char 	*clear_redirect_dright(char *);
+char 	**my_str_to_array_42(char *, char);
+char 	**my_str_to_array_pipe_42(char *);
 
 parser_t *parser(char *);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
 
 /* ERROR MANAGMENT */
 
-bool error_management(char *);
+bool 	error_management(char *);
 
 /* HISTORY */
 
-void free_history(env_t *);
-void fill_history(env_t *, char *);
+void 	free_history(env_t *);
+void 	fill_history(env_t *, char *);
 
 /* PROMPT */
 
-char *get_cdir(env_t);
-void prompt(env_t);
+char 	*get_cdir(env_t);
+void 	prompt(env_t);
 
 /* REDIRECTION */
 
-void right_redirection(char *, char **, int *);
-void left_redirection(char *, char **, int *);
+void 	right_redirection(char *, char **, int *);
+void 	left_redirection(char *, char **, int *);
 
 /* PIPE */
 
-void exec_pipe(char **, int *, env_t *, int);
-void exec_all_pipe(p_pipe_t *, env_t *);
+void 	exec_pipe(char **, int *, env_t *, int);
+void 	exec_all_pipe(p_pipe_t *, env_t *);
 
 /* SIG */
 
-int exec_err(char *, pid_t);
-void cd_err(char *);
-void print_status(int);
-void wstatus_handler(int , char *, pid_t , env_t *);
+int 	exec_err(char *, pid_t);
+void 	cd_err(char *);
+void 	print_status(int);
+void 	wstatus_handler(int , char *, pid_t , env_t *);
 
 /* UTILS */
 
-int my_list_size(env_t *);
-int is_alone(char *);
-char **my_list_to_array(env_t *);
-char *get_next_line(int);
+int 	my_list_size(env_t *);
+int 	is_alone(char *);
+char 	**my_list_to_array(env_t *);
+char 	*get_next_line(int);
 
 /* INHIBITORS */
 void	apply_inhibitors(parser_t **);
