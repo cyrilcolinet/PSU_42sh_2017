@@ -66,12 +66,13 @@ static char **get_the_array(char *str, int count)
 {
 	char **new = malloc(sizeof(char *) * (count + 1));
 	int len = 0;
+	int a = 0;
 	int i = 0;
 	int j = 0;
 
 	if (new == NULL)
 		return (NULL);
-	for (int a = 0 ;str[i] != '\0'; a++) {
+	for (a = 0 ;str[i] != '\0'; a++) {
 		while (str[i] == '|')
 			i++;
 		len = get_len(str, i);
