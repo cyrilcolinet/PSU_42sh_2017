@@ -26,6 +26,7 @@
 # include <curses.h>
 # include <term.h>
 # include <pthread.h>
+# include <sys/ioctl.h>
 
 # include "globbing.h"
 # include "my.h"
