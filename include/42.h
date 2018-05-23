@@ -100,6 +100,7 @@ typedef struct env_s {
 int 	is_builtin(char *str);
 void 	call_builtins(int func, char **av, env_t *env);
 void 	exec_btree(char *, env_t *);
+int 	main_shell(char **);
 
 /* ENV */
 

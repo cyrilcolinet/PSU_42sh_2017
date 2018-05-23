@@ -70,13 +70,11 @@ static void is_valid_buffer(char *buffer, env_t *env)
 }
 
 
-int 	main(int ac, char **av, char **av_env)
+int 	main_shell(char **av_env)
 {
 	env_t 		env = init_env(av_env);
 	char 		*buffer = NULL;
 	int		exit_code = 0;
-	(void)av;
-	(void)ac;
 
 	if (*av_env == NULL)
 		return 84;
