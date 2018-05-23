@@ -100,7 +100,7 @@ LIBRARY_DIR		= 	lib/
 
 CC			=	gcc
 
-CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3 -lncurses -lpthread
+CFLAGS			= 	-Wall -Wextra -I $(INCLUDE) -g3 -lncurses
 
 LFLAGS			= 	-L $(LIBRARY_DIR) -lmy
 
