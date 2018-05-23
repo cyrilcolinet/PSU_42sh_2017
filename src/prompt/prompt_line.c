@@ -35,7 +35,7 @@ void prompt(env_t env)
 
 	if (isatty(0) == 1) {
 		my_putstr("[");
-		my_putstr(env.usr_name);
+		my_putstr(env_get_variable(S_USR, &env));
 		my_putstr("@\e[92mMinishell\e[0m ");
 		my_putstr(path);
 		my_putstr("]$ > ");

@@ -11,9 +11,6 @@ static void update_env_pwd(env_t *env, char *cwd)
 {
 	char *current_pwd = env_get_variable(S_PWD, env);
 
-	printf("%s\n", current_pwd);
-
-	env->pwdold_path = current_pwd;
 	my_setenv(env, "OLDPWD", current_pwd, 0);
 	my_setenv(env, "PWD", cwd, 0);
 	env->pwd_path = my_strcat_malloc(NULL, cwd);
@@ -22,16 +19,12 @@ static void update_env_pwd(env_t *env, char *cwd)
 static int my_cd_prev(env_t *env)
 {
 	int ret_ch = 0;
-	char cwd[256];
+	char *path = env_get_variable(S_OLDPWD, env);
 
-	ret_ch = chdir(env->pwdold_path);
-	getcwd(cwd, sizeof(cwd));
-	update_env_pwd(env, cwd);
-	write(1, cwd, my_strlen(cwd));
-	my_putchar('\n');
+	ret_ch = chdir(path);
 	if (ret_ch != 0) {
 		env->exit_code = 1;
-		perror(env->pwdold_path);
+		perror(path);
 		return -1;
 	}
 	return 0;
@@ -40,13 +33,12 @@ static int my_cd_prev(env_t *env)
 static int my_cd_root(env_t *env)
 {
 	int ret_ch = 0;
-	char *root = my_strcat_malloc("/home/", env->usr_name);
+	char *root = env_get_variable(S_HOME, env);
 	char cwd[256];
 
 	ret_ch = chdir(root);
 	getcwd(cwd, sizeof(cwd));
 	update_env_pwd(env, cwd);
-	free(root);
 	return ret_ch;
 }
 

@@ -90,7 +90,6 @@ typedef struct env_s {
 	char		*usr_name;
 	syspath_t	*syspath;
 	char		*pwd_path;
-	char		*pwdold_path;
 	int		exit_code;
 	hist_t		*history;
 	char		*bashrc_path;

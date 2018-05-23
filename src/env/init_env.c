@@ -22,18 +22,13 @@ char *get_env_var(char **av_env, char *var_cmp, int size)
 env_t init_env(char **av_env)
 {
 	env_t env;
-	char *sysenv = get_env_var(av_env, S_BINPATH, 4);
 
 	env.str_env = av_env;
 	env.listenv = init_listenv(av_env);
-	if (sysenv == NULL)
-		env.syspath = init_syspath(my_strdup("PATH="));
-	else
-		env.syspath = init_syspath(get_env_var(av_env, S_BINPATH, 4));
-	env.usr_name = get_env_var(av_env, S_USR, 4);
-	env.pwd_path = get_env_var(av_env, S_PWD, 3);
-	env.pwdold_path = get_env_var(av_env, S_OLDPWD, 6);
-	env.bashrc_path = get_env_var(av_env, S_HOME, 4);
+	env.syspath = init_syspath(env_get_variable(S_BINPATH, &env));
+	env.usr_name = env_get_variable(S_USR, &env);
+	env.pwd_path = env_get_variable(S_PWD, &env);
+	env.bashrc_path = env_get_variable(S_HOME, &env);
 	env.bashrc_path = my_strcat_malloc(env.bashrc_path, "/.bashrc");
 	env.exit_code = 0;
 	env.history = NULL;
