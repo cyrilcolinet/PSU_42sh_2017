@@ -27,13 +27,15 @@
 # include "globbing.h"
 # include "my.h"
 
-# define EXIT_SUCCESS 0
+# ifndef EXIT_SUCCESS
+# define EXIT_SUCCESS 	(0)
+# endif
 
-# define S_PWD "PWD="
-# define S_USR "USER="
-# define S_BINPATH "PATH="
-# define S_OLDPWD "OLDPWD="
-# define S_HOME "HOME="
+# define S_PWD 		("PWD=")
+# define S_USR 		("USER=")
+# define S_BINPATH 	("PATH=")
+# define S_OLDPWD 	("OLDPWD=")
+# define S_HOME 	("HOME=")
 
 typedef struct {
 	char	*string;
@@ -223,8 +225,8 @@ char	*find_variable(env_t *, char *);
 void	apply_local_variables(char ***, env_t *);
 
 /* CTRL CATCHER */
-#define ctrl(x) ((x) & 0x1f)
+# define ctrl(x) ((x) & 0x1f)
 
 void	ctrl_catcher(char);
 
-#endif
+# endif
