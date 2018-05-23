@@ -58,10 +58,11 @@ static char **get_the_array(char *str, int count, char delim)
 	int len = 0;
 	int i = 0;
 	int j = 0;
+	int a = 0;
 
 	if (new == NULL)
 		return (NULL);
-	for (int a = 0 ;str[i] != '\0'; a++) {
+	for (a = 0 ;str[i] != '\0'; a++) {
 		while (str[i] == delim)
 			i++;
 		len = get_len(str, delim, i);
@@ -72,7 +73,7 @@ static char **get_the_array(char *str, int count, char delim)
 		for (j = 0; i < len && str[i] != '\0'; i++)
 			new[a][j++] = str[i];
 	}
-	new[count] = NULL;
+	new[a] = NULL;
 	return (new);
 }
 
