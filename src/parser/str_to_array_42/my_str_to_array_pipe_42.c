@@ -89,7 +89,7 @@ static char **get_the_array(char *str, int count)
 
 char **my_str_to_array_pipe_42(char *str)
 {
-	char **tab = NULL;
+	char **arr = NULL;
 	int count = 0;
 
 	if (str == NULL)
@@ -97,8 +97,8 @@ char **my_str_to_array_pipe_42(char *str)
 	count = str_to_array_count_words(str);
 	if (count <= 1)
 		return (NULL);
-	tab = get_the_array(str, count);
-	if (tab == NULL)
+	arr = get_the_array(str, count);
+	if (arr == NULL)
 		return (NULL);
-	return (tab);
+	return (arr);
 }

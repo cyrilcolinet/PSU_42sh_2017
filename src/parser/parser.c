@@ -43,14 +43,14 @@ static void		append_cmd(parser_t **parser, char *cmd)
 
 parser_t	*parser(char *av)
 {
-	char		**tab;
 	parser_t	*parser = NULL;
+	char 		**arr = NULL;
 
-	tab = my_str_to_array_42(av, ';');
-	for (int i = 0; tab && tab[i]; i++) {
-		tab[i] = clear_str(tab[i]);
-		append_cmd(&parser, tab[i]);
+	arr = my_str_to_array_42(av, ';');
+	for (int i = 0; arr && arr[i]; i++) {
+		arr[i] = clear_str(arr[i]);
+		append_cmd(&parser, arr[i]);
 	}
-	my_freetab(tab);
+	my_freetab(arr);
 	return parser;
 }

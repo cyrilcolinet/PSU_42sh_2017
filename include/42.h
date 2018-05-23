@@ -23,7 +23,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <ncurses.h>
+# include <curses.h>
+# include <term.h>
 # include <pthread.h>
+
 # include "globbing.h"
 # include "my.h"
 
@@ -223,10 +226,5 @@ int	is_a_variable_assign(char **, env_t *);
 void	add_variable_in_shell(env_t *, char **);
 char	*find_variable(env_t *, char *);
 void	apply_local_variables(char ***, env_t *);
-
-/* CTRL CATCHER */
-# define ctrl(x) ((x) & 0x1f)
-
-void	ctrl_catcher(char);
 
 # endif

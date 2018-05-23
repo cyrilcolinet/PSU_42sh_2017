@@ -79,7 +79,7 @@ static char **get_the_array(char *str, int count, char delim)
 
 char **my_str_to_array_42(char *str, char delim)
 {
-	char **tab = NULL;
+	char **arr = NULL;
 	int count = 0;
 
 	if (str == NULL)
@@ -87,8 +87,8 @@ char **my_str_to_array_42(char *str, char delim)
 	count = str_to_array_count_words(str, delim);
 	if (count == 0)
 		return (NULL);
-	tab = get_the_array(str, count, delim);
-	if (tab == NULL)
+	arr = get_the_array(str, count, delim);
+	if (arr == NULL)
 		return (NULL);
-	return (tab);
+	return (arr);
 }

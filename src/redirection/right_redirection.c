@@ -9,16 +9,16 @@
 
 static int	get_redirection_type(char *av, int *canal)
 {
-	redirection_t	tab[] = {
+	redirection_t	arr[] = {
 		{">", 1}, {">>", 2}, {"2>", 1}, {"2>>", 2}, {">&2", 1},
 		{NULL, 0}
 	};
 
-	for (int k = 0; tab[k].string != NULL; k++) {
-		if (my_strcmp(av, tab[k].string) == 0) {
+	for (int k = 0; arr[k].string != NULL; k++) {
+		if (my_strcmp(av, arr[k].string) == 0) {
 			if (av[0] == 2)
 				*canal = 2;
-			return tab[k].type;
+			return arr[k].type;
 		}
 	}
 	return -1;

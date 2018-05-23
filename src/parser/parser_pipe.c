@@ -26,15 +26,16 @@ static void	add_pipe_in_list(p_pipe_t **list, char *p_cmd)
 p_pipe_t	*get_pipe_in_cmd(parser_t **parser, char *cmd)
 {
 	p_pipe_t	*list_pipe = NULL;
-	char		**tab = my_str_to_array_pipe_42(cmd);
+	char		**arr = my_str_to_array_pipe_42(cmd);
 	int		i = 0;
+	(void)parser;
 
-	while (tab && tab[i]) {
-		tab[i] = clear_str(tab[i]);
-		add_pipe_in_list(&list_pipe, tab[i]);
+	while (arr && arr[i]) {
+		arr[i] = clear_str(arr[i]);
+		add_pipe_in_list(&list_pipe, arr[i]);
 		i++;
 	}
-	(void)parser;
-	my_freetab(tab);
+
+	my_freetab(arr);
 	return list_pipe;
 }
