@@ -197,6 +197,7 @@ int my_list_size(env_t *);
 int is_alone(char *);
 char **my_list_to_array(env_t *);
 char *get_next_line(int);
+void free_list_to_str(env_t *);
 
 /* INHIBITORS */
 void	apply_inhibitors(parser_t **);

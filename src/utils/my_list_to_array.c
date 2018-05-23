@@ -7,6 +7,19 @@
 
 #include "42.h"
 
+void free_list_to_str(env_t *env)
+{
+	int	i = 0;
+
+	if (!env->str_env)
+		return;
+	while (env->str_env[i]) {
+		free(env->str_env[i]);
+		i++;
+	}
+	env->str_env = NULL;
+}
+
 char **my_list_to_array(env_t *env)
 {
 	int list_size = my_list_size(env);
