@@ -12,7 +12,7 @@ static void extra_args(int nb_arg, char **av, env_t *env)
 	if (nb_arg == 2) {
 		if (posix_bug(av[1], env) == 0)
 			return;
-		add_env(env, av[1], "");
+		new_environment_entry(av[1], "", env->listenv);
 		return;
 	}
 	if (nb_arg == 1) {
@@ -24,7 +24,6 @@ static void extra_args(int nb_arg, char **av, env_t *env)
 void my_setenv_cmd(env_t *env, char **av)
 {
 	int nb_arg = my_array_size(av);
-	int env_var;
 
 	if (nb_arg != 3) {
 		extra_args(nb_arg, av, env);
@@ -34,11 +33,7 @@ void my_setenv_cmd(env_t *env, char **av)
 	}
 	if (posix_bug(av[1], env) == 0)
 		return;
-	env_var = name_exist(env, av[1]);
-	if (env_var == 0)
-		add_env(env, av[1], av[2]);
-	else
-		change_env(env, av[1], av[2]);
+	change_env(env, av[1], av[2]);
 	update_env(env);
 	update_path(env);
 }

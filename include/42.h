@@ -62,7 +62,8 @@ typedef struct hist_s {
 } hist_t;
 
 typedef struct listenv_s {
-	char 		*line;
+	char 		*var;
+	char 		*content;
 	struct listenv_s *next;
 } listenv_t;
 
@@ -105,17 +106,17 @@ int 	main_shell(char **);
 /* ENV */
 
 listenv_t *init_listenv(char **av_env);
+listenv_t *new_environment_entry(char *, char*, listenv_t *);
 syspath_t *init_syspath(char *syspath);
+char 	*env_get_variable(char *, env_t *);
 env_t 	init_env(char **);
 int 	name_exist(env_t *env, char *name);
 int 	my_unsetenv(env_t *env, char *name);
 int 	my_setenv(env_t *env, char *name, char *value, int overwrite);
 void 	my_env(env_t *env, char **av);
-int 	add_env(env_t *env, char *name, char *value);
 int 	change_env(env_t *env, char *name, char *value);
 int 	posix_bug(char *, env_t *);
 char 	*get_env_var(char **av_env, char *var_cmp, int size);
-void 	add_line(listenv_t **list, char *line);
 void 	free_listenv(env_t *);
 void 	my_setenv_cmd(env_t *env, char **av);
 void 	my_unsetenv_cmd(env_t *env, char **av);
@@ -203,6 +204,10 @@ int 	my_list_size(env_t *);
 int 	is_alone(char *);
 char 	**my_list_to_array(env_t *);
 char 	*get_next_line(int);
+char 	*replace_char(char *, char, char);
+char 	*path_join(char *, char *);
+char 	*join_next_values(char **);
+char 	*realloc_char(char *, unsigned int);
 
 /* INHIBITORS */
 void	apply_inhibitors(parser_t **);

@@ -62,6 +62,7 @@ SRC_FILES		= 	main.c							\
 				utils/my_list_size.c 					\
 				utils/is_alone.c 					\
 				utils/get_next_line.c 					\
+				utils/parsing.c						\
 				sig/wstatus_handler.c 					\
 				sig/error_messages.c 					\
 				sig/ctrl_catcher.c					\

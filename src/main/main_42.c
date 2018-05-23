@@ -80,7 +80,6 @@ int 	main_shell(char **av_env)
 		return 84;
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
-//	ctrl_catcher(NULL);
 	while ((buffer = get_next_line(0))) {
 		if (my_strlen(buffer) > 0)
 			is_valid_buffer(buffer, &env);

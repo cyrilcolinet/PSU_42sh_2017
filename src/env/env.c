@@ -7,16 +7,29 @@
 
 #include "42.h"
 
+char *env_get_variable(char *variable, env_t *env)
+{
+	listenv_t *tmp = env->listenv;
+
+	while (tmp->next != NULL) {
+		if (my_strequ(tmp->next->var, variable))
+			return (tmp->next->content);
+		tmp = tmp->next;
+	}
+
+	return ("");
+}
+
 void my_env(env_t *env, char **av)
 {
-	int i = 0;
-	listenv_t *temp = env->listenv;
-
+	listenv_t *tmp = env->listenv;
 	(void)av;
-	while (temp) {
-		my_putstr(temp->line);
-		temp = temp->next;
-		my_putchar('\n');
-		i++;
+
+	while (tmp->next != NULL) {
+		my_putstr(tmp->next->var);
+		my_putstr("=");
+		my_putstr(tmp->next->content);
+		my_putstr("\n");
+		tmp = tmp->next;
 	}
 }

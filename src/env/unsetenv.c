@@ -7,38 +7,35 @@
 
 #include "42.h"
 
-static int delete_env_name(listenv_t **head, char *name)
+static void env_del_variable(char *var, env_t *env)
 {
-	int len = my_strlen(name);
-	listenv_t *listenv_tmp = *head;
-	listenv_t *listenv_prev;
+	listenv_t *tmp = env->listenv;
+	listenv_t *tmp2 = NULL;
 
-	if (listenv_tmp && my_strncmp(listenv_tmp->line, name, len) == 0) {
-		*head = listenv_tmp->next;
-		return 0;
-	}
-	while (listenv_tmp) {
-		if (my_strncmp(listenv_tmp->line, name, len) == 0) {
-			listenv_prev->next = listenv_tmp->next;
-			return 0;
+	while (tmp->next != NULL) {
+		if (my_strequ(tmp->next->var, var)) {
+			free(tmp->next->var);
+			free(tmp->next->content);
+			tmp2 = tmp->next;
+			tmp->next = tmp->next->next;
+			free(tmp2);
+			return;
 		}
-		listenv_prev = listenv_tmp;
-		listenv_tmp = listenv_tmp->next;
+		tmp = tmp->next;
 	}
-	return 0;
 }
 
 int my_unsetenv(env_t *env, char *name)
 {
 	int error = 0;
 
-	if (name_exist(env, name) == 0)
-		return 1;
-	error = delete_env_name(&env->listenv, name);
-	update_env(env);
 	if (error == -1) {
 		write(1, "unsetenv: Too few arguments.\n", 29);
 		env->exit_code = 1;
+		return (-1);
 	}
-	return error;
+
+	env_del_variable(name, env);
+
+	return (error);
 }

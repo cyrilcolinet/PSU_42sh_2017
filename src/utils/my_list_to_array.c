@@ -7,19 +7,26 @@
 
 #include "42.h"
 
-char **my_list_to_array(env_t *env)
+char **my_list_to_array(env_t *env_s)
 {
-	int list_size = my_list_size(env);
-	char **array = malloc(sizeof(char *) * (list_size + 1));
-	int i = 0;
-	listenv_t *listenv_temp = env->listenv;
+	char **env = NULL;
+	int count = 0, i = 0;
+	char *data = NULL;
+	listenv_t *tmp = env_s->listenv;
 
-	while (listenv_temp) {
-		array[i] = NULL;
-		array[i] = my_strcat_malloc(array[i], listenv_temp->line);
-		listenv_temp = listenv_temp->next;
-		i++;
+	while (tmp->next != NULL)
+		tmp = tmp->next, count++;
+	if (count == 0)
+		return (NULL);
+	env = malloc(sizeof(*env) * (count + 1));
+	tmp = env_s->listenv;
+	while (tmp->next) {
+		data = my_strjoin_clear(my_strjoin_char(tmp->next->var, \
+		'='), tmp->next->content, 0);
+		env[i++] = my_strdup(data);
+		free(data);
+		tmp = tmp->next;
 	}
-	array[i] = NULL;
-	return array;
+	env[count] = NULL;
+	return (env);
 }

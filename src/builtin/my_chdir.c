@@ -5,24 +5,15 @@
 ** 42
 */
 
-#include "42.h"
+# include "42.h"
 
 static void update_env_pwd(env_t *env, char *cwd)
 {
-	listenv_t *listenv_tmp = env->listenv;
+	char *current_pwd = env_get_variable(S_PWD, env);
 
-	while (listenv_tmp) {
-		if (my_strncmp(listenv_tmp->line, S_PWD, 3) == 0)
-			break;
-		listenv_tmp = listenv_tmp->next;
-	}
-	if (listenv_tmp) {
-		my_setenv(env, "OLDPWD", &listenv_tmp->line[4],
-			name_exist(env, "OLDPWD"));
-		env->pwdold_path = NULL;
-		env->pwdold_path = &listenv_tmp->line[4];
-	}
-	my_setenv(env, "PWD", cwd, name_exist(env, "PWD"));
+	env->pwdold_path = current_pwd;
+	my_setenv(env, "OLDPWD", current_pwd, 0);
+	my_setenv(env, "PWD", cwd, 0);
 	env->pwd_path = my_strcat_malloc(NULL, cwd);
 }
 
@@ -50,7 +41,6 @@ static int my_cd_root(env_t *env)
 	char *root = my_strcat_malloc("/home/", env->usr_name);
 	char cwd[256];
 
-	printf("cd root\n");
 	ret_ch = chdir(root);
 	getcwd(cwd, sizeof(cwd));
 	update_env_pwd(env, cwd);
