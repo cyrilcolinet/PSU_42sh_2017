@@ -31,6 +31,7 @@ void fill_environment(listenv_t *env_s, char **env)
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 
+		printf("%s\n", *env);
 		arr = my_strtok(*env, '=');
 		var = my_strdup(arr[0]);
 		content = join_next_values(arr);
