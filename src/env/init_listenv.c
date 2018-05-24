@@ -32,13 +32,16 @@ void fill_environment(listenv_t *env_s, char **env)
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 
+		printf("%s\n", env[i]);
 		arr = my_strtok(env[i], '=');
 		var = my_strdup(arr[0]);
 		content = join_next_values(arr);
 		tmp->next = new_environment_entry(var, content, tmp->next);
 		my_freetab(arr);
-		if (tmp->next == NULL)
+		if (tmp->next == NULL) {
+			my_putstr("(null)");
 			return;
+		}
 	}
 }
 
