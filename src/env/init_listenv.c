@@ -11,7 +11,7 @@ listenv_t *new_environment_entry(char *var, char *content, listenv_t *env)
 {
 	env = malloc(sizeof(env_t));
 
-	if (env == NULL || var == NULL || content == NULL)
+	if (env == NULL || var == NULL)
 		return (NULL);
 
 	env->var = var;
