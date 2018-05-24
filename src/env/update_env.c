@@ -11,8 +11,7 @@ void update_path(env_t *env)
 {
 	char **str_tmp = my_list_to_array(env);
 
-	env->syspath = init_syspath(get_env_var(str_tmp, S_BINPATH,
-							4));
+	env->syspath = init_syspath(env_get_variable(S_BINPATH, env));
 	free(str_tmp);
 }
 
@@ -21,6 +20,6 @@ void update_env(env_t *env)
 	char **str_tmp = my_list_to_array(env);
 
 	env->usr_name = NULL;
-	env->usr_name = get_env_var(str_tmp, S_USR, 4);
+	env->usr_name = env_get_variable(S_USR, env);
 	free(str_tmp);
 }

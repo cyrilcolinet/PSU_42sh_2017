@@ -118,7 +118,6 @@ int 	my_setenv(env_t *env, char *name, char *value, int overwrite);
 void 	my_env(env_t *env, char **av);
 int 	change_env(env_t *env, char *name, char *value);
 int 	posix_bug(char *, env_t *);
-char 	*get_env_var(char **av_env, char *var_cmp, int size);
 void 	free_listenv(env_t *);
 void 	my_setenv_cmd(env_t *env, char **av);
 void 	my_unsetenv_cmd(env_t *env, char **av);

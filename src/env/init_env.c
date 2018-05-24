@@ -7,18 +7,6 @@
 
 #include "42.h"
 
-char *get_env_var(char **av_env, char *var_cmp, int size)
-{
-	int i = 0;
-
-	while (av_env[i]) {
-		if (my_strncmp(av_env[i], var_cmp, size) == 0)
-			return &av_env[i][size + 1];
-		i++;
-	}
-	return NULL;
-}
-
 env_t init_env(char **av_env)
 {
 	env_t env;
