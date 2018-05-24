@@ -63,8 +63,8 @@ int 	main_shell(char **av_env)
 
 	if (*av_env == NULL)
 		return 84;
-	if (!can_apply_keybinding(&env))
-		return (84);
+//	if (!can_apply_keybinding(&env))
+//		return (84);
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = get_next_line(0))) {
