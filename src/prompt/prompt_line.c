@@ -33,6 +33,8 @@ void prompt(env_t env)
 {
 	char *path = get_cdir(env);
 
+	my_putstr(env_get_variable("PATH", &env));
+
 	if (isatty(0) == 1) {
 		my_putstr("[");
 		my_putstr(env_get_variable(S_USR, &env));

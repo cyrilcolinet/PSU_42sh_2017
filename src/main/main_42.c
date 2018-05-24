@@ -61,8 +61,6 @@ int 	main_shell(char **av_env)
 	char 		*buffer = NULL;
 	int		exit_code = 0;
 
-	if (*av_env == NULL)
-		return 84;
 //	if (!can_apply_keybinding(&env))
 //		return (84);
 	prompt(env);
