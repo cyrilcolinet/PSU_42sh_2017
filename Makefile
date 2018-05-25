@@ -138,17 +138,17 @@ tests_run:		fclean library $(UNITS)
 			./$(UNITS)
 
 $(UNITS):		$(BUILD_TESTS_DIR) $(BUILD_TESTS_OBJ)
-			$(CC) $(CFLAGS)   -o $(UNITS) $(BUILD_TESTS_OBJ) --coverage $(UNITS_LFLAGS)
+			$(CC) $(CFLAGS) -lgcov --coverage   -o $(UNITS) $(BUILD_TESTS_OBJ) --coverage $(UNITS_LFLAGS)
 
 $(BUILD_TESTS_DIR):
 			mkdir -p $(BUILD_TESTS_DIR)$(TEST_DIR)
 			$(foreach SUB_DIR, $(BUILD_SD), $(shell mkdir -p $(BUILD_TESTS_DIR)$(SUB_DIR)))
 
 $(BUILD_TESTS_DIR)%.o:	$(SRC_DIR)%.c
-			$(CC) $(CFLAGS) --coverage   -c -o $@ $<
+			$(CC) $(CFLAGS) -lgcov --coverage   -c -o $@ $<
 
 $(BUILD_TESTS_DIR)%.o:	$(TEST_DIR)%.c
-			$(CC) $(CFLAGS) --coverage   -c -o $@ $<
+			$(CC) $(CFLAGS) -lgcov --coverage   -c -o $@ $<
 
 clean:
 			rm -rf $(BUILD_DIR)
