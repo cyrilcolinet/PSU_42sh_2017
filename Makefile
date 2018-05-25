@@ -89,16 +89,7 @@ SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 TESTS_FILES		=	$(filter-out main.c, $(SRC_FILES))
 
-TESTS_FILES		+=	tests/test_builtin.c 			\
-				tests/test_builtin2.c 			\
-				tests/test_setenv.c 			\
-				tests/test_unsetenv.c 			\
-				tests/test_path.c 			\
-				tests/test_call.c 			\
-				tests/test_access.c 			\
-				tests/test_exec.c 			\
-				tests/test_prompt.c 			\
-				tests/test_error.c
+TESTS_FILES		+=	test_builtin.c
 
 INCLUDE			= 	include/
 

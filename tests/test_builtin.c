@@ -14,7 +14,7 @@ Test(minishell, test0, .exit_code = 0)
 	char *arg[] = {"cd", "..  ", NULL};
 	env_t env = init_env(av_env);
 
-	my_cd(arg, &env);
+	my_cd(&env, arg);
 }
 
 Test(minishell, test1, .exit_code = 0)
@@ -23,7 +23,7 @@ Test(minishell, test1, .exit_code = 0)
 	char *arg[] = {"cd", NULL};
 	env_t env = init_env(av_env);
 
-	my_cd(arg, &env);
+	my_cd(&env, arg);
 }
 
 Test(minishell, test2, .exit_code = 0)
@@ -32,7 +32,7 @@ Test(minishell, test2, .exit_code = 0)
 	char *arg[] = {"cd", "~", NULL};
 	env_t env = init_env(av_env);
 
-	my_cd(arg, &env);
+	my_cd(&env, arg);
 }
 
 Test(minishell, test3, .exit_code = 0)
@@ -41,7 +41,7 @@ Test(minishell, test3, .exit_code = 0)
 	char *arg[] = {"cd", "-", NULL};
 	env_t env = init_env(av_env);
 
-	my_cd(arg, &env);
+	my_cd(&env, arg);
 }
 
 Test(minishell, test4)
@@ -51,6 +51,6 @@ Test(minishell, test4)
 	env_t env = init_env(av_env);
 	int ret = 0;
 
-	ret = my_cd(arg, &env);
+	my_cd(&env, arg);
 	cr_assert_eq(ret, -1);
 }
