@@ -142,16 +142,16 @@ TESTS=
 
 [915]
 NAME="Execute a directory (with exec perms)"
-SETUP="export TERM=xterm ; PATH='/bin:/usr/bin' ; chmod +x ../../src"
-CLEAN="chmod 755 ../../src"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin' ; mkdir dir ; chmod +x dir"
+CLEAN="rm -rf dir"
 TESTS=
-  echo "../../src"
+  echo "./dir"
 [915-END]
 
 [916]
 NAME="Execute a directory (without exec perms)"
-SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
-CLEAN=""
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin' ; mkdir dir"
+CLEAN="rm -rf dir"
 TESTS=
-  echo "../../src"
+  echo "./dir"
 [916-END]
