@@ -17,7 +17,6 @@ static char *clear_end_semicolon_space(char *s, int nb)
 	for (int i = 0; i < len; i++)
 		str[i] = s[i];
 	str[len] = '\0';
-	free(s);
 	return (str);
 }
 
@@ -37,14 +36,16 @@ static int is_the_end(char *s, int offset)
 char *clear_end_semicolon(char *s)
 {
 	int nb = 0;
+	char *str = NULL;
 
 	if (s == NULL)
 		return (NULL);
 	for (int i = nb; s[i] != '\0'; i++) {
 		if ((s[i] == ' ' || s[i] == ';')
 		&& (nb = is_the_end(s, i)) > 0) {
-			s = clear_end_semicolon_space(s, nb);
-			return (s);
+			str = clear_end_semicolon_space(s, nb);
+			free(s);
+			return (str);
 		}
 	}
 	return (s);
