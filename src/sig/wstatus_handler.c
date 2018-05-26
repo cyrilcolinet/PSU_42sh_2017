@@ -19,15 +19,6 @@ static void print_stderr(char *msg, int wstatus)
 	my_putchar('\n');
 }
 
-static void print_compatible(int termsig, char *bin_cmd)
-{
-	if (termsig == SIGILL) {
-		write(1, bin_cmd, my_strlen(bin_cmd));
-		print_stderr(": Exec format error. Wrong Architecture.\n",
-		termsig);
-	}
-}
-
 void print_status(int termsig, int wstatus)
 {
 	char *sig_str = strsignal(termsig);
@@ -50,7 +41,6 @@ void wstatus_handler(pid_t pid, env_t *env)
 		termsig = WTERMSIG(status);
 		if (termsig != 0) {
 			print_status(termsig, status);
-			//print_compatible(termsig, bin_cmd);
 			env->exit_code = (128 + termsig);
 		}
 	}
