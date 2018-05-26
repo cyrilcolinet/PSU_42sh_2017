@@ -28,7 +28,7 @@ int exec_err(char *cmd, env_t *env)
 	} else if (errno == ENOEXEC) {
 		my_putstr_err(cmd);
 		my_putstr_err(": Exec format error. ");
-		my_putstr_err("Binary file not executable.\n");
+		my_putstr_err("Wrong Architecture.\n");
 	}
 
 	env->exit_code = 1;
