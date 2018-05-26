@@ -195,7 +195,7 @@ void 	exec_all_pipe(p_pipe_t *, env_t *);
 
 /* SIG */
 
-int 	exec_err(char *, pid_t, env_t *);
+int 	exec_err(char *, env_t *);
 void 	cd_err(char *);
 void 	print_status(int, int);
 void 	wstatus_handler(pid_t , env_t *);

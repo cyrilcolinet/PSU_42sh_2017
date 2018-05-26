@@ -41,7 +41,6 @@ void wstatus_handler(pid_t pid, env_t *env)
 		termsig = WTERMSIG(status);
 		if (termsig != 0) {
 			print_status(termsig, status);
-			//print_compatible(termsig, bin_cmd);
 			env->exit_code = (128 + termsig);
 		}
 	}

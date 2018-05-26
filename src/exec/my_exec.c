@@ -26,7 +26,7 @@ static void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
 	left_redirection(bin_cmd, av, redir);
 	ret = execve(bin_cmd, av, env->str_env);
 	if (ret < 0)
-		exec_err(bin_cmd, getpid(), env);
+		exec_err(bin_cmd, env);
 }
 
 int exec_prog(char **av, env_t *env, int cmd_access)

@@ -20,25 +20,17 @@ void cd_err(char *cmd)
 	}
 }
 
-int exec_err(char *cmd, pid_t pid, env_t *env)
+int exec_err(char *cmd, env_t *env)
 {
-	char cwd[256];
-	char *tmp = NULL;
-	char *path_cmd = NULL;
-
-	getcwd(cwd, sizeof(cwd));
-	tmp = my_strcat_malloc(cwd, "/");
-	path_cmd = my_strcat_malloc(tmp, &cmd[2]);
-	my_putstr(cmd);
-	if (is_file(path_cmd) == -1) {
-		my_putstr(": Permission denied.\n");
-		//kill(pid, SIGKILL);
-	} else {
+	if (errno == EACCES) {
+		my_putstr_err(cmd);
+		my_putstr_err(": Permission denied.\n");
+	} else if (errno == ENOEXEC) {
+		my_putstr_err(cmd);
 		my_putstr_err(": Exec format error. ");
 		my_putstr_err("Binary file not executable.\n");
 	}
+
 	env->exit_code = 1;
-	free(tmp);
-	free(path_cmd);
 	return 0;
 }
