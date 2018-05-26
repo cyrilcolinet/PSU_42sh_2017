@@ -4,6 +4,7 @@
 ** File description:
 ** var
 */
+
 #include "42.h"
 
 char	*find_variable(env_t *env, char *name)

@@ -4,6 +4,7 @@
 ** File description:
 ** var
 */
+
 #include "42.h"
 
 int	is_a_variable_assign(char **cmd, env_t *env)
