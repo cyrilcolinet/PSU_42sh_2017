@@ -7,7 +7,7 @@
 
 #include "42.h"
 
-void exit_success(env_t *env, char **av)
+void exit_success(env_t *env, char **av, parser_t *parser)
 {
 	int status = 0;
 	int len = my_array_size(av);
@@ -15,6 +15,7 @@ void exit_success(env_t *env, char **av)
 	if (len == 2) {
 		status = my_atoi(av[1]);
 		my_freetab(av);
+		free_struct_parser(parser);
 		exit(status);
 	} else if (len == 1) {
 		status = env->exit_code;
@@ -22,6 +23,7 @@ void exit_success(env_t *env, char **av)
 			free_env(env);
 		}
 		my_freetab(av);
+		free_struct_parser(parser);
 		exit(status);
 	} else if (len > 2)
 		my_putstr_err("exit: Expression Syntax.\n");

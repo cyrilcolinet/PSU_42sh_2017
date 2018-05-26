@@ -50,7 +50,7 @@ int exec_prog(char **av, env_t *env, int cmd_access)
 	return 0;
 }
 
-void exec_cmdline(char *line, env_t *env)
+void exec_cmdline(char *line, env_t *env, parser_t *parser)
 {
 	char **av = my_str_to_array_42(line, ' ');
 	int func_built = -1;
@@ -64,7 +64,7 @@ void exec_cmdline(char *line, env_t *env)
 	av = apply_local_variables(av, env);
 	func_built = is_builtin(av[0]);
 	if (func_built >= 0)
-		call_builtins(func_built, av, env);
+		call_builtins(func_built, av, env, parser);
 	else {
 		exec_prog(av, env, cmd_access);
 	}

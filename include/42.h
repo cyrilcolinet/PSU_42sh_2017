@@ -102,7 +102,7 @@ typedef struct env_s {
 } env_t;
 
 int 	is_builtin(char *str);
-void 	call_builtins(int func, char **av, env_t *env);
+void 	call_builtins(int func, char **av, env_t *env, parser_t *parser);
 void 	exec_btree(char *, env_t *);
 int 	main_shell(char **);
 
@@ -136,11 +136,11 @@ int 	is_file(char *);
 
 int 	exec_prog(char **av, env_t *env, int cmd_access);
 char 	*get_path(env_t *env, char *cmd, int *cmd_access);
-void 	exec_cmdline(char *line, env_t *env);
+void 	exec_cmdline(char *line, env_t *env, parser_t *parser);
 
 /* EXIT */
 
-void 	exit_success(env_t *, char **);
+void 	exit_success(env_t *, char **, parser_t *);
 
 /* ECHO */
 void 	my_echo(env_t *, char **);
@@ -168,6 +168,7 @@ char 	**my_str_to_array_pipe_42(char *);
 
 parser_t *parser(char *);
 p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
+void	free_struct_parser(parser_t *parser);
 
 /* ERROR MANAGMENT */
 

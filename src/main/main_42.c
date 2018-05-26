@@ -7,7 +7,7 @@
 
 #include "42.h"
 
-static void free_struct_parser(parser_t *parser)
+void free_struct_parser(parser_t *parser)
 {
 	parser_t *tmp = NULL;
 	p_pipe_t *tmpipe = NULL;
@@ -36,7 +36,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
-			exec_cmdline(tmp->full_cmd, env);
+			exec_cmdline(tmp->full_cmd, env, b_tree);
 		}
 		tmp = tmp->next;
 	}
