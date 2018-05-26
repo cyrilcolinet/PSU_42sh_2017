@@ -27,6 +27,7 @@
 # include <term.h>
 # include <pthread.h>
 # include <sys/ioctl.h>
+# include <errno.h>
 
 # include "jobs.h"
 # include "globbing.h"

@@ -66,7 +66,6 @@ void exec_cmdline(char *line, env_t *env)
 	if (func_built >= 0)
 		call_builtins(func_built, av, env);
 	else {
-		env->exit_code = 0;
 		exec_prog(av, env, cmd_access);
 	}
 	my_freetab(av);

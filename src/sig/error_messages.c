@@ -29,10 +29,13 @@ int exec_err(char *cmd, pid_t pid, env_t *env)
 	getcwd(cwd, sizeof(cwd));
 	tmp = my_strcat_malloc(cwd, "/");
 	path_cmd = my_strcat_malloc(tmp, &cmd[2]);
+	my_putstr(cmd);
 	if (is_file(path_cmd) == -1) {
-		my_putstr(cmd);
 		my_putstr(": Permission denied.\n");
 		//kill(pid, SIGKILL);
+	} else {
+		my_putstr_err(": Exec format error. ");
+		my_putstr_err("Binary file not executable.\n");
 	}
 	env->exit_code = 1;
 	free(tmp);
