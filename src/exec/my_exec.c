@@ -25,14 +25,13 @@ static void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
 	right_redirection(bin_cmd, av, redir);
 	left_redirection(bin_cmd, av, redir);
 	ret = execve(bin_cmd, av, env->str_env);
-	if (ret == -1)
-		exec_err(bin_cmd, getpid());
+	if (ret < 0)
+		exec_err(bin_cmd, getpid(), env);
 }
 
 int exec_prog(char **av, env_t *env, int cmd_access)
 {
 	pid_t pid;
-	int status = 0;
 	char *bin_cmd = NULL;
 	int redir = 0;
 
@@ -41,12 +40,10 @@ int exec_prog(char **av, env_t *env, int cmd_access)
 	if (bin_cmd == NULL)
 		return -1;
 	pid = fork();
-	if (pid == 0) {
+	if (pid == 0)
 		exec_child(bin_cmd, av, &redir, env);
-	} else {
-		waitpid(pid, &status, WUNTRACED | WCONTINUED);
-		wstatus_handler(status, bin_cmd, getpid(), env);
-	}
+	else
+		wstatus_handler(pid, env);
 	free_protect(bin_cmd, env, cmd_access);
 	if (redir != 0)
 		close(redir);

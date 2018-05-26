@@ -20,7 +20,7 @@ void cd_err(char *cmd)
 	}
 }
 
-int exec_err(char *cmd, pid_t pid)
+int exec_err(char *cmd, pid_t pid, env_t *env)
 {
 	char cwd[256];
 	char *tmp = NULL;
@@ -30,10 +30,11 @@ int exec_err(char *cmd, pid_t pid)
 	tmp = my_strcat_malloc(cwd, "/");
 	path_cmd = my_strcat_malloc(tmp, &cmd[2]);
 	if (is_file(path_cmd) == -1) {
-		my_putstr_err(cmd);
-		my_putstr_err(": Permission denied.\n");
-		kill(pid, SIGKILL);
+		my_putstr(cmd);
+		my_putstr(": Permission denied.\n");
+		//kill(pid, SIGKILL);
 	}
+	env->exit_code = 1;
 	free(tmp);
 	free(path_cmd);
 	return 0;

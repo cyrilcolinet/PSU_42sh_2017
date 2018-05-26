@@ -7,17 +7,16 @@
 
 #include "42.h"
 
-static void print_stderr(char *msg, int termsig)
+static void print_stderr(char *msg, int wstatus)
 {
 	int err = 0;
 
 	err = write(1, msg, my_strlen(msg));
 	if (err == -1)
 		perror(msg);
-	if (WCOREDUMP(termsig))
-		write(1, " (core dumped)\n", 16);
-	else
-		my_putchar('\n');
+	if (WCOREDUMP(wstatus))
+		write(1, " (core dumped)", 14);
+	my_putchar('\n');
 }
 
 static void print_compatible(int termsig, char *bin_cmd)
@@ -29,41 +28,32 @@ static void print_compatible(int termsig, char *bin_cmd)
 	}
 }
 
-void print_status(int termsig)
+void print_status(int termsig, int wstatus)
 {
-	switch (termsig) {
-	case SIGHUP:
-		print_stderr("Hangup (killed)\n", termsig);
-		break;
-	case SIGABRT:
-		print_stderr("Aborted", termsig);
-		break;
-	case SIGFPE:
-		print_stderr("Floating exception", termsig);
-		break;
-	case SIGSEGV:
-		print_stderr("Segmentation fault", termsig);
-		break;
-	case SIGPIPE:
-		print_stderr("Sigpipe (killed)\n", termsig);
-		break;
-	case SIGBUS:
-		print_stderr("Bus error", termsig);
-		break;
-	}
+	char *sig_str = strsignal(termsig);
+
+	if (my_strequ(sig_str, "Floating point exception"))
+		sig_str = "Floating exception";
+
+	print_stderr(sig_str, wstatus);
 }
 
-void wstatus_handler(int wstatus, char *bin_cmd, pid_t pid, env_t *env)
+void wstatus_handler(pid_t pid, env_t *env)
 {
+	int wait_ret = -1;
+	int status = 0;
 	int termsig = 0;
 
-	(void)pid;
-	if (!WIFEXITED(wstatus)) {
-		if (WIFSIGNALED(wstatus)) {
-			termsig = WTERMSIG(wstatus);
-			print_status(termsig);
-			print_compatible(termsig, bin_cmd);
+	wait_ret = waitpid(pid, &status, WUNTRACED | WCONTINUED);
+
+	if (WIFSIGNALED(status) && !WIFEXITED(status)) {
+		termsig = WTERMSIG(status);
+		if (termsig != 0) {
+			print_status(termsig, status);
+			//print_compatible(termsig, bin_cmd);
 			env->exit_code = (128 + termsig);
 		}
 	}
+
+	kill(wait_ret, SIGKILL);
 }

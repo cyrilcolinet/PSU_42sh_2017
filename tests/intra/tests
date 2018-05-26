@@ -131,3 +131,27 @@ CLEAN=""
 TESTS=
   echo "./my_floating_exp"
 [913-END]
+
+[914]
+NAME="Launch incompatible binary"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "./incompatible"
+[914-END]
+
+[915]
+NAME="Execute a directory (with exec perms)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin' ; chmod +x ../../src"
+CLEAN="chmod 755 ../../src"
+TESTS=
+  echo "../../src"
+[915-END]
+
+[916]
+NAME="Execute a directory (without exec perms)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "../../src"
+[916-END]
