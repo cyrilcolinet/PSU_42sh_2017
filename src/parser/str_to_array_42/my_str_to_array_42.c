@@ -57,12 +57,11 @@ static char **get_the_array(char *str, int count, char delim)
 	char **new = malloc(sizeof(char *) * (count + 1));
 	int len = 0;
 	int i = 0;
-	int j = 0;
 	int a = 0;
 
 	if (new == NULL)
 		return (NULL);
-	for (a = 0 ;str[i] != '\0'; a++) {
+	for (a = 0; str[i] != '\0'; a++) {
 		while (str[i] == delim)
 			i++;
 		len = get_len(str, delim, i);
@@ -70,7 +69,7 @@ static char **get_the_array(char *str, int count, char delim)
 		if (new[a] == NULL)
 			return (NULL);
 		len += i;
-		for (j = 0; i < len && str[i] != '\0'; i++)
+		for (int j = 0; i < len && str[i] != '\0'; i++)
 			new[a][j++] = str[i];
 	}
 	new[a] = NULL;

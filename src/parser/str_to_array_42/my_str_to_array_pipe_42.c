@@ -68,7 +68,6 @@ static char **get_the_array(char *str, int count)
 	int len = 0;
 	int a = 0;
 	int i = 0;
-	int j = 0;
 
 	if (new == NULL)
 		return (NULL);
@@ -80,7 +79,7 @@ static char **get_the_array(char *str, int count)
 		if (new[a] == NULL)
 			return (NULL);
 		len += i;
-		for (j = 0; i < len && str[i] != '\0'; i++)
+		for (int j = 0; i < len && str[i] != '\0'; i++)
 			new[a][j++] = str[i];
 	}
 	new[count] = NULL;

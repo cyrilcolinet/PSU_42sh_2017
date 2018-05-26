@@ -11,7 +11,7 @@ bool search_keys(env_t *env)
 {
 	int i = 0;
 	char *arr[] = { "kcuu1", "kcuf1", "kcub1", "kcud1", "civis",
- 		"cnorm", "u7", "el", "kend", "home", "clear", "ed", NULL };
+		"cnorm", "u7", "el", "kend", "home", "clear", "ed", NULL };
 
 	for (i = 0; arr[i]; i++);
 	env->keymap = malloc(sizeof(char *) * (i + 2));
