@@ -52,6 +52,8 @@ char	*get_variable_value(char *cmd)
 {
 	int	i = 0;
 
+	if (cmd && cmd[i])
+		i++;
 	while (cmd && cmd[i] && cmd[i - 1] != '=')
 		i++;
 	return strdup(&cmd[i]);
