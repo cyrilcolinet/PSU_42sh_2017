@@ -170,3 +170,14 @@ TESTS=
   echo "printenv OUI"
   echo "unset OUI"
 [917-END]
+
+[918]
+NAME="Empty environment"
+SETUP="/usr/bin/env > .lstenv ; while read varenv ; do unset $varenv ; done < <(/bin/cat .lstenv | /usr/bin/cut -f1 -d=) ; export PATH=/bin:/usr/bin ; export _=ls ; export LS_COLORS=RID ; export MYBG=4 ; export LVL=4 ; export NOTE=2"
+CLEAN="while read varenv ; do export "$varenv" 2>/dev/null ; done  < <(/bin/cat .lstenv) ; /bin/rm -f .lstenv"
+TESTS=
+  echo 'env'
+  echo 'ls -l'
+  echo 'cd'
+  echo 'cd -'
+[918-END]

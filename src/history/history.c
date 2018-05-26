@@ -52,11 +52,15 @@ void free_history(env_t *env)
 void fill_history(env_t *env, char *buffer)
 {
 	int res = 0;
+	int fd = open(".42sh_history", O_CREAT | O_APPEND | O_RDWR, 0644);
 
-	if (buffer == NULL)
+	if (buffer == NULL || fd < 0)
 		return;
 
 	res = add_command(env, buffer);
 	if (res < 0)
 		write(2, "Error ocurred in fill_history.\n", 31);
+	write(fd, buffer, my_strlen(buffer));
+	write(fd, "\n", 1);
+	close(fd);
 }
