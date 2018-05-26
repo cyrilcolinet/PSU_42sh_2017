@@ -155,3 +155,18 @@ CLEAN="rm -rf dir"
 TESTS=
   echo "./dir"
 [916-END]
+
+[917]
+NAME="Local variables not in env"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set OUI='non'"
+  echo "echo \$OUI"
+  echo "unset OUI"
+  echo "set BLABLABLA='peut-etre'"
+  echo "echo \$BLABLABLA"
+  echo "set BLABLABLA=test"
+  echo "printenv OUI"
+  echo "unset OUI"
+[917-END]
