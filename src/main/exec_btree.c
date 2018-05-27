@@ -47,29 +47,28 @@ static void exec_line(char **line, env_t *env, parser_t *b_tree)
 	}
 }
 
+static void exec_split_line(char *str, env_t *env, parser_t* b_tree)
+{
+	env->line_sep = split_line_separator(str);
+	for (int i = 0; env->line_sep[i] != NULL; i++) {
+		env->line = str_to_tab_separator(env->line_sep[i]);
+		exec_line(env->line, env, b_tree);
+		my_freetab(env->line);
+		if (env->exit_code == 0)
+			break;
+	}
+	my_freetab(env->line_sep);
+}
+
 void	exec_all_pipes(parser_t *cmd, env_t *env, parser_t *b_tree)
 {
 	p_pipe_t *tmp = cmd->pipe_in_cmd;
 
 	while (tmp) {
 		env->pipe_next = tmp->next != NULL ? 1 : 0;
-		exec_cmdline(tmp->pipe_cmd, env, b_tree);
+		exec_split_line(tmp->pipe_cmd, env, b_tree);
 		tmp = tmp->next;
 	}
-}
-
-static void exec_split_line(env_t *env, parser_t* b_tree, parser_t *tmp)
-{
-	env->line_sep = split_line_separator(tmp->full_cmd);
-	for (int i = 0; env->line_sep[i] != NULL; i++) {
-		env->line = str_to_tab_separator(env->line_sep[i]);
-		if (tmp->pipe_in_cmd == NULL)
-			exec_line(env->line, env, b_tree);
-		my_freetab(env->line);
-		if (env->exit_code == 0)
-			break;
-	}
-	my_freetab(env->line_sep);
 }
 
 void exec_btree(char *line_cmd, env_t *env)
@@ -87,7 +86,7 @@ void exec_btree(char *line_cmd, env_t *env)
 			tmp = tmp->next;
 			continue;
 		}
-		exec_split_line(env, b_tree, tmp);
+		exec_split_line(tmp->full_cmd, env, b_tree);
 		tmp = tmp->next;
 	}
 	free_struct_parser(b_tree);
