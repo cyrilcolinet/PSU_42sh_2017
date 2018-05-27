@@ -11,7 +11,7 @@ int is_builtin(char *str)
 {
 	int i = 0;
 	char *builtins[] = {"cd", "setenv", "unsetenv", "env", "exit",
-		"echo", "alias", NULL};
+		"echo", "alias", "unset", NULL};
 
 	while (builtins[i]) {
 		if (my_strcmp(builtins[i], str) == 0)

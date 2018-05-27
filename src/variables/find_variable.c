@@ -13,7 +13,7 @@ char	*find_variable(env_t *env, char *name)
 
 	while (tmp) {
 		if (my_strcmp(tmp->var_name, name) == 0)
-			return tmp->var_value;
+			return tmp->var_name;
 		tmp = tmp->next;
 	}
 	return NULL;

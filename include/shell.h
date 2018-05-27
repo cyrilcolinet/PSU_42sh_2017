@@ -232,6 +232,7 @@ void		add_variable_in_shell(env_t *, char **);
 char		*find_variable(env_t *, char *);
 char		**apply_local_variables(char **, env_t *);
 void 		del_variable_in_shell(env_t *, char **);
+void		free_shell_variables(env_t *);
 
 /*
 ** Globbings
