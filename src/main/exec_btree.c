@@ -50,7 +50,7 @@ static void exec_line(char **line, env_t *env, parser_t *b_tree)
 static void exec_split_line(env_t *env, parser_t* b_tree, parser_t *tmp)
 {
 	env->line_sep = split_line_separator(tmp->full_cmd);
-	for (int i = 0; env->line_sep != NULL; i++) {
+	for (int i = 0; env->line_sep[i] != NULL; i++) {
 		env->line = str_to_tab_separator(env->line_sep[i]);
 		if (tmp->pipe_in_cmd == NULL)
 			exec_line(env->line, env, b_tree);
