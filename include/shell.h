@@ -122,6 +122,7 @@ char 		*clear_redirect_dright(char *);
 char 		**my_str_to_array_42(char *, char);
 char 		**my_str_to_array_pipe_42(char *);
 char		**str_to_tab_separator(char *);
+char		**split_line_separator(char *);
 int		check_next_separator(char **, int);
 
 parser_t 	*parser(char *);

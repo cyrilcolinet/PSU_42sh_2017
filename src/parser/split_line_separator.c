@@ -26,10 +26,10 @@ static int str_to_array_count_words(char *str, int count)
 			i = pass_quote(str, i, 34);
 			continue;
 		}
-		if (str[i] != '\0' && str[i] == '&'
-		&& str[i + 1] != '\0' && str[i + 1] == '&'
+		if (str[i] != '\0' && str[i + 1] == '|'
+		&& str[i + 1] != '\0' && str[i + 1] == '|'
 		&& str[i + 2] != '\0' && str[i + 2] == ' ')
-			count += 2;
+			count++;
 	}
 	return (count);
 }
@@ -40,15 +40,13 @@ static int get_len(char *str, int i)
 	int quote = 1;
 	int dquote = 1;
 
-	if (str[i] == '&' && str[i + 1] != '\0' && str[i + 1] == '&')
-		return (2);
 	for (; str[i] != '\0'; i++) {
 		if (str[i] == 34)
 			dquote *= -1;
 		if (str[i] == 39)
 			quote *= -1;
-		if (quote == 1 && dquote == 1 && (str[i] == '&'
-		&& str[i + 1] != '\0' && str[i + 1] == '&'))
+		if (quote == 1 && dquote == 1 && (str[i] == '|'
+		&& str[i + 1] != '\0' && str[i + 1] == '|'))
 			break;
 		len++;
 	}
@@ -73,12 +71,14 @@ static char **get_the_array(char *str, int count)
 		for (int j = 0; i < len && str[i] != '\0'; i++)
 			new[a][j++] = str[i];
 		new[a] = clear_str(new[a]);
+		if (str[i] != '\0' && str[i] == '|' )
+			i += 2;
 	}
 	new[count] = NULL;
 	return (new);
 }
 
-char **str_to_tab_separator(char *str)
+char **split_line_separator(char *str)
 {
 	char **arr = NULL;
 	int count = 1;
