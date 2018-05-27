@@ -1,37 +1,37 @@
-[901]
+[001]
 NAME="Nothing"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo ''
-[901-END]
+[001-END]
 
-[902]
+[002]
 NAME="Exec two command"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo 'ls /etc'
   echo 'cat /etc/resolv.conf'
-[902-END]
+[002-END]
 
-[903]
+[003]
 NAME="Testing with /usr/bin PATH"
 SETUP="export TERM=xterm ; PATH='/usr/bin'"
 CLEAN=""
 TESTS=
   echo 'pwd'
-[903-END]
+[003-END]
 
-[904]
+[004]
 NAME="Testing with /bin PATH"
 SETUP="export TERM=xterm ; PATH='/bin'"
 CLEAN=""
 TESTS=
   echo 'pwd'
-[904-END]
+[004-END]
 
-[905]
+[005]
 NAME="run commands"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
@@ -41,9 +41,9 @@ TESTS=
   echo 'ls -l /etc'
   sleep 0.5
   echo 'pwd'
-[905-END]
+[005-END]
 
-[906]
+[006]
 NAME="setenv and unsetenv"
 SETUP="/usr/bin/env > .lstenv ; while read varenv ; do unset $varenv ; done < <(/bin/cat .lstenv | /usr/bin/cut -f1 -d=) ; export PATH=/bin:/usr/bin ; export _=ls ; export LS_COLORS=RID ; export MYBG=4 ; export LVL=4 ; export NOTE=2"
 CLEAN="while read varenv ; do export "$varenv" 2>/dev/null ; done  < <(/bin/cat .lstenv) ; /bin/rm -f .lstenv"
@@ -68,9 +68,9 @@ TESTS=
   echo '/usr/bin/env'
   echo 'setenv var1 val1'
   echo 'setenv var2 val2'
-[906-END]
+[006-END]
 
-[907]
+[007]
 NAME="builtin cd"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
@@ -79,41 +79,41 @@ TESTS=
   echo 'ls -l'
   echo 'cd /usr'
   echo 'ls -l'
-[907-END]
+[007-END]
 
-[908]
+[008]
 NAME="many tab and space"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo -e "\t\t    ls\t     \t-l    \t\t  \t -a /usr   \t\t"
-[908-END]
+[008-END]
 
-[909]
+[009]
 NAME="Launch DivZero program with core dump"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo "./my_divzero"
-[909-END]
+[009-END]
 
-[910]
+[010]
 NAME="Launch SegFault program without core dump"
 SETUP="ulimit -c 0 ; export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo "./my_segfault"
-[910-END]
+[010-END]
 
-[911]
+[011]
 NAME="Testing simple pipe"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo "ls -l /etc | grep sh"
-[911-END]
+[011-END]
 
-[912]
+[012]
 NAME="A pipe with a builtin ?"
 SETUP="export VAR1=VALEUR1 ; OLDPATH=$PATH ; PATH='/random'"
 CLEAN="PATH=$OLDPATH"
@@ -122,41 +122,41 @@ TESTS=
   echo '/bin/ls | cd /usr'
   echo 'ls -l'
   echo 'exit 45|cat /etc/resolv.conf'
-[912-END]
+[012-END]
 
-[913]
+[013]
 NAME="Launch Floating Exception program without core dump"
 SETUP="ulimit -c 0 ; export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo "./my_floating_exp"
-[913-END]
+[013-END]
 
-[914]
+[014]
 NAME="Launch incompatible binary"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo "./incompatible"
-[914-END]
+[014-END]
 
-[915]
+[015]
 NAME="Execute a directory (with exec perms)"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin' ; mkdir dir ; chmod +x dir"
 CLEAN="rm -rf dir"
 TESTS=
   echo "./dir"
-[915-END]
+[015-END]
 
-[916]
+[016]
 NAME="Execute a directory (without exec perms)"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin' ; mkdir dir"
 CLEAN="rm -rf dir"
 TESTS=
   echo "./dir"
-[916-END]
+[016-END]
 
-[917]
+[017]
 NAME="Local variables not in env"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
@@ -169,9 +169,9 @@ TESTS=
   echo "set BLABLABLA=test"
   echo "printenv OUI"
   echo "unset OUI"
-[917-END]
+[017-END]
 
-[918]
+[018]
 NAME="Empty environment"
 SETUP="/usr/bin/env > .lstenv ; while read varenv ; do unset $varenv ; done < <(/bin/cat .lstenv | /usr/bin/cut -f1 -d=) ; export PATH=/bin:/usr/bin ; export _=ls ; export LS_COLORS=RID ; export MYBG=4 ; export LVL=4 ; export NOTE=2"
 CLEAN="while read varenv ; do export "$varenv" 2>/dev/null ; done  < <(/bin/cat .lstenv) ; /bin/rm -f .lstenv"
@@ -194,17 +194,17 @@ TESTS=
   echo 'ls -l'
   echo 'cd'
   echo 'cd -'
-[918-END]
+[018-END]
 
-[919]
+[019]
 NAME="run commands with ; separator"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo 'ls -l ; ; ; ; ;; ; ; ; ; ;;;;; echo OUI'
-[919-END]
+[019-END]
 
-[920]
+[020]
 NAME="simple aliases"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
@@ -213,9 +213,9 @@ TESTS=
   echo 'll'
   echo 'll'
   echo 'll'
-[920-END]
+[020-END]
 
-[921]
+[021]
 NAME="alias in alias"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
@@ -226,4 +226,4 @@ TESTS=
   echo 'll'
   echo 'alias ll ll'
   echo 'alias crash ll ; ls -l'
-[921-END]
+[021-END]
