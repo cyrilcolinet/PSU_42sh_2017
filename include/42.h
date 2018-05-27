@@ -28,9 +28,9 @@
 # include <pthread.h>
 # include <sys/ioctl.h>
 # include <errno.h>
+# include <glob.h>
+# include <termios.h>
 
-# include "jobs.h"
-# include "globbing.h"
 # include "my.h"
 
 # ifndef EXIT_SUCCESS
@@ -87,6 +87,25 @@ typedef struct shell_alias_s {
 	struct shell_alias_s *next;
 } shell_alias_t;
 
+typedef struct proc_s {
+	char 		**cmd;
+	pid_t 		pid;
+	bool 		complete;
+	bool		stopped;
+	int		status;
+	struct proc_s	*next;
+}	proc_t;
+
+typedef struct job_s {
+	int 		bg;
+	char 		**cmd;
+	pid_t 		pid;
+	proc_t		parent;
+	struct termios	save;
+	int 		fds[3];
+	struct job_s 	*next;
+}	job_t;
+
 typedef struct env_s {
 	listenv_t	*listenv;
 	char		**str_env;
@@ -101,145 +120,210 @@ typedef struct env_s {
 	shell_alias_t	*shell_alias;
 } env_t;
 
-int 	is_builtin(char *str);
-void 	call_builtins(int func, char **av, env_t *env, parser_t *parser);
-void 	exec_btree(char *, env_t *);
-int 	main_shell(char **);
+int 		is_builtin(char *);
+void 		call_builtins(int, char **, env_t *, parser_t *);
+void 		exec_btree(char *, env_t *);
+int 		main_shell(char **);
 
-/* ENV */
+/*
+** Environment
+** Parse environment in linked list
+** Structs: listenv_t, syspath_t, env_t
+*/
+listenv_t 	*init_listenv(char **);
+listenv_t 	*new_environment_entry(char *, char*, listenv_t *);
+syspath_t 	*init_syspath(char *);
 
-listenv_t *init_listenv(char **av_env);
-listenv_t *new_environment_entry(char *, char*, listenv_t *);
-syspath_t *init_syspath(char *syspath);
-char 	*env_get_variable(char *, env_t *);
-env_t 	init_env(char **);
-int 	name_exist(env_t *env, char *name);
-int 	my_unsetenv(env_t *env, char *name);
-int 	my_setenv(env_t *env, char *name, char *value, int overwrite);
-void 	my_env(env_t *env, char **av);
-int 	change_env(env_t *env, char *name, char *value);
-int 	posix_bug(char *, env_t *);
-void 	free_listenv(env_t *);
-void 	my_setenv_cmd(env_t *env, char **av);
-void 	my_unsetenv_cmd(env_t *env, char **av);
-void 	free_syspath(env_t *);
-void 	free_env(env_t *env);
-void 	update_path(env_t *env);
-void 	update_env(env_t *env);
+char 		*env_get_variable(char *, env_t *);
+env_t 		init_env(char **);
+int 		name_exist(env_t *, char *);
+int 		my_unsetenv(env_t *, char *);
+int 		my_setenv(env_t *, char *, char *, int);
+void 		my_env(env_t *, char **);
+int 		change_env(env_t *, char *, char *);
+int 		posix_bug(char *, env_t *);
+void 		free_listenv(env_t *);
+void 		my_setenv_cmd(env_t *, char **);
+void 		my_unsetenv_cmd(env_t *, char **);
+void 		free_syspath(env_t *);
+void 		free_env(env_t *);
+void 		update_path(env_t *);
+void 		update_env(env_t *);
 
-/* CD */
+/*
+** Cd builtin
+** Change directory
+** Structs: env_t
+*/
+void 		my_cd(env_t *, char **);
+int 		is_file(char *);
 
-void 	my_cd(env_t *, char **);
-int 	is_file(char *);
+/*
+** Execution
+** Execute process with execve
+** Struct: parser_t
+*/
+int 		exec_prog(char **, env_t *, int);
+char 		*get_path(env_t *, char *, int *);
+void 		exec_cmdline(char *, env_t *, parser_t *);
 
-/* EXEC */
+/*
+** Exit builtin
+** Exit program when exit command typed
+** Structs: env_t, parser_t
+*/
+void 		exit_success(env_t *, char **, parser_t *);
 
-int 	exec_prog(char **av, env_t *env, int cmd_access);
-char 	*get_path(env_t *env, char *cmd, int *cmd_access);
-void 	exec_cmdline(char *line, env_t *env, parser_t *parser);
+/*
+** Echo command builtin
+** Print content in stdout
+** Structs: env_get_variable*/
+void 		my_echo(env_t *, char **);
 
-/* EXIT */
+/*
+** Parsing functions
+** Parse command in binary tree and error management
+** Structs: parser_t, p_pipe_t
+*/
+char 		*clear_str(char *);
+char 		*clear_begin(char *);
+char 		*clear_end(char *);
+char 		*clear_space(char *, int);
+char 		*clear_separator(char *);
+char 		*clear_semicolon(char *);
+char 		*clear_begin_semicolon(char *);
+char 		*clear_end_semicolon(char *);
+char 		*clear_pipe(char *);
+char 		*clear_dpipe(char *);
+char 		*clear_ampersand(char *);
+char 		*clear_dampersand(char *);
+char 		*clear_redirect_right(char *);
+char 		*clear_redirect_left(char *);
+char 		*clear_redirect_dleft(char *);
+char 		*clear_redirect_dright(char *);
+char 		**my_str_to_array_42(char *, char);
+char 		**my_str_to_array_pipe_42(char *);
 
-void 	exit_success(env_t *, char **, parser_t *);
+parser_t 	*parser(char *);
+p_pipe_t 	*get_pipe_in_cmd(parser_t **, char *);
+void		free_struct_parser(parser_t *);
 
-/* ECHO */
-void 	my_echo(env_t *, char **);
+/*
+** Error handling
+** Manage errors (parsing, and other)
+*/
+bool 		error_management(char *);
 
-/* PARSER */
+/*
+** History
+** Manage history (add command in .42sh_history file)
+** Structs: hist_t, env_t
+*/
+void 		free_history(env_t *);
+void 		fill_history(env_t *, char *);
 
-char 	*clear_str(char *);
-char 	*clear_begin(char *);
-char 	*clear_end(char *);
-char 	*clear_space(char *, int);
-char 	*clear_separator(char *);
-char 	*clear_semicolon(char *);
-char 	*clear_begin_semicolon(char *);
-char 	*clear_end_semicolon(char *);
-char 	*clear_pipe(char *);
-char 	*clear_dpipe(char *);
-char 	*clear_ampersand(char *);
-char 	*clear_dampersand(char *);
-char 	*clear_redirect_right(char *);
-char 	*clear_redirect_left(char *);
-char 	*clear_redirect_dleft(char *);
-char 	*clear_redirect_dright(char *);
-char 	**my_str_to_array_42(char *, char);
-char 	**my_str_to_array_pipe_42(char *);
+/*
+** Prompt
+** Display prompt with env variables and more
+** Structs: env_t
+*/
+char 		*get_cdir(env_t);
+void 		prompt(env_t);
 
-parser_t *parser(char *);
-p_pipe_t *get_pipe_in_cmd(parser_t **, char *);
-void	free_struct_parser(parser_t *parser);
+/*
+** Redirections
+** Manage left and right redirections (simple and double)
+** Structs: env_t
+*/
+void 		right_redirection(char *, char **, int *);
+void 		left_redirection(char *, char **, int *);
 
-/* ERROR MANAGMENT */
+/*
+** Pipes
+** Pipe management
+** Structs: env_t, p_pipe_t
+*/
+void 		exec_pipe(char **, int *, env_t *, int);
+void 		exec_all_pipe(p_pipe_t *, env_t *);
 
-bool 	error_management(char *);
+/*
+** Signal handling
+** Signal catcher (segfault and more)
+** Structs: env_t
+*/
+int 		exec_err(char *, env_t *);
+void 		cd_err(char *);
+void 		print_status(int, int);
+void 		wstatus_handler(pid_t , env_t *);
 
-/* HISTORY */
+/*
+** Utilities
+** Convert listenv_t in char ** for execve
+** get_next_line, realloc, join_characters and more...
+** Structs: env_t
+*/
+int 		my_list_size(env_t *);
+int 		is_alone(char *);
+char 		**my_list_to_array(env_t *);
+char 		*get_next_line(int);
+void 		free_list_to_str(env_t *);
+char 		*replace_char(char *, char, char);
+char 		*path_join(char *, char *);
+char 		*join_next_values(char **);
+char 		*realloc_char(char *, unsigned int);
 
-void 	free_history(env_t *);
-void 	fill_history(env_t *, char *);
+/*
+** Inhibitors (League of Legends)
+** Apply inhibitors in btree_t
+** Structs: env_t, parser_t, btree_t
+*/
+void		apply_inhibitors(parser_t **);
+void		change_cmd_inhibitors(parser_t **, char *);
+void		error_remove_inhibitor(char *, parser_t **);
+int		error_inhibitor(char *);
 
-/* PROMPT */
+/*
+** Aliases
+** Apply aliases in btree_t
+** Structs: btree_t, env_t
+*/
+char		**apply_alias(char **, env_t *);
+char		*is_cmd_alias(char *, char *, env_t *);
+char		*search_alias(char *, env_t *);
+char		*get_alias_cmd(char *);
+void		my_alias(env_t *, char **);
+void		print_alias(env_t *);
+char		*search_shell_alias(env_t *, char *);
 
-char 	*get_cdir(env_t);
-void 	prompt(env_t);
+/*
+** Local variables
+** Manage local variables
+** TODO: Fix and correct errors
+** Structs: env_t
+*/
+char		*get_variable_value(char *);
+char		*get_variable_name(char *);
+int		valid_variable(char **);
+int		is_a_variable_assign(char **, env_t *);
+void		add_variable_in_shell(env_t *, char **);
+char		*find_variable(env_t *, char *);
+char		**apply_local_variables(char **, env_t *);
 
-/* REDIRECTION */
+/*
+** Globbings
+** Apply globbings
+** Structs: env_t
+*/
+char		is_globbing(char *);
+char		**apply_globbing(char **);
+int		globbing_in_cmd(char *);
 
-void 	right_redirection(char *, char **, int *);
-void 	left_redirection(char *, char **, int *);
-
-/* PIPE */
-
-void 	exec_pipe(char **, int *, env_t *, int);
-void 	exec_all_pipe(p_pipe_t *, env_t *);
-
-/* SIG */
-
-int 	exec_err(char *, env_t *);
-void 	cd_err(char *);
-void 	print_status(int, int);
-void 	wstatus_handler(pid_t , env_t *);
-
-/* UTILS */
-
-int 	my_list_size(env_t *);
-int 	is_alone(char *);
-char 	**my_list_to_array(env_t *);
-char 	*get_next_line(int);
-void 	free_list_to_str(env_t *);
-char 	*replace_char(char *, char, char);
-char 	*path_join(char *, char *);
-char 	*join_next_values(char **);
-char 	*realloc_char(char *, unsigned int);
-
-/* INHIBITORS */
-void	apply_inhibitors(parser_t **);
-void	change_cmd_inhibitors(parser_t **, char *);
-void	error_remove_inhibitor(char *, parser_t **);
-int	error_inhibitor(char *);
-
-/* ALIAS */
-char	**apply_alias(char **, env_t *);
-char	*is_cmd_alias(char *, char *, env_t *);
-char	*search_alias(char *, env_t *);
-char	*get_alias_cmd(char *);
-void	my_alias(env_t *, char **);
-void	print_alias(env_t *);
-char	*search_shell_alias(env_t *, char *);
-
-/* VARIABLES */
-char	*get_variable_value(char *);
-char	*get_variable_name(char *);
-int	valid_variable(char **);
-int	is_a_variable_assign(char **, env_t *);
-void	add_variable_in_shell(env_t *, char **);
-char	*find_variable(env_t *, char *);
-char	**apply_local_variables(char **, env_t *);
-
-/* KEYMAPPING */
-
-bool	load_keys(env_t *);
-bool	can_apply_keybinding(env_t *);
+/*
+** Key mapping and key catcher
+** Get keys typed in terminal with help of termios
+** Structs: env_t
+*/
+bool		load_keys(env_t *);
+bool		can_apply_keybinding(env_t *);
 
 # endif
