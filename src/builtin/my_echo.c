@@ -36,12 +36,20 @@ void	basic_echo(char *to_print)
 
 void	echo_variable(env_t *env, char *type)
 {
+	char *local_var = NULL;
+
 	if (my_strlen(type) <= 1)
 		return;
 	if (my_strcmp(type, "$?") == 0)
 		my_put_nbr(env->exit_code);
-	else
-		my_putstr(find_variable(env, &type[1]));
+	else {
+		local_var = find_variable(env, &type[1]);
+		if (local_var == NULL) {
+			my_putstr_err(&type[1]);
+			my_putstr(": Undefined variable.");
+		} else
+			my_putstr(local_var);
+	}
 }
 
 void	my_echo(env_t *env, char **cmd)
