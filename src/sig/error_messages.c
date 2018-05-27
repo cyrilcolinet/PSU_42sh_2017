@@ -30,7 +30,6 @@ int exec_err(char *cmd, env_t *env)
 		my_putstr_err(": Exec format error. ");
 		my_putstr_err("Wrong Architecture.\n");
 	}
-
 	env->exit_code = 1;
 	return 0;
 }

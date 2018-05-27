@@ -45,6 +45,5 @@ void wstatus_handler(pid_t pid, env_t *env)
 			env->exit_code = (128 + termsig);
 		}
 	}
-
 	kill(wait_ret, SIGKILL);
 }
