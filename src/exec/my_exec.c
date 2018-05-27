@@ -20,6 +20,13 @@ static void exec_child(char *bin_cmd, char **av, int *redir, env_t *env)
 {
 	int	ret = 0;
 
+	dup2(env->pipe_fdin, 0);
+	close(env->pipe_fdin);
+	if (env->pipe_next) {
+		dup2(env->pipe_fd[1], 1);
+		close(env->pipe_fd[1]);
+	}
+	close(env->pipe_fd[0]);
 	av = apply_globbing(av);
 	right_redirection(bin_cmd, av, redir);
 	left_redirection(bin_cmd, av, redir);
@@ -61,6 +68,7 @@ void exec_cmdline(char *line, env_t *env, parser_t *parser)
 		free(av);
 		return;
 	}
+	pipe(env->pipe_fd);
 	av = apply_alias(av, env);
 	av = apply_local_variables(av, env);
 	func_built = is_builtin(av[0]);

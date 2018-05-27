@@ -47,6 +47,17 @@ static void exec_line(char **line, env_t *env, parser_t *b_tree)
 	}
 }
 
+void	exec_all_pipes(parser_t *cmd, env_t *env, parser_t *b_tree)
+{
+	p_pipe_t *tmp = cmd->pipe_in_cmd;
+
+	while (tmp) {
+		env->pipe_next = tmp->next != NULL ? 1 : 0;
+		exec_cmdline(tmp->pipe_cmd, env, b_tree);
+		tmp = tmp->next;
+	}
+}
+
 static void exec_split_line(env_t *env, parser_t* b_tree, parser_t *tmp)
 {
 	env->line_sep = split_line_separator(tmp->full_cmd);
@@ -69,6 +80,13 @@ void exec_btree(char *line_cmd, env_t *env)
 	free(line_cmd);
 	apply_inhibitors(&b_tree);
 	while (tmp) {
+		env->pipe_fdin = 0;
+		env->pipe_next = 0;
+		if (tmp->pipe_in_cmd != NULL) {
+			exec_all_pipes(tmp, env, b_tree);
+			tmp = tmp->next;
+			continue;
+		}
 		exec_split_line(env, b_tree, tmp);
 		tmp = tmp->next;
 	}

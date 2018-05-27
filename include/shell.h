@@ -105,6 +105,9 @@ typedef struct env_s {
 	syspath_t	*syspath;
 	char		*pwd_path;
 	int		exit_code;
+	int		pipe_fd[2];
+	int		pipe_next;
+	int		pipe_fdin;
 	hist_t		*history;
 	char		*bashrc_path;
 	char 		**keymap;
