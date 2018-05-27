@@ -274,7 +274,7 @@ TESTS=
 
 [027]
 NAME="&& commands"
-SETUP=""
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo 'ls -l && echo "hello everyone" && unknown && ls -l'
@@ -283,7 +283,7 @@ TESTS=
 
 [028]
 NAME="&& and || commands"
-SETUP=""
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo 'unknown && echo "ok" || echo "nop"'

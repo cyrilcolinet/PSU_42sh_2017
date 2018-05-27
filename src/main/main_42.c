@@ -28,11 +28,12 @@ int 	main_shell(char **av_env)
 	int exit_code = 0;
 	char *(*gnl[])(env_t *) = { &default_gnl, &ncurses_gnl };
 
-	if (!ncurses_loader(&env))
-		return (84);
+	// if (!ncurses_loader(&env))
+	// 	return (84);
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = gnl[isatty(0)](&env))) {
+		env.exit_code = 0;
 		if (my_strlen(buffer) > 0)
 			is_valid_buffer(buffer, &env);
 		prompt(env);

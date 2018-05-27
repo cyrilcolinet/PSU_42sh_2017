@@ -53,7 +53,6 @@ char *get_path(env_t *env, char *cmd, int *cmd_access)
 		return NULL;
 	}
 	if (my_strlen(cmd) > 2 && cmd[0] == '.' && cmd[1] == '/') {
-		//env->exit_code = 0;
 		*cmd_access = 1;
 		return cmd;
 	}
