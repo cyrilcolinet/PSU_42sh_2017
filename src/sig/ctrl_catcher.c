@@ -9,5 +9,4 @@
 
 void	ctrl_catcher(char sig)
 {
-
 }

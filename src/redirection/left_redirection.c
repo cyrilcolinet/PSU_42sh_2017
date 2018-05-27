@@ -43,7 +43,7 @@ static int	perform_left_redir(char **av, int type)
 	return fd;
 }
 
-void		left_redirection(char *bin_cmd, char **av, int *fd_flag)
+void	left_redirection(char *bin_cmd, char **av, int *fd_flag)
 {
 	int	type = 0;
 	int	flag;

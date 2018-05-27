@@ -63,5 +63,4 @@ void	my_alias(env_t *env, char **cmd)
 		cmd_ptr = my_strjoin_clear(cmd_ptr, cmd[i], 0);
 	}
 	add_shell_alias(&env->shell_alias, name_ptr, cmd_ptr);
-
 }

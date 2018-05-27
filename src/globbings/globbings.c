@@ -4,8 +4,9 @@
 ** File description:
 ** globbing
 */
+
 #include <glob.h>
-# include "shell.h"
+#include "shell.h"
 
 static char	*get_glob_cmd(char *path)
 {
