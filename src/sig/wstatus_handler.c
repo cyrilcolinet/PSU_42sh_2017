@@ -36,7 +36,8 @@ void wstatus_handler(pid_t pid, env_t *env)
 	int termsig = 0;
 
 	wait_ret = waitpid(pid, &status, WUNTRACED | WCONTINUED);
-
+	close(env->pipe_fd[1]);
+	env->pipe_fdin = env->pipe_fd[0];
 	if (WIFSIGNALED(status) && !WIFEXITED(status)) {
 		termsig = WTERMSIG(status);
 		if (termsig != 0) {
