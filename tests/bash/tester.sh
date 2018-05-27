@@ -2,7 +2,7 @@
 
 MYSHELL="$PWD/42sh"
 REFER="/bin/tcsh -f"
-#REFER="/home/cyrilcolinet/Desktop/42sh"
+REFER="/home/Documents/shell/PSU_42_2017/42sh"
 TRAPSIG=0
 
 CAT=`which cat`
