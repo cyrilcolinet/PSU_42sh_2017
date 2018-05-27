@@ -37,8 +37,10 @@ int exec_prog(char **av, env_t *env, int cmd_access)
 
 	env->str_env = my_list_to_array(env);
 	bin_cmd = get_path(env, av[0], &cmd_access);
-	if (bin_cmd == NULL)
+	if (bin_cmd == NULL) {
+		free_list_to_str(env);
 		return -1;
+	}
 	pid = fork();
 	if (pid == 0)
 		exec_child(bin_cmd, av, &redir, env);
