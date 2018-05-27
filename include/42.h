@@ -290,7 +290,7 @@ char		*search_shell_alias(env_t *, char *);
 /*
 ** Local variables
 ** Manage local variables
-** TODO: Fix and correct errors
+** TODO: Fix and correct errors and add unset command
 ** Structs: env_t
 */
 char		*get_variable_value(char *);
