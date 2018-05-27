@@ -227,3 +227,46 @@ TESTS=
   echo 'alias ll ll'
   echo 'alias crash ll ; ls -l'
 [021-END]
+
+[022]
+NAME="Infinite loop local variable"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set OUI='non'"
+  echo "set \$OUI=$OUI"
+  echo "unset OUI"
+  echo "set OUI=\$OUI"
+[022-END]
+
+[023]
+NAME="Only space"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo "                                                    "
+[023-END]
+
+[024]
+NAME="Only tabulation"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo "\\t\\t\\t\\t"
+[024-END]
+
+[025]
+NAME="Only tabulation and spaces"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo "   \\t\\t            \\t\\t"
+[025-END]
+
+[026]
+NAME="Tabulation and spaces and command"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo "   \\t\\t       ls -l     \\t\\t"
+[026-END]

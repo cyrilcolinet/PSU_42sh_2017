@@ -5,7 +5,6 @@
 ** 42
 */
 
-#include <glob.h>
 #include "42.h"
 
 static void free_protect(char *bin_cmd, env_t *env, int cmd_access)
