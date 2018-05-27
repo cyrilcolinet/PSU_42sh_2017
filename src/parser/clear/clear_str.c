@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static char *change_tab_space(char *s)
 {

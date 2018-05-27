@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static void add_syspath(syspath_t **list, char *n_path)
 {

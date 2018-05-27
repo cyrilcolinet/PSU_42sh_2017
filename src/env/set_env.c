@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 int posix_bug(char *name, env_t *env)
 {

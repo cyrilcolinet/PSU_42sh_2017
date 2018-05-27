@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 void update_path(env_t *env)
 {

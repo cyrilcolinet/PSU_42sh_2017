@@ -5,7 +5,7 @@
 ** var
 */
 
-#include "42.h"
+# include "shell.h"
 
 char	*find_variable(env_t *env, char *name)
 {

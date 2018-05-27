@@ -4,7 +4,7 @@
 ** File description:
 ** alias
 */
-#include "42.h"
+# include "shell.h"
 
 char	*search_shell_alias(env_t *env, char *cmd)
 {

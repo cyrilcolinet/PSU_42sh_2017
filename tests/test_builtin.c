@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "42.h"
+# include "shell.h"
 
 Test(minishell, test0, .exit_code = 0)
 {

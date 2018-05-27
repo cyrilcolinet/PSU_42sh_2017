@@ -5,7 +5,7 @@
 ** util
 */
 
-#include "42.h"
+# include "shell.h"
 
 void free_list_to_str(env_t *env)
 {

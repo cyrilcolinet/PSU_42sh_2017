@@ -5,7 +5,7 @@
 ** 42
 */
 
-# include "42.h"
+# include "shell.h"
 
 static void update_env_pwd(env_t *env, char *cwd)
 {

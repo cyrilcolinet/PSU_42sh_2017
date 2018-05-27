@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static int	is_left_redir(char **av)
 {

@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static void command_not_found(char *cmd, char *tmp_cmd,
 		char *bin_access)

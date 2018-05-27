@@ -4,7 +4,7 @@
 ** File description:
 ** alias
 */
-#include "42.h"
+# include "shell.h"
 
 char	*get_alias_cmd(char *line)
 {

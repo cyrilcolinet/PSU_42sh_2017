@@ -5,7 +5,7 @@
 ** can_apply_keybinding functions
 */
 
-# include "42.h"
+# include "shell.h"
 
 bool can_apply_keybinding(env_t *env)
 {

@@ -5,7 +5,7 @@
 ** history_manager
 */
 
-# include "42.h"
+# include "shell.h"
 
 static void fill_values(hist_t *node, char *cmd)
 {

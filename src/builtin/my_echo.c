@@ -4,7 +4,7 @@
 ** File description:
 ** echo
 */
-#include "42.h"
+# include "shell.h"
 
 void	echo_backsticks(char *to_print)
 {

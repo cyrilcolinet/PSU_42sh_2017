@@ -5,7 +5,7 @@
 ** pipe parser
 */
 
-#include "42.h"
+# include "shell.h"
 
 static void	add_pipe_in_list(p_pipe_t **list, char *p_cmd)
 {

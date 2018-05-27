@@ -5,7 +5,7 @@
 ** ctrl
 */
 
-#include "42.h"
+# include "shell.h"
 
 void	ctrl_catcher(char sig)
 {

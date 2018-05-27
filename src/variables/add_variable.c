@@ -5,7 +5,7 @@
 ** globbing
 */
 
-#include "42.h"
+# include "shell.h"
 
 void	push_var_in_shell(shell_var_t **shell_var, char *name, char *value)
 {

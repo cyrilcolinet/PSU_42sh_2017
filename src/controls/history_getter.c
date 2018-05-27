@@ -5,7 +5,7 @@
 ** history_getter functions
 */
 
-# include "42.h"
+# include "shell.h"
 
 int control_key_up(env_t *env, char *buffer, int i)
 {

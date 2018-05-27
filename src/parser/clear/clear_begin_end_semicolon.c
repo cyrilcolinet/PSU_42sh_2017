@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static char *clear_end_semicolon_space(char *s, int nb)
 {

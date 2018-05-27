@@ -4,7 +4,7 @@
 ** File description:
 ** alias
 */
-#include "42.h"
+# include "shell.h"
 
 void	print_alias(env_t *env)
 {

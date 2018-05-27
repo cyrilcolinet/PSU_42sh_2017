@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static int	get_redirection_type(char *av, int *canal)
 {

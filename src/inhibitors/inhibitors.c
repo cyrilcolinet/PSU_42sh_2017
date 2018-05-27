@@ -4,7 +4,7 @@
 ** File description:
 ** globbing
 */
-#include "42.h"
+# include "shell.h"
 
 static int	cmd_has_inhibitor(char *cmd)
 {

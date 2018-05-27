@@ -4,7 +4,7 @@
 ** File description:
 ** inhib
 */
-#include "42.h"
+# include "shell.h"
 
 int	error_inhibitor(char *cmd)
 {

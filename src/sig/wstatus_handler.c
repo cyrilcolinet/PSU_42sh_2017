@@ -5,7 +5,7 @@
 ** 42
 */
 
-#include "42.h"
+# include "shell.h"
 
 static void print_stderr(char *msg, int wstatus)
 {

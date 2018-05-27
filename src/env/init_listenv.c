@@ -5,7 +5,7 @@
 ** 42
 */
 
-# include "42.h"
+# include "shell.h"
 
 listenv_t *new_environment_entry(char *var, char *content, listenv_t *env)
 {
