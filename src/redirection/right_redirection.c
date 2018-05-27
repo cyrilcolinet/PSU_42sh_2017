@@ -15,11 +15,11 @@ static int	get_redirection_type(char *av, int *canal)
 	};
 
 	for (int k = 0; arr[k].string != NULL; k++) {
-		if (my_strcmp(av, arr[k].string) == 0) {
-			if (av[0] == 2)
-				*canal = 2;
-			return arr[k].type;
-		}
+		if (!my_strequ(av, arr[k].string))
+			continue;
+		if (av[0] == 2)
+			*canal = 2;
+		return arr[k].type;
 	}
 	return -1;
 }
@@ -45,15 +45,13 @@ static int	perform_right_redir(char **av, int type, int canal_value)
 	int	flags;
 
 	while (av && av[i]) {
-		if (av[i][(type == 1) ? 0 : 1] == '>'
-			|| av[i][0] == '2')
+		if (av[i][(type == 1) ? 0 : 1] == '>' || av[i][0] == '2')
 			break;
 		i++;
 	}
 	if (i + 1 > my_array_size(av))
 		return 0;
-	flags = type == 1 ? O_CREAT | O_WRONLY :
-		O_CREAT | O_WRONLY | O_APPEND;
+	flags = type == 1 ? O_CREAT | O_WRONLY : O_CREAT | O_WRONLY | O_APPEND;
 	fd = open(av[i + 1], flags, 0666);
 	while (av[i]) {
 		av[i] = 0;
