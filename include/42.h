@@ -1,13 +1,9 @@
 /*
 ** EPITECH PROJECT, 2018
-** 42
+** PSU_4ésh_2017
 ** File description:
-** include
+** 42sh functions (header file)
 */
-
-# ifndef READ_SIZE
-# define READ_SIZE (100)
-# endif
 
 # ifndef SHELL_H
 # define SHELL_H
@@ -32,10 +28,6 @@
 # include <termios.h>
 
 # include "my.h"
-
-# ifndef EXIT_SUCCESS
-# define EXIT_SUCCESS 	(0)
-# endif
 
 # define S_PWD 		("PWD")
 # define S_USR 		("USER")
