@@ -31,7 +31,6 @@ int 	main_shell(char **av_env)
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = gnl[isatty(0)](&env))) {
-		env.exit_code = 0;
 		if (my_strlen(buffer) > 0)
 			is_valid_buffer(buffer, &env);
 		prompt(env);

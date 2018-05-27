@@ -47,8 +47,10 @@ void	echo_variable(env_t *env, char *type)
 		if (local_var == NULL) {
 			my_putstr_err(&type[1]);
 			my_putstr(": Undefined variable.");
-		} else
+		} else {
 			my_putstr(local_var);
+			env->exit_code = 0;
+		}
 	}
 }
 
@@ -57,8 +59,11 @@ void	my_echo(env_t *env, char **cmd)
 	if (my_array_size(cmd) > 1 && cmd[1][0] == '$') {
 		echo_variable(env, cmd[1]);
 		my_putstr("\n");
-	}  else if (my_array_size(cmd) > 1)
+	}  else if (my_array_size(cmd) > 1) {
 		basic_echo(cmd[1]);
-	else
+		env->exit_code = 0;
+	} else {
 		my_putstr("\n");
+		env->exit_code = 0;
+	}
 }
