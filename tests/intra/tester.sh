@@ -32,7 +32,7 @@ disp_test()
 run_script()
 {
   SC="$1"
-  echo "$SC" > /tmp/.tmp.$$
+  echo -e "$SC" > /tmp/.tmp.$$
   . /tmp/.tmp.$$
   $RM -f /tmp/.tmp.$$
 }
@@ -46,17 +46,17 @@ prepare_test()
 
   WRAPPER="$runnerfn"
 
-  echo "#!/bin/bash" > $runnerfn
-  echo "$SETUP" >> $runnerfn
-  echo "/bin/bash -c '"$testfn" | "$MYSHELL" ; echo Shell exit with code \$?' > "$shoutfn" 2>&1" >> $runnerfn
-  echo "$CLEAN" >> $runnerfn
-  echo "$SETUP" >> $runnerfn
-  echo "$TCSHUPDATE" >> $runnerfn
-  echo "/bin/bash -c '"$testfn" | "$REFER" ; echo Shell exit with code \$?' > "$refoutfn" 2>&1" >> $runnerfn
-  echo "$CLEAN" >> $runnerfn
+  echo -e "#!/bin/bash" > $runnerfn
+  echo -e "$SETUP" >> $runnerfn
+  echo -e "/bin/bash -c '"$testfn" | "$MYSHELL" ; echo Shell exit with code \$?' > "$shoutfn" 2>&1" >> $runnerfn
+  echo -e "$CLEAN" >> $runnerfn
+  echo -e "$SETUP" >> $runnerfn
+  echo -e "$TCSHUPDATE" >> $runnerfn
+  echo -e "/bin/bash -c '"$testfn" | "$REFER" ; echo Shell exit with code \$?' > "$refoutfn" 2>&1" >> $runnerfn
+  echo -e "$CLEAN" >> $runnerfn
 
-  echo "#!/bin/bash" > $testfn
-  echo "$TESTS" | $TR "²" "\n" >> $testfn
+  echo -e "#!/bin/bash" > $testfn
+  echo -e "$TESTS" | $TR "²" "\n" >> $testfn
 
   chmod 755 $testfn
   chmod 755 $runnerfn
@@ -91,28 +91,28 @@ load_test()
   then
     if [ $debug -ge 1 ]
     then
-      echo "Test $id ($NAME) : OK"
+      echo -e "Test $id ($NAME) : \033[32m\033[1mOK\033[0m"
       if [ $debug -eq 2 ]
       then
-        echo "Output $MYSHELL :"
+        echo -e "Output $MYSHELL :"
         $CAT -e /tmp/.shell.$$
-        echo ""
-        echo "Output $REFER :"
+        echo -e ""
+        echo -e "Output $REFER :"
         $CAT -e /tmp/.refer.$$
-        echo ""
+        echo -e ""
       fi
     else
-      echo "OK"
+      echo -e " \033[32m\033[1mOK\033[0m"
     fi
   else
     if [ $debug -ge 1 ]
     then
-      echo "Test $id ($NAME) : KO - Check output in /tmp/test.$$/$id/"
+      echo -e "Test $id ($NAME) : \033[31m\033[1mKO - Check output in /tmp/test.$$/$id/\033[0m"
       $MKDIR -p /tmp/test.$$/$id 2>/dev/null
       $CP /tmp/.shell.$$ /tmp/test.$$/$id/mysh.out
       $CP /tmp/.refer.$$ /tmp/test.$$/$id/tcsh.out
     else
-      echo "KO"
+      echo -e "\033[31m\033[1mKO\033[0m"
     fi
   fi
 }
@@ -121,7 +121,7 @@ if [ $TRAPSIG -eq 1 ]
 then
   for sig in `trap -l`
   do
-    echo "$sig" | grep "^SIG" >/dev/null 2>&1
+    echo -e "$sig" | grep "^SIG" >/dev/null 2>&1
     if [ $? -eq 0 ]
     then
       trap "echo Received signal $sig !" $sig
@@ -131,22 +131,22 @@ fi
 
 if [ ! -f tests ]
 then
-  echo "No tests file. Please read README.ME" >&2
+  echo -e "No tests file. Please read README.ME" >&2
   exit 1
 fi
 
 if [ ! -f $MYSHELL ]
 then
-  echo "$MYSHELL not found" >&2
+  echo -e "$MYSHELL not found" >&2
   exit 1
 fi
 
 if [ $# -eq 2 ]
 then
-  echo "Debug mode" >&2
-  echo "Shell : $MYSHELL" >&2
-  echo "Reference : $REFER" >&2
-  echo ""
+  echo -e "Debug mode" >&2
+  echo -e "Shell : $MYSHELL" >&2
+  echo -e "Reference : $REFER" >&2
+  echo -e ""
 fi
 
 if [ $# -eq 0 ]
