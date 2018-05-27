@@ -16,6 +16,22 @@ static int pass_quote(char *s, int i, char delim)
 	return (i);
 }
 
+static bool check_invalid_null_command_charac(char *s, int i)
+{
+	if (s[i] == '|' && (s[i + 1] == '\0'
+	|| (s[i + 1] != '\0' && s[i + 1] == ' '
+	&& (s[i + 2] == '|' || s[i + 2] == ';'
+	|| s[i + 2] == '&'))))
+		return (false);
+	if (s[i] == '&' && s[i + 1] != '\0' && s[i + 1] == '&') {
+		if (s[i + 2] == '\0' || (s[i + 2] != '\0'
+		&& s[i + 2] == ' ' && (s[i + 3] == '|'
+		|| s[i + 3] == ';' || s[i + 3] == '&')))
+		return (false);
+	}
+	return (true);
+}
+
 static bool check_invalid_null_command(char *s)
 {
 	if (s[0] == '|')
@@ -28,10 +44,7 @@ static bool check_invalid_null_command(char *s)
 			i = pass_quote(s, i, 39);
 		continue;
 		}
-		if (s[i] == '|' && (s[i + 1] == '\0'
-		|| (s[i + 1] != '\0' && s[i + 1] == ' '
-		&& (s[i + 2] == '|' || s[i + 2] == ';'
-		|| s[i + 2] == '&'))))
+		if (!check_invalid_null_command_charac(s, i))
 			return (false);
 	}
 	return (true);
