@@ -286,6 +286,7 @@ char		*get_alias_cmd(char *);
 void		my_alias(env_t *, char **);
 void		print_alias(env_t *);
 char		*search_shell_alias(env_t *, char *);
+void		free_shell_alias(env_t *);
 
 /*
 ** Local variables

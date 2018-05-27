@@ -49,14 +49,13 @@ char	**apply_alias(char **cmd, env_t *env)
 	for (int i = 0; cmd && cmd[i]; i++) {
 		if (i == 0) {
 			alias = search_alias(cmd[0], env);
-			new_cmd = my_strcat_malloc(new_cmd,
+			new_cmd = my_strjoin("",
 				(alias) ? alias : cmd[0]);
 		} else {
 			new_cmd = my_strjoin_clear(new_cmd, " ", 0);
 			new_cmd = my_strjoin_clear(new_cmd, cmd[i], 0);
 		}
 	}
-	free(alias);
 	my_freetab(cmd);
 	tmp = my_str_to_array_42(new_cmd, ' ');
 	free(new_cmd);

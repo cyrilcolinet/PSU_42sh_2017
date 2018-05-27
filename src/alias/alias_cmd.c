@@ -6,6 +6,20 @@
 */
 # include "shell.h"
 
+void	free_shell_alias(env_t *env)
+{
+	shell_alias_t	*tmp = env->shell_alias;
+	shell_alias_t	*stock = NULL;
+
+	while (tmp) {
+		free(tmp->alias_name);
+		free(tmp->alias_cmd);
+		stock = tmp;
+		tmp = tmp->next;
+		free(stock);
+	}
+}
+
 char	*search_shell_alias(env_t *env, char *cmd)
 {
 	shell_alias_t	*tmp = env->shell_alias;
