@@ -17,6 +17,7 @@ TEST_DIR		= 	tests/
 
 SRC_FILES		= 	main.c							\
 				main/main_42.c 						\
+				main/exec_btree.c					\
 				parser/clear/clear_str.c				\
 				parser/clear/clear_begin.c				\
 				parser/clear/clear_end.c				\
@@ -32,6 +33,7 @@ SRC_FILES		= 	main.c							\
 				parser/clear/clear_redirect_dleft.c			\
 				parser/clear/clear_redirect_right.c			\
 				parser/clear/clear_redirect_dright.c			\
+				parser/split_line_separator.c				\
 				parser/str_to_tab_separator.c				\
 				parser/check_next_separator.c				\
 				parser/parser.c 					\
