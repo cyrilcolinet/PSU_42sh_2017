@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** 42
 ** File description:
-** globbing
+** add variable
 */
 
 # include "shell.h"

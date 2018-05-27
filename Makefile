@@ -78,6 +78,7 @@ SRC_FILES		= 	main.c							\
 				alias/search_alias.c					\
 				alias/alias_cmd.c					\
 				variables/add_variable.c				\
+				variables/delete_variable.c 				\
 				variables/parse_variable.c				\
 				variables/find_variable.c				\
 				variables/replace_variable.c				\
