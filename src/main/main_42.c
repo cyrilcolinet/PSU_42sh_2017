@@ -33,6 +33,7 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	parser_t	*b_tree = parser(line_cmd);
 	parser_t	*tmp = b_tree;
 
+	free(line_cmd);
 	apply_inhibitors(&b_tree);
 	while (tmp) {
 		if (tmp->pipe_in_cmd == NULL) {
@@ -48,11 +49,12 @@ static void is_valid_buffer(char *buffer, env_t *env)
 	buffer = clear_separator(buffer);
 
 	if (error_management(buffer)) {
-		exec_btree(buffer, env);
 		fill_history(env, buffer);
-	} else
+		exec_btree(buffer, env);
+	} else {
 		env->exit_code = 1;
-	free(buffer);
+		free(buffer);
+	}
 }
 
 int 	main_shell(char **av_env)
