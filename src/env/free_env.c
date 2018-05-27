@@ -14,5 +14,6 @@ void free_env(env_t *env)
 	free_syspath(env);
 	free(env->bashrc_path);
 	free_shell_alias(env);
+	free_shell_variables(env);
 	//free(env->keymap);
 }

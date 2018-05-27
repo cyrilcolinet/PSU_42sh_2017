@@ -7,6 +7,20 @@
 
 # include "shell.h"
 
+void	free_shell_variables(env_t *env)
+{
+	shell_var_t	*tmp = env->shell_var;
+	shell_var_t	*stock = NULL;
+
+	while (tmp) {
+		free(tmp->var_name);
+		free(tmp->var_value);
+		stock = tmp;
+		tmp = tmp->next;
+		free(stock);
+	}
+}
+
 void	del_variable(shell_var_t **list, char *value)
 {
 	shell_var_t	*tmp = *list;
@@ -14,6 +28,8 @@ void	del_variable(shell_var_t **list, char *value)
 
 	if (tmp != NULL && my_strcmp(tmp->var_name, value) == 0) {
 		(*list) = tmp->next;
+		free(tmp->var_name);
+		free(tmp->var_value);
 		free(tmp);
 		return;
 	}
