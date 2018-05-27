@@ -15,6 +15,8 @@ static char *change_tab_space(char *s)
 		if (s[i] == '\t')
 			s[i] = ' ';
 	}
+	s = clear_begin(s);
+	s = clear_end(s);
 	return (s);
 }
 
@@ -31,8 +33,8 @@ char *clear_str(char *s)
 	int dquote = 1;
 
 	s = change_tab_space(s);
-	s = clear_begin(s);
-	s = clear_end(s);
+	if (s == NULL)
+		return (NULL);
 	for (int i = 0; s[i] != '\0'; i++) {
 		if (s[i] == 39)
 			quote *= -1;

@@ -10,6 +10,8 @@
 char *clear_separator(char *s)
 {
 	s = clear_str(s);
+	if (s == NULL)
+		return (NULL);
 	s = clear_semicolon(s);
 	s = clear_pipe(s);
 	s = clear_ampersand(s);
