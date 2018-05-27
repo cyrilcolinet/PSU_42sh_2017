@@ -47,7 +47,8 @@ void 	exec_btree(char *line_cmd, env_t *env)
 static void is_valid_buffer(char *buffer, env_t *env)
 {
 	buffer = clear_separator(buffer);
-
+	if (buffer == NULL)
+		return;
 	if (error_management(buffer)) {
 		fill_history(env, buffer);
 		exec_btree(buffer, env);
