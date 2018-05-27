@@ -271,3 +271,20 @@ CLEAN=""
 TESTS=
   echo "   \\t\\t       ls -l     \\t\\t"
 [026-END]
+
+[027]
+NAME="&& commands"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls -l && echo "hello everyone" && unknown && ls -l'
+  echo 'echo "List" && ls -l'
+[027-END]
+
+[028]
+NAME="&& and || commands"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'unknown && echo "ok" || echo "nop"'
+[028-END]
