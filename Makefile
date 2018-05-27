@@ -32,6 +32,8 @@ SRC_FILES		= 	main.c							\
 				parser/clear/clear_redirect_dleft.c			\
 				parser/clear/clear_redirect_right.c			\
 				parser/clear/clear_redirect_dright.c			\
+				parser/str_to_tab_separator.c				\
+				parser/check_next_separator.c				\
 				parser/parser.c 					\
 				parser/parser_pipe.c 					\
 				parser/str_to_array_42/my_str_to_array_42.c		\

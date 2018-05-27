@@ -21,6 +21,10 @@ char *clear_separator(char *s)
 	s = clear_redirect_right(s);
 	s = clear_redirect_dleft(s);
 	s = clear_redirect_dright(s);
-
+	if (s[0] != '\0' && s[0] == '&' && s[1] != '\0'
+	&& s[1] == '&' && s[2] == '\0') {
+		free(s);
+		return (NULL);
+	}
 	return (s);
 }
