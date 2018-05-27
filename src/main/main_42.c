@@ -36,9 +36,8 @@ void 	exec_btree(char *line_cmd, env_t *env)
 	free(line_cmd);
 	apply_inhibitors(&b_tree);
 	while (tmp) {
-		if (tmp->pipe_in_cmd == NULL) {
+		if (tmp->pipe_in_cmd == NULL)
 			exec_cmdline(tmp->full_cmd, env, b_tree);
-		}
 		tmp = tmp->next;
 	}
 	free_struct_parser(b_tree);
@@ -64,8 +63,8 @@ int 	main_shell(char **av_env)
 	char 		*buffer = NULL;
 	int		exit_code = 0;
 
-//	if (!can_apply_keybinding(&env))
-//		return (84);
+	// if (!can_apply_keybinding(&env))
+	// 	return (84);
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
 	while ((buffer = get_next_line(0))) {
