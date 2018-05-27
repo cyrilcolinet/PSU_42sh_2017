@@ -300,6 +300,7 @@ int		is_a_variable_assign(char **, env_t *);
 void		add_variable_in_shell(env_t *, char **);
 char		*find_variable(env_t *, char *);
 char		**apply_local_variables(char **, env_t *);
+void 		del_variable_in_shell(env_t *, char **);
 
 /*
 ** Globbings
