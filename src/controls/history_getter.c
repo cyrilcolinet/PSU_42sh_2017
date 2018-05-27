@@ -9,10 +9,18 @@
 
 int control_key_up(env_t *env, char *buffer, int i)
 {
+	(void)env,
+	(void)buffer;
+	(void)i;
+
 	return (0);
 }
 
 int control_key_down(env_t *env, char *buffer, int i)
 {
+	(void)env,
+	(void)buffer;
+	(void)i;
+
 	return (0);
 }
