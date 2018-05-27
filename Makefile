@@ -70,7 +70,6 @@ SRC_FILES		= 	main.c							\
 				utils/parsing.c						\
 				sig/wstatus_handler.c 					\
 				sig/error_messages.c 					\
-				sig/ctrl_catcher.c					\
 				prompt/prompt_line.c 					\
 				globbings/checker.c 					\
 				globbings/globbings.c					\
