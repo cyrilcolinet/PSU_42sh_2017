@@ -17,6 +17,7 @@ TEST_DIR		= 	tests/
 
 SRC_FILES		= 	main.c							\
 				main/main_42.c 						\
+				main/get_next_line.c 					\
 				parser/clear/clear_str.c				\
 				parser/clear/clear_begin.c				\
 				parser/clear/clear_end.c				\
@@ -83,10 +84,10 @@ SRC_FILES		= 	main.c							\
 				variables/find_variable.c				\
 				variables/replace_variable.c				\
 				history/history.c 					\
-				controls/load_keys.c 					\
-				controls/can_apply_keybinding.c 			\
-				controls/history_getter.c 				\
-				jobs/jobs.c
+				ncurses/load_keys.c 					\
+				ncurses/can_apply_keybinding.c 				\
+				ncurses/get_next_line_ncurses.c				\
+				controls/history_getter.c
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
 

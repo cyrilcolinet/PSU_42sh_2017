@@ -7,7 +7,7 @@
 
 # include "shell.h"
 
-void free_struct_parser(parser_t *parser)
+void 	free_struct_parser(parser_t *parser)
 {
 	parser_t *tmp = NULL;
 	p_pipe_t *tmpipe = NULL;
@@ -81,15 +81,16 @@ static void is_valid_buffer(char *buffer, env_t *env)
 
 int 	main_shell(char **av_env)
 {
-	env_t 		env = init_env(av_env);
-	char 		*buffer = NULL;
-	int		exit_code = 0;
+	env_t env = init_env(av_env);
+	char *buffer = NULL;
+	int exit_code = 0;
+	char *(*gnl[])(env_t *) = { &default_gnl, &ncurses_gnl };
 
-	// if (!can_apply_keybinding(&env))
-	// 	return (84);
+	if (!can_apply_keybinding(&env))
+		return (84);
 	prompt(env);
 	signal(SIGINT, SIG_IGN);
-	while ((buffer = get_next_line(0))) {
+	while ((buffer = gnl[isatty(0)](&env))) {
 		if (my_strlen(buffer) > 0)
 			is_valid_buffer(buffer, &env);
 		prompt(env);
