@@ -86,7 +86,7 @@ int 	main_shell(char **av_env)
 	int exit_code = 0;
 	char *(*gnl[])(env_t *) = { &default_gnl, &ncurses_gnl };
 
-	if (!can_apply_keybinding(&env))
+	if (!ncurses_loader(&env))
 		return (84);
 	prompt(env);
 	signal(SIGINT, SIG_IGN);

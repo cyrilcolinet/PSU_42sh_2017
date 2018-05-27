@@ -251,4 +251,10 @@ int		globbing_in_cmd(char *);
 bool		load_keys(env_t *);
 bool		can_apply_keybinding(env_t *);
 
+/*
+** Ncurses management
+** Ncurses keybinding and other
+*/
+bool		ncurses_loader(env_t *);
+
 # endif

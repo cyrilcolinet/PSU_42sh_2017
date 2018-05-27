@@ -87,6 +87,7 @@ SRC_FILES		= 	main.c							\
 				ncurses/load_keys.c 					\
 				ncurses/can_apply_keybinding.c 				\
 				ncurses/get_next_line_ncurses.c				\
+				ncurses/ncurses_loader.c				\
 				controls/history_getter.c
 
 SRC			= 	$(addprefix $(SRC_DIR), $(SRC_FILES))
