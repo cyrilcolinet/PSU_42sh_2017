@@ -107,3 +107,4 @@ dkms.conf
 build/
 include/my.h
 42sh
+.42sh_history
